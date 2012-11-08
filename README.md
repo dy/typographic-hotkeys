@@ -5,6 +5,7 @@ Script extends default Windows keyboard shortcuts with OS X-like scheme for spec
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
 2. Put `TypographicHotkeys.ahk` anywhere (i. e. _My Documents_) and open it in Autohotkey™
+Get +100500 to your typographic skills!
 
 ## List of supported characters
 * — Em dash, `Alt + Ctrl + -` or `---`
