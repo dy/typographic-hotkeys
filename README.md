@@ -5,6 +5,7 @@ Script extends default Windows keyboard shortcuts with OS X-like scheme for spec
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
 2. Put `TypographicHotkeys.ahk` anywhere (i. e. _My Documents_) and open it in Autohotkey™
+
 Get +100500 to your typographic skills!
 
 ## List of supported characters
@@ -27,4 +28,4 @@ Get +100500 to your typographic skills!
 * Arrows as easy as fart: ←↑→↓ = `Alt + ←, ↑, →, ↓`. Try to use modifiers
 * Fractions: ⅛ as `1/8`
 * Rouble sign (so far only in <a href="http://www.paratype.com/public/">Public Type Family</a>) as `[rur]`
-* I'm tired. Maybe will later document this list.
+* I'm tired. Maybe later I will document full list.
