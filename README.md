@@ -22,8 +22,8 @@ Script extends default Windows keyboard shortcuts with OS X-like scheme for spec
 * ≠≡꞊ on `Modifier += `
 * ‽ as `?!` and `!?`
 * ⁂ as `***`
-* *Thin space* on `Alt + space`!
+* **Thin space** on `Alt + space`!
 * Arrows as easy as fart: ←↑→↓ = `Alt + ←, ↑, →, ↓`. Try to use modifiers
 * Fractions: ⅛ as `1/8`
-* Rouble sign (only in <a href="">Public Type Family</a>) as `[rur]`
+* Rouble sign (so far only in <a href="http://www.paratype.com/public/">Public Type Family</a>) as `[rur]`
 * I'm tired. Maybe will later document this list.
