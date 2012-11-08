@@ -1,30 +1,28 @@
 # Typographic hotkeys
 
-`[In development]`
-
-Script extends default Windows keyboard shortcuts with OS X-like scheme for special typographic symbols, like €, ¥, ©, ®, ™, ℠, °, ≠, ±, ≈ and so on. Currently script supports only basic symbols.
+Script extends default Windows keyboard shortcuts with OS X-like scheme for special typographic symbols, like €, ¥, ©, ®, ™, ℠, °, ≠, ±, ≈ and so on. Supports all basic symbols and even more (see full list).
 
 ## Installation
-1. Download and install <a href="http://www.autohotkey.com/">autohotkey</a>
-2. Put `AutoHotkey.ahk` into My Documents
-3. Get +100500 to your typographic skills
+1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
+2. Put `TypographicHotkeys.ahk` anywhere (i. e. _My Documents_) and open it in Autohotkey™
 
 ## List of supported characters
-* — Em dash, Alt+Ctrl+- or ---
-* – En dash, Alt+-
-* «»
-* “”
-* „‟
-* …
-* ±
-* ∓
-* ©
-* ®
-* ™
-* ℠
-* °
-* €
-* ↑
-* →
-* ↓
-* ←
+* — Em dash, Alt + Ctrl + - or ---
+* – En dash, Alt + -
+* «», “”, „‟ as Alt + '
+* … as ...
+* ± ∓ as +- -+
+* ≈ as Alt + ~
+* © as (c)
+* ® as (r)
+* ™ as [tm]
+* ℠ as [sm]
+* ° as [deg]
+* €,… as [eu] or Alt + E 
+* ≠≡꞊ on Modifier+=
+* ‽ as ?! and !?
+* ⁂ as ***
+* *Thin space* on alt+space!
+* Arrows as easy as jet: ←↑→↓ = Alt + ←, ↑, →, ↓. Try to use modifiers
+* Fractions: ⅛ as 1/8
+* I'm tired. Maybe will later document this list.
