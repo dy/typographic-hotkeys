@@ -1,12 +1,26 @@
 # Typographic hotkeys
 
-Script extends default Windows keyboard shortcuts with OS X-like scheme for special typographic symbols, like €, ¥, ©, ®, ™, ℠, °, ≠, ±, ≈ and so on. Supports all basic symbols and even more (see full list).
+Extend default Windows keyboard for typing special typographic symbols like –, —, ™, ℠, ©, ®, €, ≠, ±, ≤, ≶, … It supports OS-X special characters shortcuts, Linux compose keys via WinKey, MS Office-like autocorrection and a lot of enhancements:
+* Basic typograpy «», „‟, “”, –, —, … (**Thin space!**)
+* Math ≤, ≥, [==]
+* Currencies €, ¥, £, … (**Rouble sign supported!** `[rur]` → ⃏)
+* Shapes ●, ▪, |, …
+* Symbols
+* Arrows
+* Fractions
+* Special numbers
+
+TODO:
+* all possible symbols
+* linux compose keys
+* mac compose keys→
+* readme
+* numerous tests
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
-2. Put `TypographicHotkeys.ahk` (<a href="http://dmitry-ivanov.me/playground/windows_typographic_hotkeys/TypographicHotkeys.ahk">download</a>) anywhere (i. e. _My Documents_) and open it in Autohotkey™
-
-Get +100500 to your typographic skills!
+2. Download <a href="http://dmitry-ivanov.me/playground/windows_typographic_hotkeys/TypographicHotkeys.ahk">TypographicHotkeys.ahk</a>, put it anywhere (i. e. _My Documents_) and open it with Autohotkey™
+3. Get +100500 to your typographic skills!
 
 ## List of supported characters
 
