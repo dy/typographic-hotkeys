@@ -12,6 +12,9 @@ pair(a, b)
     }
 }
 
+#Hotstring * ?
+
+
 
 ;=================================Basic typography
 ::[---]::
@@ -53,7 +56,7 @@ pair(a, b)
 
 ::...::…
 ::[...]::…
-::[..]::
+::[..]::‥
 
 !Space::
     KeyWait Alt
@@ -65,17 +68,14 @@ pair(a, b)
 
 ::***::⁂
 
-:*:[deg]::°
+::[deg]::°
 
-!p::
-    Send §
-    return
-:*:[par]::§
-:*:[paragraph]::§
+::[par]::§
+::[paragraph]::§
 
 ;================================Maths
-:*:[inf]::∞
-:*:[infinity]::∞
+::[inf]::∞
+::[infinity]::∞
 ::[((]::⦅
 ::[))]::⦆
 :*:[forall]::∀
@@ -131,11 +131,12 @@ pair(a, b)
 :*:[triple integral]::∬
 :*:[tripleintegral]::∭
 
-::+-::±
-::-+::∓
-::-~::≂
-::~-::≃
-::~~::≈
+
+::[+-]::±
+::[-+]::∓
+::[-~]::≂
+::[~-]::≃
+::[~~]::≈
 
 !~::
     Send ∽
@@ -151,6 +152,8 @@ pair(a, b)
 ::[>~]::≳
 ::[<>]::≶
 ::[><]::≷
+::[==]::≡
+::[!=]::≠
 
 !*::
 +!8::
@@ -162,6 +165,7 @@ pair(a, b)
     return
 
 !/::÷
+::[/]::÷
 
 +^!=::
     Send ≡
@@ -184,151 +188,156 @@ pair(a, b)
 !.::∙
 +!.::•
 +!^.::●
-:*:[dot]::∙
-:*:[dot1]::∙
-:*:[dot2]::•
-:*:[dot3]::●
-:*:[dot4]::○
-:*:[dot5]::◌
-:*:[dot6]::◎
+::[dot]::∙
+::[dot1]::∙
+::[dot2]::•
+::[dot3]::●
+::[dot4]::○
+::[dot5]::◌
+::[dot6]::◎
 
-:*:[square]::▪
-:*:[square1]::▪
-:*:[square2]::■
-:*:[square3]::∎
+::[small circle]::∙
+::[circle]::•
+::[big circle]::●
 
-:*:[x0]::☓
-:*:[x1]::✕
-:*:[x2]::✖
-:*:[x3]::✘
-:*:[x4]::✗
-:*:[x5]::╳
-:*:[cross0]::☓
-:*:[cross1]::✕
-:*:[cross2]::✖
-:*:[cross3]::✘
-:*:[cross4]::✗
+::[square1]::▪
+::[small square]::▪
+::[square2]::■
+::[square]::■
+::[square3]::∎
+::[big square]::∎
 
-:*:[diamond]::⋄
-:*:[diamond2]::◇
-:*:[diamond3]::◆
+::[x0]::☓
+::[x1]::✕
+::[x2]::✖
+::[x3]::✘
+::[x4]::✗
+::[x5]::╳
+::[cross0]::☓
+::[cross1]::✕
+::[cross2]::✖
+::[cross3]::✘
+::[cross4]::✗
 
-:*:[vertical]::|
-:*:[vertical1]::|
-:*:[vertical2]::│
-:*:[vertical3]::┃
-:*:[vertical4]::┆
-:*:[vertical5]::┊
-:*:[vertical6]::╎
-:*:[vertical7]::┋
-:*:[|1]::|
-:*:[|2]::│
-:*:[|3]::┃
-:*:[|4]::┆
-:*:[|5]::┊
-:*:[|6]::╎
-:*:[|7]::┋
+::[diamond]::⋄
+::[diamond2]::◇
+::[diamond3]::◆
+
+::[vertical]::|
+::[vertical1]::|
+::[vertical2]::│
+::[vertical3]::┃
+::[vertical4]::┆
+::[vertical5]::┊
+::[vertical6]::╎
+::[vertical7]::┋
+::[|1]::|
+::[|2]::│
+::[|3]::┃
+::[|4]::┆
+::[|5]::┊
+::[|6]::╎
+::[|7]::┋
 
 ;=============================Symbols
-:*:[check]::☑
-:*:[check2]::☒
+::[check]::☑
+::[check2]::☒
 
-:*:[ok]::✓
-:*:[ok1]::✓
-:*:[ok2]::✔
+::[ok]::✓
+::[ok1]::✓
+::[ok2]::✔
 
-:*:[phone]::✆
-:*:[phone1]::✆
-:*:[phone2]::☎
-:*:[phone3]::☏
+::[phone]::✆
+::[phone1]::✆
+::[phone2]::☎
+::[phone3]::☏
 
-:*:[mail]::✉
-:*:[email]::✉
+::[mail]::✉
+::[email]::✉
 
-:*:[home]::⌂
-:*:[house]::
+::[home]::⌂
+::[house]::⌂
 
-:*:[scissors]::✂
-:*:[scissors1]::✂
-:*:[scissors2]::✁
-:*:[scissors3]::✃
-:*:[scissors4]::✄
+::[scissors]::✂
+::[scissors1]::✂
+::[scissors2]::✁
+::[scissors3]::✃
+::[scissors4]::✄
 
-:*:[option]::⌘
+::[option]::⌘
 
-:*:[cloud]::☁
+::[cloud]::☁
 
-:*:[wave]::⌇
+::[wave]::⌇
 !|::
     Send ⌇
     return
 
-:*:[pencil]::✍
-:*:[pencil1]::✍
-:*:[pencil2]::✎
-:*:[pencil3]::✏
-:*:[pencil4]::✐
+::[pencil]::✍
+::[pencil1]::✍
+::[pencil2]::✎
+::[pencil3]::✏
+::[pencil4]::✐
 
-:*:[nib1]::✑
-:*:[nib2]::✒
+::[nib1]::✑
+::[nib2]::✒
 
-:*:[hot]::♨
-:*:[piece]::☮
-:*:[victory]::✌
-:*:[radioactive]::☢
-:*:[death]::☠
-:*:[smile]::☺
-:*:[black smile]::☻
-:*:[blacksmile]::☻
-:*:[medicine]::☤
-:*:[plane]::✈
-:*:[comet]::☄
+::[hot]::♨
+::[piece]::☮
+::[victory]::✌
+::[radioactive]::☢
+::[death]::☠
+::[smile]::☺
+::[black smile]::☻
+::[blacksmile]::☻
+::[medicine]::☤
+::[plane]::✈
+::[comet]::☄
 
-:*:[hand left]::☜
-:*:[handleft]::☜
-:*:[handtop]::☝
-:*:[hand top]::☝
-:*:[handright]::☞
-:*:[hand right]::☞
-:*:[black hand right]::☛
-:*:[black hand left]::☚
-:*:[handdown]::☟
-:*:[hand down]::☟
+::[hand left]::☜
+::[handleft]::☜
+::[handtop]::☝
+::[hand top]::☝
+::[handright]::☞
+::[hand right]::☞
+::[black hand right]::☛
+::[black hand left]::☚
+::[handdown]::☟
+::[hand down]::☟
 
 
 ;==========================Law marks
-:*:(c)::©
-:*:(с)::©
-:*:(r)::® 
-:*:[tm]::™
-:*:(tm)::™
-:*:[sm]::℠
-:*:(sm)::℠
+::(c)::©
+::(r)::® 
+::[tm]::™
+::(tm)::™
+::[sm]::℠
+::(sm)::℠
 
 ;=============================Currency
-::[cent]::¢
-::[CENT]::￠
-::[c-]::¢
-::[C-]::￠
-:*:[ils]::₪
+:C:[cent]::¢
+:C:[CENT]::￠
+:C:[c-]::¢
+:C:[C-]::￠
+::[ils]::₪
 ::[i-]::₪
-:*:[eur]::€
-:*:[e-]::€
-:*:[eurocurrency]::₠
-:*:[F-]::₣
-:*:[Fr-]::₣
-:*:[gbp]::£
-:*:[gb-]::£
-:*:[jpy]::¥
-:*:[y-]::¥
-:*:[rub]::⃏
-:*:[roub]::⃏
-:*:[ru]::⃏
-:*:[rur]::⃏
-:*:[R-]::⃏
-:*:[mnt]::₮
-:*:[t-]::₮
-:*:[currency]::¤
+::[eur]::€
+::[e-]::€
+::[eurocurrency]::₠
+::[F-]::₣
+::[Fr-]::₣
+::[gbp]::£
+::[gb-]::£
+::[jpy]::¥
+::[y-]::¥
+::[rub]::⃏
+::[roub]::⃏
+::[ru]::⃏
+::[rur]::⃏
+::[R-]::⃏
+::[mnt]::₮
+::[t-]::₮
+::[currency]::¤
 
 ;=============================Numbers
 !^1::¹
@@ -428,8 +437,14 @@ pair(a, b)
 +^!Left::
     Send ⇦
     return
+::[<-]::
+    Send ←
+    return
 +^!Right::
     Send ⇨
+    return
+::[->]::
+    Send →
     return
 +!Up::
     Send ▴
@@ -467,3 +482,11 @@ pair(a, b)
 !Right::
     Send →
     return
+
+
+;================================Linux/Solaris compose key sequences
+;::
+;    KeyWait =
+;    KeyWait C
+;    Send €
+;    return
