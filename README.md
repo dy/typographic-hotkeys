@@ -31,11 +31,11 @@ There are three different ways of inserting characters.
 2. **Linux and Solaris compose keys**-like. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a></kbd> (also known as Console Menu Key, just previous to the <kbd>Right Alt</kbd>.).
 3. **HTML Symbol Codes**-like. Use common <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a> next way: `[someName]`. For example, `[beta]` will be changed to `β`, and `[mdash]` will be changed to `—`.
 4. Additional enhancements and autocorrections:
-* `(c)` → `©`
-* `(r)` → `®`
-* <kbd>Alt</kbd> + <kbd>↑, →, ↓, ←</kbd> → `↑`, `→`, `↓`, `←`
-* <kbd>Alt</kbd> + <kbd>Space</kbd> → ` ` (thin space)
-* `...` → `…`
+ * `(c)` → `©`
+ * `(r)` → `®`
+ * <kbd>Alt</kbd> + <kbd>↑, →, ↓, ←</kbd> → `↑`, `→`, `↓`, `←`
+ * <kbd>Alt</kbd> + <kbd>Space</kbd> → ` ` (thin space)
+ * `...` → `…`
 …
 
 ## List of supported characters
