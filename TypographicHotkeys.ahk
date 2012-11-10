@@ -1,57 +1,597 @@
-﻿;To call pair-symbols, like quotes, brackets and so on
-opened := "" ;object of opened pairs
-pair(a, b)
-{
-    global opened
-    if (opened == a) {
-    	opened := ""
-    	return b
-    } else {
-    	opened := a
-    	return a
-    }
-}
+﻿#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
 
-#Hotstring * ?
+;======================================The common combos array.
+;---------------------Solaris compose keys
+combos := {} 
+combos.Insert("c/","¢")
+combos.Insert("/c","¢")
+combos.Insert("!!","¡")
+combos.Insert("l-","£")
+combos.Insert("-l","£")
+combos.Insert("ox","¤")
+combos.Insert("xo","¤")
+combos.Insert("y-","¥")
+combos.Insert("-y","¥")
+combos.Insert("Y-","¥")
+combos.Insert("-Y","¥")
+combos.Insert("||","¦")
+combos.Insert("so","§")
+combos.Insert("os","§")
+combos.Insert("OS","§")
+combos.Insert("SO","§")
+combos.Insert("''","¨")
+combos.Insert("""""","¨")
+combos.Insert("""","¨")
+combos.Insert("co","©")
+combos.Insert("oc","©")
+combos.Insert("OC","©")
+combos.Insert("CO","©")
+combos.Insert("a-","ª")
+combos.Insert("-a","ª")
+combos.Insert("<<","«")
+combos.Insert("-|","¬")
+combos.Insert("|-","¬")
+combos.Insert("--","-")
+combos.Insert("or","®")
+combos.Insert("ro","®")
+combos.Insert("OR","®")
+combos.Insert("RO","®")
+combos.Insert("^-","¯")
+combos.Insert("-^","¯")
+combos.Insert("^0","°")
+combos.Insert("0^","°")
+combos.Insert("+-","±")
+combos.Insert("-+","∓")
+combos.Insert("^1","¹")
+combos.Insert("1^","¹")
+combos.Insert("^2","²")
+combos.Insert("2^","²")
+combos.Insert("^3","³")
+combos.Insert("3^","³")
+combos.Insert("\\","´")
+combos.Insert("/u","µ")
+combos.Insert("u/","µ")
+combos.Insert("P!","¶")
+combos.Insert("!P","¶")
+combos.Insert("^.","·")
+combos.Insert(".^","·")
+combos.Insert(",,","¸")
+combos.Insert("_o","º")
+combos.Insert(">>","»")
+combos.Insert("14","¼")
+combos.Insert("12","½")
+combos.Insert("34","¾")
+combos.Insert("??","¿")
+combos.Insert("A`","À")
+combos.Insert("`A","À")
+combos.Insert("A'","Á")
+combos.Insert("'A","Á")
+combos.Insert("A^","Â")
+combos.Insert("^A","Â")
+combos.Insert("A~","Ã")
+combos.Insert("~A","Ã")
+combos.Insert("A""","Ä")
+combos.Insert("""A","Ä")
+combos.Insert("A''","Ä")
+combos.Insert("''A","Ä")
+combos.Insert("A*","Å")
+combos.Insert("*A","Å")
+combos.Insert("AE","Æ")
+combos.Insert("C,","Ç")
+combos.Insert(",C","Ç")
+combos.Insert("E`","È")
+combos.Insert("`E","È")
+combos.Insert("E'","É")
+combos.Insert("'E","É")
+combos.Insert("E^","Ê")
+combos.Insert("^E","Ê")
+combos.Insert("E""","Ë")
+combos.Insert("""E","Ë")
+combos.Insert("E''","Ë")
+combos.Insert("''E","Ë")
+combos.Insert("I`","Ì")
+combos.Insert("`I","Ì")
+combos.Insert("I'","Í")
+combos.Insert("'I","Í")
+combos.Insert("I^","Î")
+combos.Insert("^I","Î")
+combos.Insert("I""","Ï")
+combos.Insert("""I","Ï")
+combos.Insert("''I","Ï")
+combos.Insert("I''","Ï")
+combos.Insert("D-","Ð")
+combos.Insert("-D","Ð")
+combos.Insert("N~","Ñ")
+combos.Insert("~N","Ñ")
+combos.Insert("O`","Ò")
+combos.Insert("`O","Ò")
+combos.Insert("O'","Ó")
+combos.Insert("'O","Ó")
+combos.Insert("O^","Ô")
+combos.Insert("^O","Ô")
+combos.Insert("O~","Õ")
+combos.Insert("~O","Õ")
+combos.Insert("O""","Ö")
+combos.Insert("""O","Ö")
+combos.Insert("O''","Ö")
+combos.Insert("''O","Ö")
+combos.Insert("xx","×")
+combos.Insert("O/","Ø")
+combos.Insert("/O","Ø")
+combos.Insert("`U","Ù")
+combos.Insert("U`","Ù")
+combos.Insert("U'","Ú")
+combos.Insert("'U","Ú")
+combos.Insert("U^","Û")
+combos.Insert("^U","Û")
+combos.Insert("U''","Ü")
+combos.Insert("''U","Ü")
+combos.Insert("""U","Ü")
+combos.Insert("U""","Ü")
+combos.Insert("Y'","Ý")
+combos.Insert("'Y","Ý")
+combos.Insert("TH","Þ")
+combos.Insert("HT","Þ")
+combos.Insert("ss","ß")
+combos.Insert("a`","à")
+combos.Insert("`a","à")
+combos.Insert("'a","á")
+combos.Insert("a'","á")
+combos.Insert("^a","â")
+combos.Insert("a^","â")
+combos.Insert("a~","ã")
+combos.Insert("~a","ã")
+combos.Insert("''a","ä")
+combos.Insert("a''","ä")
+combos.Insert("a""","ä")
+combos.Insert("""a","ä")
+combos.Insert("a*","å")
+combos.Insert("*a","å")
+combos.Insert("ae","æ")
+combos.Insert("c,","ç")
+combos.Insert(",c","ç")
+combos.Insert("'e","é")
+combos.Insert("e'","é")
+combos.Insert("^e","ê")
+combos.Insert("e^","ê")
+combos.Insert("''e","ë")
+combos.Insert("e''","ë")
+combos.Insert("e""","ë")
+combos.Insert("""e","ë")
+combos.Insert("i`","ì")
+combos.Insert("`i","ì")
+combos.Insert("'i","í")
+combos.Insert("i'","í")
+combos.Insert("^i","î")
+combos.Insert("i^","î")
+combos.Insert("''i","ï")
+combos.Insert("i''","ï")
+combos.Insert("i""","ï")
+combos.Insert("""i","ï")
+combos.Insert("d-","ð")
+combos.Insert("-d","ð")
+combos.Insert("n~","ñ")
+combos.Insert("~n","ñ")
+combos.Insert("o`","ò")
+combos.Insert("`o","ò")
+combos.Insert("'o","ó")
+combos.Insert("o'","ó")
+combos.Insert("^o","ô")
+combos.Insert("o^","ô")
+combos.Insert("o~","õ")
+combos.Insert("~o","õ")
+combos.Insert("''o","ö")
+combos.Insert("o''","ö")
+combos.Insert("o""","ö")
+combos.Insert("""o","ö")
+combos.Insert("-:","÷")
+combos.Insert(":-","÷")
+combos.Insert("o/","ø")
+combos.Insert("/o","ø")
+combos.Insert("u`","ù")
+combos.Insert("`u","ù")
+combos.Insert("'u","ú")
+combos.Insert("u'","ú")
+combos.Insert("^u","û")
+combos.Insert("u^","û")
+combos.Insert("''u","ü")
+combos.Insert("u''","ü")
+combos.Insert("u""","ü")
+combos.Insert("""u","ü")
+combos.Insert("'y","ý")
+combos.Insert("y'","ý")
+combos.Insert("th","þ")
+combos.Insert("ht","þ")
+combos.Insert("y''","ÿ")
+combos.Insert("''y","ÿ")
+combos.Insert("""y","ÿ")
+combos.Insert("y""","ÿ")
+
+;---------------------------------Linux compose keys (premixed to solaris)
+combos.Insert("c|","¢")
+combos.Insert("|c","¢")
+combos.Insert("C|","¢")
+combos.Insert("|C","¢")
+combos.Insert("C/","¢")
+combos.Insert("/C","¢")
+combos.Insert("L-","£")
+combos.Insert("-L","£")
+combos.Insert("Y=","¥")
+combos.Insert("=Y","¥")
+combos.Insert("!^","¦")
+combos.Insert("oC","©")
+combos.Insert("Oc","©")
+combos.Insert("^_a","ª")
+combos.Insert("-,","¬")
+combos.Insert(",-","¬")
+combos.Insert("oR","®")
+combos.Insert("Or","®")
+combos.Insert("oo","°")
+combos.Insert("deg","°")
+combos.Insert("mu","µ")
+combos.Insert("p!","¶")
+combos.Insert("!p","¶")
+combos.Insert("PP","¶")
+combos.Insert("par","¶")
+combos.Insert("..","·")
+combos.Insert(",","¸")
+combos.Insert(" ,","¸")
+combos.Insert("º","^_o")
+combos.Insert("oA","Å")
+combos.Insert("Ao","Å")
+combos.Insert("DH","Ð")
+combos.Insert("HD","Ð")
+combos.Insert("oa","å")
+combos.Insert("ao","å")
+combos.Insert("_A","Ā")
+combos.Insert("A_","Ā")
+combos.Insert("a_","ā")
+combos.Insert("_a","ā")
+combos.Insert("UA","Ă")
+combos.Insert("bA","Ă")
+combos.Insert("Ua","ă")
+combos.Insert("ba","ă")
+combos.Insert("A;","Ą")
+combos.Insert(";A","Ą")
+combos.Insert("a;","ą")
+combos.Insert(";a","ą")
+combos.Insert("C'","Ć")
+combos.Insert("'C","Ć")
+combos.Insert("c'","ć")
+combos.Insert("'c","ć")
+combos.Insert("C^","Ĉ")
+combos.Insert("^C","Ĉ")
+combos.Insert("c^","ĉ")
+combos.Insert("^c","ĉ")
+combos.Insert("cC","Č")
+combos.Insert("Cv","Č")
+combos.Insert("vC","Č")
+combos.Insert("cc","č")
+combos.Insert("cv","č")
+combos.Insert("vc","č")
+combos.Insert("cD","Ď")
+combos.Insert("Dv","Ď")
+combos.Insert("vD","Ď")
+combos.Insert("cd","ď")
+combos.Insert("/D","Đ")
+combos.Insert("-d","đ")
+combos.Insert("/d","đ")
+combos.Insert("E_","Ē")
+combos.Insert("_E","Ē")
+combos.Insert("e_","ē")
+combos.Insert("_e","ē")
+combos.Insert("UE","Ĕ")
+combos.Insert("bE","Ĕ")
+combos.Insert("Ue","ĕ")
+combos.Insert("be","ĕ")
+combos.Insert(";E","Ę")
+combos.Insert("E;","Ę")
+combos.Insert(";e","ę")
+combos.Insert("e;","ę")
+combos.Insert("cE","Ě")
+combos.Insert("vE","Ě")
+combos.Insert("Ev","Ě")
+combos.Insert("ce","ě")
+combos.Insert("ve","ě")
+combos.Insert("ev","ě")
+combos.Insert("G^","Ĝ")
+combos.Insert("^G","Ĝ")
+combos.Insert("g^","ĝ")
+combos.Insert("^g","ĝ")
+combos.Insert("","Ğ")
+combos.Insert("","Ğ")
+combos.Insert("","ğ")
+combos.Insert("","ğ")
+combos.Insert("","Ģ")
+combos.Insert("","Ģ")
+combos.Insert("","ģ")
+combos.Insert("","ģ")
+combos.Insert("","Ĥ")
+combos.Insert("","Ĥ")
+combos.Insert("","ĥ")
+combos.Insert("","ĥ")
+combos.Insert("","Ħ")
+combos.Insert("","Ħ")
+combos.Insert("","ħ")
+combos.Insert("","ħ")
+combos.Insert("","Ĩ")
+combos.Insert("","Ĩ")
+combos.Insert("","ĩ")
+combos.Insert("","ĩ")
+combos.Insert("","Ī")
+combos.Insert("","Ī")
+combos.Insert("","ī")
+combos.Insert("","ī")
+combos.Insert("","Ĭ")
+combos.Insert("","Ĭ")
+combos.Insert("","ĭ")
+combos.Insert("","ĭ")
+combos.Insert("","Į")
+combos.Insert("","Į")
+combos.Insert("","į")
+combos.Insert("","į")
+combos.Insert("","ı")
+combos.Insert("","ı")
+combos.Insert("","Ĵ")
+combos.Insert("","Ĵ")
+combos.Insert("","ĵ")
+combos.Insert("","ĵ")
+combos.Insert("","Ķ")
+combos.Insert("","Ķ")
+combos.Insert("","ķ")
+combos.Insert("","ķ")
+combos.Insert("","ĸ")
+combos.Insert("","Ĺ")
+combos.Insert("","Ĺ")
+combos.Insert("","ĺ")
+combos.Insert("","ĺ")
+combos.Insert("","Ļ")
+combos.Insert("","Ļ")
+combos.Insert("","ļ")
+combos.Insert("","ļ")
+combos.Insert("","Ľ")
+combos.Insert("","ľ")
+combos.Insert("","Ł")
+combos.Insert("","Ł")
+combos.Insert("","ł")
+combos.Insert("","ł")
+combos.Insert("","Ń")
+combos.Insert("","Ń")
+combos.Insert("","ń")
+combos.Insert("","ń")
+combos.Insert("","Ņ")
+combos.Insert("","Ņ")
+combos.Insert("","ņ")
+combos.Insert("","ņ")
+combos.Insert("","Ň")
+combos.Insert("","Ň")
+combos.Insert("","Ň")
+combos.Insert("","ň")
+combos.Insert("","ň")
+combos.Insert("","ň")
+combos.Insert("","Ŋ")
+combos.Insert("","Ŋ")
+combos.Insert("","ŋ")
+combos.Insert("","ŋ")
+combos.Insert("","Ō")
+combos.Insert("","Ō")
+combos.Insert("","ō")
+combos.Insert("","ō")
+combos.Insert("","Ŏ")
+combos.Insert("","Ŏ")
+combos.Insert("","ŏ")
+combos.Insert("","ŏ")
+combos.Insert("","Ő")
+combos.Insert("","Ő")
+combos.Insert("","ő")
+combos.Insert("","ő")
+combos.Insert("","Œ")
+combos.Insert("","œ")
+combos.Insert("","Ŕ")
+combos.Insert("","Ŕ")
+combos.Insert("","ŕ")
+combos.Insert("","ŕ")
+combos.Insert("","Ŗ")
+combos.Insert("","Ŗ")
+combos.Insert("","ŗ")
+combos.Insert("","ŗ")
+combos.Insert("","Ř")
+combos.Insert("","Ř")
+combos.Insert("","Ř")
+combos.Insert("","ř")
+combos.Insert("","ř")
+combos.Insert("","ř")
+combos.Insert("","Ś")
+combos.Insert("","Ś")
+combos.Insert("","ś")
+combos.Insert("","ś")
+combos.Insert("","Ŝ")
+combos.Insert("","Ŝ")
+combos.Insert("","ŝ")
+combos.Insert("","ŝ")
+combos.Insert("","Ş")
+combos.Insert("","Ş")
+combos.Insert("","ş")
+combos.Insert("","ş")
+combos.Insert("","Š")
+combos.Insert("","Š")
+combos.Insert("","š")
+combos.Insert("","š")
+combos.Insert("","Ţ")
+combos.Insert("","Ţ")
+combos.Insert("","ţ")
+combos.Insert("","ţ")
+combos.Insert("","Ť")
+combos.Insert("","Ť")
+combos.Insert("","Ť")
+combos.Insert("","ť")
+combos.Insert("","ť")
+combos.Insert("","ť")
+combos.Insert("","Ŧ")
+combos.Insert("","Ŧ")
+combos.Insert("","Ŧ")
+combos.Insert("","Ŧ")
+combos.Insert("","ŧ")
+combos.Insert("","ŧ")
+combos.Insert("","ŧ")
+combos.Insert("","ŧ")
+combos.Insert("","Ũ")
+combos.Insert("","Ũ")
+combos.Insert("","ũ")
+combos.Insert("","ũ")
+combos.Insert("","Ū")
+combos.Insert("","Ū")
+combos.Insert("","ū")
+combos.Insert("","ū")
+combos.Insert("","Ŭ")
+combos.Insert("","Ŭ")
+combos.Insert("","ŭ")
+combos.Insert("","ŭ")
+combos.Insert("","Ů")
+combos.Insert("","Ů")
+combos.Insert("","ů")
+combos.Insert("","ů")
+combos.Insert("","Ű")
+combos.Insert("","Ű")
+combos.Insert("","ű")
+combos.Insert("","ű")
+combos.Insert("","Ų")
+combos.Insert("","Ų")
+combos.Insert("","ų")
+combos.Insert("","ų")
+combos.Insert("","Ŵ")
+combos.Insert("","Ŵ")
+combos.Insert("","ŵ")
+combos.Insert("","ŵ")
+combos.Insert("","Ŷ")
+combos.Insert("","Ŷ")
+combos.Insert("","ŷ")
+combos.Insert("","ŷ")
+combos.Insert("","Ÿ")
+combos.Insert("","Ÿ")
+combos.Insert("","Ÿ")
+combos.Insert("","Ÿ")
+combos.Insert("","Ź")
+combos.Insert("","Ź")
+combos.Insert("","ź")
+combos.Insert("","ź")
+combos.Insert("","Ž")
+combos.Insert("","Ž")
+combos.Insert("","ž")
+combos.Insert("","ž")
+combos.Insert("fs","ſ")
+combos.Insert("fS","ſ")
+combos.Insert("","ƀ")
+combos.Insert("","ƀ")
+combos.Insert("","Ɨ")
+combos.Insert("","Ɨ")
+combos.Insert("","Ƶ")
+combos.Insert("","Ƶ")
+combos.Insert("","ƶ")
+combos.Insert("","ƶ")
+combos.Insert("","Ǎ")
+combos.Insert("","Ǎ")
+combos.Insert("","Ǎ")
+combos.Insert("","ǎ")
+combos.Insert("","ǎ")
+combos.Insert("","ǎ")
+combos.Insert("","Ǐ")
+combos.Insert("","Ǐ")
+combos.Insert("","Ǐ")
+combos.Insert("","ǐ")
+combos.Insert("","ǐ")
+combos.Insert("","ǐ")
+combos.Insert("","Ǒ")
+combos.Insert("","Ǒ")
+combos.Insert("","Ǒ")
+combos.Insert("","ǒ")
+combos.Insert("","ǒ")
+combos.Insert("","ǒ")
+combos.Insert("","Ǔ")
+combos.Insert("","Ǔ")
+combos.Insert("","Ǔ")
+combos.Insert("","ǔ")
+combos.Insert("","ǔ")
+combos.Insert("","ǔ")
+combos.Insert("","Ǥ")
+combos.Insert("","Ǥ")
+combos.Insert("","ǥ")
+combos.Insert("","ǥ")
+combos.Insert("","Ǧ")
+combos.Insert("","Ǧ")
+combos.Insert("","Ǧ")
+combos.Insert("","ǧ")
+combos.Insert("","ǧ")
+combos.Insert("","ǧ")
+combos.Insert("","Ǩ")
+combos.Insert("","Ǩ")
+combos.Insert("","Ǩ")
+combos.Insert("","ǩ")
+combos.Insert("","ǩ")
+combos.Insert("","ǩ")
+combos.Insert("","")
+combos.Insert("","")
+combos.Insert("","")
+combos.Insert("","")
+combos.Insert("<-","←")
+combos.Insert("->","→")
+combos.Insert("<3","♥")
+combos.Insert("CCCP","☭")
+
+AppsKey::
+    ;Cunning hook: AppsKey Up sends {CtrlBreak} that stops Input that AppsKey has started. 
+    Input, combo, C,{CtrlBreak}
+
+    ;AppsKey continues to perform and tries to find passed combination in list of combos.    
+    if (combos[combo]){
+        comboStr := combos[combo]
+        SendInput %comboStr%
+    }
+    return
+
+
+AppsKey Up::
+    Send {CtrlBreak}
+    return
 
 
 
 ;=================================Basic typography
 ::[---]::
-    Send —
+    SendInput —
     return
 ^!-::
-	;KeyWait Control
-	;KeyWait Alt
-    Send —
+    ;KeyWait Control
+    ;KeyWait Alt
+    SendInput —
     return
 
 !-::
-	KeyWait Alt
-    Send –
+    KeyWait Alt
+    SendInput –
     return
 ::[--]::
     KeyWait Alt
-    Send –
+    SendInput –
     return
 
 ^!+[::
-    Send „
+    SendInput „
     return
 ^!+]::
-    Send ‟
+    SendInput ‟
     return
 ^![::
-    Send “
+    SendInput “
     return
 ^!]::
-    Send ”
+    SendInput ”
     return
 ![::
-    Send «
+    SendInput «
     return
 !]::
-    Send »
+    SendInput »
     return
 
 ::...::…
@@ -60,7 +600,7 @@ pair(a, b)
 
 !Space::
     KeyWait Alt
-    Send  
+    SendInput  
     return
 
 ::?!::‽
@@ -139,7 +679,7 @@ pair(a, b)
 ::[~~]::≈
 
 !~::
-    Send ∽
+    SendInput ∽
     return
 
 ::[<=]::≤
@@ -157,24 +697,26 @@ pair(a, b)
 
 !*::
 +!8::
-    SendRaw ×
+    SendInput ×
     return
 ^!*::
 ^+!8::
-    SendRaw ∙
+    SendInput ∙
     return
 
-!/::÷
+!/::
+    SendInput ÷
+    return
 ::[/]::÷
 
 +^!=::
-    Send ≡
+    SendInput ≡
     return
 ^!=::
-    Send ꞊
+    SendInput ꞊
     return
 !=::
-    Send ≠
+    SendInput ≠
     return
 
 
@@ -185,9 +727,15 @@ pair(a, b)
 ::[star2]::☆
 ::[star3]::⋆
 
-!.::∙
-+!.::•
-+!^.::●
+!.::
+    SendInput ∙
+    return
++!.::
+    SendInput •
+    return
++!^.::
+    SendInput ●
+    return
 ::[dot]::∙
 ::[dot1]::∙
 ::[dot2]::•
@@ -270,7 +818,7 @@ pair(a, b)
 
 ::[wave]::⌇
 !|::
-    Send ⌇
+    SendInput ⌇
     return
 
 ::[pencil]::✍
@@ -340,9 +888,15 @@ pair(a, b)
 ::[currency]::¤
 
 ;=============================Numbers
-!^1::¹
-!^2::²
-!^3::³
+!^1::
+    SendInput ¹
+    return
+!^2::
+    SendInput ²
+    return
+!^3::
+    SendInput ³
+    return
 ::1/2::½
 ::1/3::⅓
 ::1/4::¼
@@ -429,64 +983,56 @@ pair(a, b)
 
 ;===========================Arrows
 +^!Up::
-    Send ⇧
+    SendInput ⇧
     return
 +^!Down::
-    Send ⇩
+    SendInput ⇩
     return
 +^!Left::
-    Send ⇦
+    SendInput ⇦
     return
 ::[<-]::
-    Send ←
+    SendInput ←
     return
 +^!Right::
-    Send ⇨
+    SendInput ⇨
     return
 ::[->]::
-    Send →
+    SendInput →
     return
 +!Up::
-    Send ▴
+    SendInput ▴
     return
 +!Down::
-    Send ▾
+    SendInput ▾
     return
 +!Left::
-    Send ◂
+    SendInput ◂
     return
 +!Right::
-    Send ▸
+    SendInput ▸
     return
 ^!Up::
-    Send ▲
+    SendInput ▲
     return
 ^!Down::
-    Send ▼
+    SendInput ▼
     return
 ^!Left::
-    Send ◀
+    SendInput ◀
     return
 ^!Right::
-    Send ▶
+    SendInput ▶
     return
 !Up::
-    Send ↑
+    SendInput ↑
     return
 !Down::
-    Send ↓
+    SendInput ↓
     return
 !Left::
-    Send ←
+    SendInput ←
     return
 !Right::
-    Send →
+    SendInput →
     return
-
-
-;================================Linux/Solaris compose key sequences
-;::
-;    KeyWait =
-;    KeyWait C
-;    Send €
-;    return

@@ -1,8 +1,9 @@
 # Typographic hotkeys
 
-Extend default Windows keyboard for typing special typographic symbols like –, —, ™, ℠, ©, ®, €, ≠, ±, ≤, ≶, … It supports OS-X special characters shortcuts, Linux compose keys via WinKey, MS Office-like autocorrection and a lot of enhancements:
+Extend default Windows keyboard with special typographic symbols like –, —, ™, ℠, ©, ®, €, ≠, ±, ≤, ≶, other. It enables **Mac OS X special characters shortcuts**, **Linux Compose Keys**, **Solaris Compose Keys**, **HTML Symbol Codes**, **MS Office**-like autocorrection and makes a bit other enhancements.
+
 * Basic typograpy «», „‟, “”, –, —, … (**Thin space!**)
-* Math ≤, ≥, [==]
+* Math ±, ≤, ≥, [==]
 * Currencies €, ¥, £, … (**Rouble sign supported!** `[rur]` → ⃏)
 * Shapes ●, ▪, |, …
 * Symbols
@@ -13,14 +14,29 @@ Extend default Windows keyboard for typing special typographic symbols like –,
 TODO:
 * all possible symbols
 * linux compose keys
-* mac compose keys→
+* mac shortcuts
 * readme
 * numerous tests
+* pr: habrahabr, typographic community, authors, questions in forums, official forum, 
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
 2. Download <a href="http://dmitry-ivanov.me/playground/windows_typographic_hotkeys/TypographicHotkeys.ahk">TypographicHotkeys.ahk</a>, put it anywhere (i. e. _My Documents_) and open it with Autohotkey™
 3. Get +100500 to your typographic skills!
+
+## Usage
+There are three different ways of inserting characters.
+
+1. **Mac OS X shortcuts**-like. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, <kbd>Alt</kbd> + <kbd>→</kbd> = `→`. See <a href="http://www.nouilles.info/keyboard_shortcuts.html">the full list of OS X shortcuts for special characters</a>.
+2. **Linux and Solaris compose keys**-like. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a><kbd> (also known as Console Menu Key, just previous to the <kbd>Right Alt</kbd>.).
+3. **HTML Symbol Codes**-like. Use common <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a> next way: `[someName]`. For example, `[beta]` will be changed to `β`, and `[mdash]` will be changed to `—`.
+4. Additional enhancements and autocorrections:
+* `(c)` → `©`
+* `(r)` → `®`
+* <kbd>Alt</kbd> + <kbd>↑</kbd>, <kbd>→</kbd>, <kbd>↓</kbd>, <kbd>←</kbd> → `↑`, `→`, `↓`, `←`
+* <kbd>Alt</kbd> + <kbd>Space</kbd> → ` ` (thin space)
+* `...` → `…`
+…
 
 ## List of supported characters
 
