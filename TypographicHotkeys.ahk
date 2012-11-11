@@ -783,7 +783,76 @@ combos.item("^TM") := "™"
 combos.item("""\") := "〝"
 combos.item("""/") := "〞"
 
-;===========================================================HTML codes
+;========================================================================================HTML codes
+;---------------------------------math
+combos.item("forall") := "∀"
+combos.item("part") := "∂"
+combos.item("exist") := "∃"
+combos.item("empty") := "∅"
+combos.item("nabla") := "∇"
+combos.item("gradient") := "∇"
+combos.item("isin") := "∈"
+combos.item("notin") := "∉"
+combos.item("ni") := "∋"
+combos.item("prod") := ""
+combos.item("sum") := ""
+combos.item("minus") := ""
+combos.item("lowast") := ""
+combos.item("radic") := "√"
+combos.item("sqrt") := "√"
+combos.item("prop") := ""
+combos.item("infin") := "∞"
+combos.item("inf") := "∞"
+combos.item("infinity") := ""∞
+combos.item("ang") := ""
+combos.item("and") := ""
+combos.item("or") := ""
+combos.item("cap") := ""
+combos.item("cup") := ""
+combos.item("int") := ""
+combos.item("there4") := ""
+combos.item("sim") := ""
+combos.item("cong") := ""
+combos.item("asymp") := ""
+combos.item("ne") := ""
+combos.item("equiv") := ""
+combos.item("le") := ""
+combos.item("ge") := ""
+combos.item("sub") := ""
+combos.item("sup") := ""
+combos.item("nsub") := ""
+combos.item("sube") := ""
+combos.item("supe") := ""
+combos.item("oplus") := ""
+combos.item("otimes") := ""
+combos.item("perp") := "⊥"
+combos.item("sdot") := "⋅"
+
+;--------------------------Greek letters
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+combos.item("") := ""
+
+;------------------------
+combos.item("") := ""
 combos.item("") := ""
 combos.item("") := ""
 combos.item("") := ""
@@ -852,6 +921,11 @@ AppsKey::
 AppsKey Up::
     Send {CtrlBreak}
     return
+
+;==========================================================Hotkeys handler
+
+
+;=========================================================Symbol sequences handler
 
 
 
@@ -1151,6 +1225,8 @@ AppsKey Up::
 ::[black hand left]::☚
 ::[handdown]::☟
 ::[hand down]::☟
+
+::[command]::⌘
 
 
 ;==========================Law marks

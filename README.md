@@ -1,6 +1,6 @@
 # Typographic Hotkeys
 
-Extend default Windows keyboard with special typographic symbols like –, —, ™, ℠, ©, ®, €, ≠, ±, ≤, ≶ and other. Script enables **Mac OS X** special characters shortcuts, **Linux** compose keys, **HTML** symbol codes, **MS Office**-like autocorrection and makes a bit of other enhancements.
+Extend default Windows keyboard with special typographic symbols like –, —, ™, ℠, ©, ®, €, ≠, ±, ≤, ≶ and other. Script enables **Mac OS X special characters shortcuts**, **Linux compose keys**, **HTML symbol codes**, **MS Office**-like autocorrection and other enhancements.
 
 * Basic typograpy «», „‟, “”, –, —, … (__Thin space!__)
 * Math ±, ≤, ≥, ×, …
@@ -13,11 +13,14 @@ Extend default Windows keyboard with special typographic symbols like –, —, 
 
 TODO:
 * all possible symbols
-* linux compose keys
 * mac shortcuts
 * readme
 * numerous tests
 * pr: habrahabr, typographic community, authors, questions in forums, official forum, 
+
+Ideas:
+*rgba to rgb, to hex, to hsl by just select and click hotkey
+*some utf symbol to hmtl notion, like select © → `\&copy\;`
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -27,9 +30,9 @@ TODO:
 ## Usage
 There are three different ways of inserting characters.
 
-1. **Mac OS X shortcuts**-like. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, <kbd>Alt</kbd> + <kbd>→</kbd> = `→`. See <a href="http://www.nouilles.info/keyboard_shortcuts.html">the full list of OS X shortcuts for special characters</a>.
-2. **Linux and Solaris compose keys**-like. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a></kbd> (also known as Console Menu Key, just previous to the <kbd>Right Alt</kbd>.).
-3. **HTML Symbol Codes**-like. Use common <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a> next way: `[someName]`. For example, `[beta]` will be changed to `β`, and `[mdash]` will be changed to `—`.
+1. **Mac OS X Shortcuts** way. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were on Mac, but with `⌘` changed to `Ctrl`. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, …
+2. **Linux and Solaris Compose Keys** way. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a></kbd> (also known as _Console Menu Key_, just next to the <kbd>Right Alt</kbd>.).
+3. **HTML Symbol Codes** way. Use common <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a> next way: `[Some_HTML_Symbol_Name]`. For example, `[beta]` will be changed to `β`, and `[mdash]` will be changed to `—`.
 4. Additional enhancements and autocorrections:
  * `(c)` → `©`
  * `(r)` → `®`
