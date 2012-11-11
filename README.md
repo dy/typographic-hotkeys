@@ -4,7 +4,7 @@
 
 Extend default Windows keyboard with a lot of powerful typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a>, <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, **MS Office**-like autocorrection and other typographic opportunities. Besides, Web Designer's Keyboard℠ supplies a _color convertor_ funciton, that can transform any selected sequence of characters to any other, _get html code_ function, that can get html-name of selected symbol, _get utf code_ , _escape_, _string reflect_, _html tags wrapping_.
 
-TODO:
+### TODO:
 
 * all possible symbols
 * mac shortcuts
@@ -23,7 +23,7 @@ TODO:
 * wiki typographic symbols
 * full list of characters
 
-Ideas:
+### Ideas:
 
 * rgba to rgb, to hex, to hsl by just select and click hotkey. F.e. select → rgba(25,43,21,.6), hold Alt and strike `rgb`, it will be converted … ? How to define background??? Always mix to the white
 * symbol to hmtl notion, like select © → `&copy;`
@@ -43,27 +43,39 @@ Ideas:
 
 To make autoloading when windows starts, put it …
 
-## Usage
+## Use Cases
 
-There are three different ways of inserting characters.
+### Inserting characters
+
+There are few methods if inserting special characters.
 
 1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, … See <a href="">full list of shortcuts</a>.
-2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a></kbd> (also known as _Console Menu Key_, just next to the <kbd>Right Alt</kbd>.). Compose combinations vastly extended to cover a lot more than Linux/Solaris compose combinations, see <a href="">full list of compose keys</a>.
-3. **Typing in brackets**. Type sequence in square brackets, and it will be automatically changed to according symbol, if exists one. For example, `[beta]` will be changed to `β`, and `[mdash]`, as well as [---] will be changed to `—`. Supports <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a>, compose key combinations and other sequences (see full list).
+2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the <kbd>AltGr</kbd> (the same as <kbd>Right Alt</kbd>). Compose combinations vastly extended to cover a lot more than just Linux/Solaris combinations, see <a href="">full list</a>.
+3. **Typing in brackets**. Type sequence in square brackets, and it will be automatically changed to according symbol, if exists one. For example, `[beta]` will be changed to `β`, and `[mdash]`, as well as `[---]` will be changed to `—`. Supports <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a>, compose key combinations and other sequences (see full list).
 4. **Windows characters** method. You can still type keys by `Alt + uCode`. For example, `Alt+0151` will get `—`. Unicode sequences included to combinations, so typing `[0151]` will result the same.
 
-Autoreplacements:
+### Autoreplacements
+
+Sequences below will be automatically transformed when typing has finished
 
  * `(c)` → `©`
  * `(r)` → `®`
  * `...` → `…`
 
-Tools
+### [pending] Convert color
 
-1. [pending] **Convert color**. Transforms found colors in selected string to passed format. For exaple, select `, rgba(25,45,32,.43)`. Hold <kbd>Menu key</kbd>, type rgb and selection will be transformed to [TODO] `, rgb(?,?,?)`. Supported format conversions: rgb, rgba, hsl, hsla, hex, #, plain.
+Transforms found colors in selected string to passed format. For exaple, select `, rgba(25,45,32,.43)`. Hold <kbd>Menu key</kbd>, type rgb and selection will be transformed to [TODO] `, rgb(?,?,?)`. Supported format conversions: rgb, rgba, hsl, hsla, hex, #, plain.
 ! Supposed that background is white (most common case). Do not use alpha conversion with background other than white.
 Nice use case: select all your css, press <kbd>Menu Key + rgb</kbd>, all recognized colors will be converted to `rgb` format. It will enhance rendering of page %)
-2. [pending] **Get html**.
-3. [pending] **Get utf**
-4. [pending] **Wrap with tag**
-5. [lorem ipsum generator] **Generates Lorem ipsum (dif langs)**
+
+### [pending] Get code
+
+Html, utf
+
+### [pending] Wrap with tag
+
+Wrap selected with tag
+
+### [pending] Lorem ipsum generator
+
+Text, dif languages, fake data, fake imgs
