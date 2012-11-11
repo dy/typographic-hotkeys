@@ -33,12 +33,14 @@ combos.item("<<") := "«"
 combos.item("-|") := "¬"
 combos.item("|-") := "¬"
 combos.item("--") := "-"
-combos.item("or") := "®"
+;combos.item("or") := "®" ;conflict with logic or
 combos.item("ro") := "®"
 combos.item("OR") := "®"
 combos.item("RO") := "®"
 combos.item("^-") := "¯"
 combos.item("-^") := "¯"
+combos.item("^_") := "¯"
+combos.item("_^") := "¯"
 combos.item("^0") := "°"
 combos.item("0^") := "°"
 combos.item("+-") := "±"
@@ -67,6 +69,8 @@ combos.item("A`") := "À"
 combos.item("`A") := "À"
 combos.item("A'") := "Á"
 combos.item("'A") := "Á"
+combos.item("А'") := "Á" ;cyr A
+combos.item("'А") := "Á" ;cyr A
 combos.item("A^") := "Â"
 combos.item("^A") := "Â"
 combos.item("A~") := "Ã"
@@ -84,6 +88,8 @@ combos.item("E`") := "È"
 combos.item("`E") := "È"
 combos.item("E'") := "É"
 combos.item("'E") := "É"
+combos.item("Е'") := "É" ;cyr E
+combos.item("'Е") := "É" ;cyr E
 combos.item("E^") := "Ê"
 combos.item("^E") := "Ê"
 combos.item("E""") := "Ë"
@@ -108,6 +114,8 @@ combos.item("O`") := "Ò"
 combos.item("`O") := "Ò"
 combos.item("O'") := "Ó"
 combos.item("'O") := "Ó"
+combos.item("О'") := "Ó" ;cyr O
+combos.item("'О") := "Ó" ;cyr O
 combos.item("O^") := "Ô"
 combos.item("^O") := "Ô"
 combos.item("O~") := "Õ"
@@ -117,6 +125,8 @@ combos.item("""O") := "Ö"
 combos.item("O''") := "Ö"
 combos.item("''O") := "Ö"
 combos.item("xx") := "×"
+combos.item("-x") := "∗"
+combos.item("x-") := "∗"
 combos.item("O/") := "Ø"
 combos.item("/O") := "Ø"
 combos.item("`U") := "Ù"
@@ -138,6 +148,8 @@ combos.item("a`") := "à"
 combos.item("`a") := "à"
 combos.item("'a") := "á"
 combos.item("a'") := "á"
+combos.item("'а") := "á" ;cyr a
+combos.item("а'") := "á" ;cyr a
 combos.item("^a") := "â"
 combos.item("a^") := "â"
 combos.item("a~") := "ã"
@@ -149,10 +161,13 @@ combos.item("""a") := "ä"
 combos.item("a*") := "å"
 combos.item("*a") := "å"
 combos.item("ae") := "æ"
+combos.item("ае") := "æ" ;cyr ae
 combos.item("c,") := "ç"
 combos.item(",c") := "ç"
 combos.item("'e") := "é"
-combos.item("e'") := "é"
+combos.item("e'") := "é" ;cyr e
+combos.item("'е") := "é" ;cyr e
+combos.item("е'") := "é"
 combos.item("^e") := "ê"
 combos.item("e^") := "ê"
 combos.item("''e") := "ë"
@@ -177,6 +192,8 @@ combos.item("o`") := "ò"
 combos.item("`o") := "ò"
 combos.item("'o") := "ó"
 combos.item("o'") := "ó"
+combos.item("'о") := "ó" ;cyr o
+combos.item("о'") := "ó" ;cyr o
 combos.item("^o") := "ô"
 combos.item("o^") := "ô"
 combos.item("o~") := "õ"
@@ -199,10 +216,14 @@ combos.item("''u") := "ü"
 combos.item("u''") := "ü"
 combos.item("u""") := "ü"
 combos.item("""u") := "ü"
-combos.item("'y") := "ý"
-combos.item("y'") := "ý"
+combos.item("'y") := "ý" 
+combos.item("y'") := "ý" 
+combos.item("'у") := "ý" ;cyr y
+combos.item("у'") := "ý" ;cyr y
 combos.item("th") := "þ"
 combos.item("ht") := "þ"
+combos.item("tb") := "þ"
+combos.item("bt") := "þ"
 combos.item("y''") := "ÿ"
 combos.item("''y") := "ÿ"
 combos.item("""y") := "ÿ"
@@ -758,6 +779,8 @@ combos.item("-F") := "₣"
 combos.item("Fr") := "₣"
 combos.item("=L") := "₤"
 combos.item("L=") := "₤"
+combos.item("-L") := "£"
+combos.item("L-") := "£"
 combos.item("m/") := "₥"
 combos.item("/m") := "₥"
 combos.item("=N") := "₦"
@@ -782,296 +805,695 @@ combos.item("^tm") := "™"
 combos.item("^TM") := "™"
 combos.item("""\") := "〝"
 combos.item("""/") := "〞"
-
-;========================================================================================HTML codes
-;---------------------------------math
-combos.item("forall") := "∀"
-combos.item("part") := "∂"
-combos.item("exist") := "∃"
-combos.item("empty") := "∅"
-combos.item("nabla") := "∇"
-combos.item("gradient") := "∇"
-combos.item("isin") := "∈"
-combos.item("notin") := "∉"
-combos.item("ni") := "∋"
-combos.item("prod") := ""
-combos.item("sum") := ""
-combos.item("minus") := ""
-combos.item("lowast") := ""
-combos.item("radic") := "√"
-combos.item("sqrt") := "√"
-combos.item("prop") := ""
-combos.item("infin") := "∞"
-combos.item("inf") := "∞"
-combos.item("infinity") := ""∞
-combos.item("ang") := ""
-combos.item("and") := ""
-combos.item("or") := ""
-combos.item("cap") := ""
-combos.item("cup") := ""
-combos.item("int") := ""
-combos.item("there4") := ""
-combos.item("sim") := ""
-combos.item("cong") := ""
-combos.item("asymp") := ""
-combos.item("ne") := ""
-combos.item("equiv") := ""
-combos.item("le") := ""
-combos.item("ge") := ""
-combos.item("sub") := ""
-combos.item("sup") := ""
-combos.item("nsub") := ""
-combos.item("sube") := ""
-combos.item("supe") := ""
-combos.item("oplus") := ""
-combos.item("otimes") := ""
-combos.item("perp") := "⊥"
-combos.item("sdot") := "⋅"
-
-;--------------------------Greek letters
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-
-;------------------------
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
-combos.item("") := ""
+;------------------------Additional
+combos.item(". ") := " " ;thin space
+combos.item(" .") := " " ;thin space
+combos.item("| ") := " " ;thin space
+combos.item(" |") := " " ;thin space
+combos.item("n ") := " " ;n space
+combos.item(" n") := " " ;n space
+combos.item("m ") := " " ;m space
+combos.item(" m") := " " ;m space
 combos.item("<-") := "←"
 combos.item("->") := "→"
+combos.item("^|") := "↑"
+combos.item("|^") := "↑"
+combos.item("|v") := "↓"
+combos.item("v|") := "↓"
 combos.item("<3") := "♥"
 combos.item("CCCP") := "☭"
+;---------------------------Arrow combos
+;-------------------TODO: fix it up
+combos.item("←→") := "↔"
+combos.item("↑↓") := "↕"
+combos.item("↓↑") := "↕"
+combos.item("←/") := "↚"
+combos.item("/←") := "↚"
+combos.item("→/") := "↛"
+combos.item("/→") := ""
+combos.item("↑←") := "↰"
+combos.item("↑→") := "↱"
+combos.item("↓←") := "↲"
+combos.item("↓→") := "↳"
+combos.item("→↓") := "↴"
+combos.item("↓←-") := "↵"
+combos.item("→>") := ""
+combos.item(">→") := ""
+combos.item("→=") := ""
+combos.item("=→") := ""
+combos.item("-→") := ""
+combos.item("→-") := ""
+
+
+;=============================================HTML codes
+; |     |  =======  |\   /|   |
+; |=====|     |     | \ / |   |
+; |     |     |     |  v  |   |____
+
+htmlCodes := ComObjCreate("Scripting.Dictionary")
+
+;---------------------------------math
+htmlCodes.item("forall") := "∀"
+htmlCodes.item("part") := "∂"
+htmlCodes.item("exist") := "∃"
+htmlCodes.item("empty") := "∅"
+htmlCodes.item("nabla") := "∇"
+htmlCodes.item("gradient") := "∇"
+htmlCodes.item("grad") := "∇"
+htmlCodes.item("Grad") := "∇"
+htmlCodes.item("Gradient") := "∇"
+htmlCodes.item("isin") := "∈"
+htmlCodes.item("notin") := "∉"
+htmlCodes.item("ni") := "∋"
+htmlCodes.item("prod") := "∏"
+htmlCodes.item("sum") := "∑"
+htmlCodes.item("minus") := "−"
+htmlCodes.item("lowast") := "∗"
+htmlCodes.item("radic") := "√"
+htmlCodes.item("sqrt") := "√"
+htmlCodes.item("prop") := "∝"
+htmlCodes.item("infin") := "∞"
+htmlCodes.item("inf") := "∞"
+htmlCodes.item("infinity") := "∞"
+htmlCodes.item("ang") := "∠"
+htmlCodes.item("and") := "∧"
+htmlCodes.item("or") := "∨"
+htmlCodes.item("land") := "∧"
+htmlCodes.item("lor") := "∨"
+htmlCodes.item("cap") := "∩"
+htmlCodes.item("cup") := "∪"
+htmlCodes.item("int") := "∫"
+htmlCodes.item("there4") := "∴"
+htmlCodes.item("sim") := "∼"
+htmlCodes.item("cong") := "≅"
+htmlCodes.item("asymp") := "≈"
+htmlCodes.item("ne") := "≠"
+htmlCodes.item("equiv") := "≡"
+htmlCodes.item("le") := "≤"
+htmlCodes.item("ge") := "≥"
+htmlCodes.item("sub") := "⊂"
+htmlCodes.item("sup") := "⊃"
+htmlCodes.item("nsub") := "⊄"
+htmlCodes.item("sube") := "⊆"
+htmlCodes.item("supe") := "⊇"
+htmlCodes.item("oplus") := "⊕"
+htmlCodes.item("otimes") := "⊗"
+htmlCodes.item("times") := "×"
+htmlCodes.item("mult") := "×"
+htmlCodes.item("omult") := "⊗"
+htmlCodes.item("perp") := "⊥"
+htmlCodes.item("sdot") := "⋅"
+;--------------------------Greek letters
+htmlCodes.item("Alpha") := "Α"
+htmlCodes.item("Beta") := "Β"
+htmlCodes.item("Gamma") := "Γ"
+htmlCodes.item("Delta") := "Δ"
+htmlCodes.item("Epsilon") := "Ε"
+htmlCodes.item("Zeta") := "Ζ"
+htmlCodes.item("Eta") := "Η"
+htmlCodes.item("Theta") := "Θ"
+htmlCodes.item("Iota") := "Ι"
+htmlCodes.item("Kappa") := "Κ"
+htmlCodes.item("Lambda") := "Λ"
+htmlCodes.item("Mu") := "Μ"
+htmlCodes.item("Nu") := "Ν"
+htmlCodes.item("Xi") := "Ξ"
+htmlCodes.item("Omicron") := "Ο"
+htmlCodes.item("Pi") := "Π"
+htmlCodes.item("Rho") := "Ρ"
+htmlCodes.item("Sigmaf") := " "
+htmlCodes.item("Sigma") := "Σ"
+htmlCodes.item("Tau") := "Τ"
+htmlCodes.item("Upsilon") := "Υ"
+htmlCodes.item("Phi") := "Φ"
+htmlCodes.item("Chi") := "Χ"
+htmlCodes.item("Psi") := "Ψ"
+htmlCodes.item("Omega") := "Ω"
+htmlCodes.item("alpha") := "α"
+htmlCodes.item("alfa") := "α"
+htmlCodes.item("beta") := "β"
+htmlCodes.item("gamma") := "γ"
+htmlCodes.item("delta") := "δ"
+htmlCodes.item("epsilon") := "ε"
+htmlCodes.item("zeta") := "ζ"
+htmlCodes.item("eta") := "η"
+htmlCodes.item("theta") := "θ"
+htmlCodes.item("iota") := "ι"
+htmlCodes.item("kappa") := "κ"
+htmlCodes.item("lambda") := "λ"
+htmlCodes.item("mu") := "μ"
+htmlCodes.item("nu") := "ν"
+htmlCodes.item("xi") := "ξ"
+htmlCodes.item("omicron") := "ο"
+htmlCodes.item("pi") := "π"
+htmlCodes.item("rho") := "ρ"
+htmlCodes.item("sigmaf") := "ς"
+htmlCodes.item("sigma") := "σ"
+htmlCodes.item("tau") := "τ"
+htmlCodes.item("upsilon") := "υ"
+htmlCodes.item("phi") := "φ"
+htmlCodes.item("chi") := "χ"
+htmlCodes.item("psi") := "ψ"
+htmlCodes.item("omega") := "ω"
+htmlCodes.item("thetasym") := "ϑ"
+htmlCodes.item("upsih") := "ϒ"
+htmlCodes.item("piv") := "ϖ"
+;------------------------typographic
+htmlCodes.item("OElig") := "Œ"
+htmlCodes.item("oelig") := "œ"
+htmlCodes.item("Scaron") := "Š"
+htmlCodes.item("scaron") := "š"
+htmlCodes.item("Yuml") := "Ÿ"
+htmlCodes.item("fnof") := "ƒ"
+htmlCodes.item("corc") := "ˆ"
+htmlCodes.item("tilde") := "˜"
+htmlCodes.item("ensp") := " "
+htmlCodes.item("nsp") := " "
+htmlCodes.item("emsp") := " "
+htmlCodes.item("msp") := " "
+htmlCodes.item("thinsp") := " "
+htmlCodes.item("zwnj") := ""
+htmlCodes.item("zwj") := ""
+htmlCodes.item("lrm") := ""
+htmlCodes.item("rlm") := ""
+htmlCodes.item("ndash") := "–"
+htmlCodes.item("endash") := "–"
+htmlCodes.item("mdash") := "—"
+htmlCodes.item("emdash") := "—"
+htmlCodes.item("lsquo") := "‘"
+htmlCodes.item("rsquo") := "’"
+htmlCodes.item("sbquo") := "‚"
+htmlCodes.item("bsquo") := "‚"
+htmlCodes.item("ldquo") := "“"
+htmlCodes.item("rdquo") := "”"
+htmlCodes.item("bdquo") := "„"
+htmlCodes.item("dagger") := "†"
+htmlCodes.item("Dagger") := "‡"
+htmlCodes.item("bull") := "•"
+htmlCodes.item("bullet") := "•"
+htmlCodes.item("hellip") := "…"
+htmlCodes.item("ell") := "…"
+htmlCodes.item("ellipsis") := "…"
+htmlCodes.item("permil") := "‰"
+htmlCodes.item("prime") := "′"
+htmlCodes.item("min") := "′"
+htmlCodes.item("minutes") := "′"
+htmlCodes.item("Prime") := "″"
+htmlCodes.item("sec") := "″"
+htmlCodes.item("seconds") := "″"
+htmlCodes.item("lsaquo") := "‹"
+htmlCodes.item("rsaquo") := "›"
+htmlCodes.item("overline") := "‾"
+htmlCodes.item("oline") := "‾"
+htmlCodes.item("eur") := "€"
+htmlCodes.item("euro") := "€"
+htmlCodes.item("trade") := "™"
+htmlCodes.item("tm") := "™"
+htmlCodes.item("larr") := "←"
+htmlCodes.item("uarr") := "↑"
+htmlCodes.item("rarr") := "→"
+htmlCodes.item("darr") := "↓"
+htmlCodes.item("harr") := "↔"
+htmlCodes.item("carr") := "↵"
+htmlCodes.item("lceil") := "⌈"
+htmlCodes.item("rceil") := "⌉"
+htmlCodes.item("lfloor") := "⌊"
+htmlCodes.item("rfloor") := "⌋"
+htmlCodes.item("loz") := "◊"
+htmlCodes.item("spades") := "♠"
+htmlCodes.item("clubs") := "♣"
+htmlCodes.item("hearts") := "♥"
+htmlCodes.item("diams") := "♦"
+htmlCodes.item("iexcl") := "¡"
+htmlCodes.item("!excl") := "¡"
+htmlCodes.item("cent") := "¢"
+htmlCodes.item("pound") := "£"
+htmlCodes.item("curren") := "¤"
+htmlCodes.item("yen") := "¥"
+htmlCodes.item("brvbar") := "¦"
+htmlCodes.item("sect") := "§"
+htmlCodes.item("section") := "§"
+htmlCodes.item("uml") := "¨"
+htmlCodes.item("umlaut") := "¨"
+htmlCodes.item("copy") := "©"
+htmlCodes.item("copyright") := "©"
+htmlCodes.item("ordf") := "ª"
+htmlCodes.item("laquo") := "«"
+htmlCodes.item("raquo") := "»"
+htmlCodes.item("not") := "¬"
+htmlCodes.item("deg") := "°"
+htmlCodes.item("plusmn") := "±"
+htmlCodes.item("sup1") := "¹"
+htmlCodes.item("sup2") := "²"
+htmlCodes.item("sup3") := "³"
+htmlCodes.item("acutex") := "´"
+htmlCodes.item("micro") := "µ"
+htmlCodes.item("para") := "¶"
+htmlCodes.item("par") := "¶"
+htmlCodes.item("middot") := "·"
+htmlCodes.item("cedil") := "¸"
+htmlCodes.item("frac14") := "¼"
+htmlCodes.item("frac12") := "½"
+htmlCodes.item("frac13") := "⅓"
+htmlCodes.item("frac15") := "⅕"
+htmlCodes.item("frac16") := "⅙"
+htmlCodes.item("frac17") := "⅐"
+htmlCodes.item("frac18") := "⅛"
+htmlCodes.item("frac19") := "⅑"
+htmlCodes.item("frac23") := "⅔"
+htmlCodes.item("frac25") := "⅖"
+htmlCodes.item("frac34") := "¾"
+htmlCodes.item("frac45") := "⅘"
+htmlCodes.item("iquest") := "¿"
+htmlCodes.item("!quest") := "¿"
+;--------------------diacritics & modifications
+htmlCodes.item("Agrave") := "À"
+htmlCodes.item("Aacute") := "Á"
+htmlCodes.item("Acirc") := "Â"
+htmlCodes.item("Atilde") := "Ã"
+htmlCodes.item("Auml") := "Ä"
+htmlCodes.item("Aring") := "Å"
+htmlCodes.item("AElig") := "Æ"
+htmlCodes.item("Ccedil") := "Ç"
+htmlCodes.item("Egrave") := "È"
+htmlCodes.item("Eacute") := "É"
+htmlCodes.item("Ecirc") := "Ê"
+htmlCodes.item("Euml") := "Ë"
+htmlCodes.item("Igrave") := "Ì"
+htmlCodes.item("Iacute") := "Í"
+htmlCodes.item("Icirc") := "Î"
+htmlCodes.item("Iuml") := "Ï"
+htmlCodes.item("ETH") := "Ð"
+htmlCodes.item("Ntilde") := "Ñ"
+htmlCodes.item("Ograve") := "Ò"
+htmlCodes.item("Oacute") := "Ó"
+htmlCodes.item("Ocirc") := "Ô"
+htmlCodes.item("Otilde") := "Õ"
+htmlCodes.item("Ouml") := "Ö"
+htmlCodes.item("Oslash") := "Ø"
+htmlCodes.item("Ugrave") := "Ù"
+htmlCodes.item("Uacute") := "Ú"
+htmlCodes.item("Ucirc") := "Û"
+htmlCodes.item("Uuml") := "Ü"
+htmlCodes.item("Yacute") := "Ý"
+htmlCodes.item("THORN") := "Þ"
+htmlCodes.item("szlig") := "ß"
+htmlCodes.item("agrave") := "à"
+htmlCodes.item("aacute") := "á"
+htmlCodes.item("acirc") := "â"
+htmlCodes.item("atilde") := "ã"
+htmlCodes.item("auml") := "ä"
+htmlCodes.item("aring") := "å"
+htmlCodes.item("aelig") := "æ"
+htmlCodes.item("ccedil") := "ç"
+htmlCodes.item("egrave") := "è"
+htmlCodes.item("eacute") := "é"
+htmlCodes.item("ecirc") := "ê"
+htmlCodes.item("euml") := "ë"
+htmlCodes.item("igrave") := "ì"
+htmlCodes.item("iacute") := "í"
+htmlCodes.item("icirc") := "î"
+htmlCodes.item("iuml") := "ï"
+htmlCodes.item("eth") := "ð"
+htmlCodes.item("ntilde") := "ñ"
+htmlCodes.item("ograve") := "ò"
+htmlCodes.item("oacute") := "ó"
+htmlCodes.item("ocirc") := "ô"
+htmlCodes.item("otilde") := "õ"
+htmlCodes.item("ouml") := "ö"
+htmlCodes.item("divide") := "÷"
+htmlCodes.item("oslash") := "ø"
+htmlCodes.item("ugrave") := "ù"
+htmlCodes.item("uacute") := "ú"
+htmlCodes.item("ucirc") := "û"
+htmlCodes.item("uuml") := "ü"
+htmlCodes.item("yacute") := "ý"
+htmlCodes.item("thorn") := "þ"
+htmlCodes.item("yuml") := "ÿ"
+
+
+;==================================================Additional extensions
+; |=====  \  /  =======
+; |____    \/      |
+; |        /\      |
+; |_____  /  \     |
+
+extensions := ComObjCreate("Scripting.Dictionary")
+
+;-----------------------------------------Compose extensions
+extensions.item("..") := "‥"
+extensions.item("...") := "…"
+extensions.item("!?") := "‽"
+extensions.item("?!") := "‽"
+extensions.item("***") := "⁂"
+extensions.item("((") := "⁂"
+extensions.item("))") := "⦆"
+extensions.item("~~") := "≈"
+extensions.item("~-") := "≃"
+extensions.item("-~") := "≃"
+extensions.item("+-") := "±"
+extensions.item("-+") := "∓"
+extensions.item("!~") := "∽"
+extensions.item("<=") := "≤"
+extensions.item("<==") := "≦"
+extensions.item(">=") := "≥"
+extensions.item(">==") := "≧"
+extensions.item("<<") := "≪"
+extensions.item(">>") := "≫"
+extensions.item("<~") := "≲"
+extensions.item(">~") := "≳"
+extensions.item("<>") := "≶"
+extensions.item("><") := "≷"
+extensions.item("==") := "≡"
+extensions.item("!=") := "≠"
+extensions.item("1/2") := "½"
+extensions.item("1/3") := "⅓"
+extensions.item("1/4") := "¼"
+extensions.item("1/5") := "⅕"
+extensions.item("1/6") := "⅙"
+extensions.item("1/7") := "⅐"
+extensions.item("1/8") := "⅛"
+extensions.item("1/9") := "⅑"
+extensions.item("1/10") := "⅒"
+extensions.item("2/3") := "⅔"
+extensions.item("2/5") := "⅖"
+extensions.item("3/4") := "¾"
+extensions.item("3/5") := "⅗"
+extensions.item("3/8") := "⅜"
+extensions.item("4/5") := "⅘"
+extensions.item("5/6") := "⅚"
+extensions.item("5/8") := "⅝"
+extensions.item("7/8") := "⅞"
+extensions.item("i=") := "₪"
+extensions.item("e=") := "€"
+extensions.item("CE") := "₠"
+extensions.item("F=") := "₣"
+extensions.item("Fr=") := "₣"
+extensions.item("gb=") := "£"
+extensions.item("y=") := "¥"
+extensions.item("R-") := "⃏"
+extensions.item("P-") := "⃏"
+extensions.item("Р-") := "⃏"
+extensions.item("T=") := "₮"
+extensions.item("Т=") := "₮"
+extensions.item("") := ""
+
+;--------------------------------------------Named extensions
+extensions.item("inf") := "∞"
+extensions.item("infinity") := "∞"
+extensions.item("forall") := "∀"
+extensions.item("for all") := "∀"
+extensions.item("there exists") := "∃"
+extensions.item("thereexists") := "∃"
+extensions.item("theredoesntexists") := "∄"
+extensions.item("there doesn't exists") := "∄"
+extensions.item("complement") := "∁"
+extensions.item("diff") := "∂"
+extensions.item("dif") := "∂"
+extensions.item("differential") := "∂"
+extensions.item("empty") := "∅"
+extensions.item("element of") := "∈"
+extensions.item("elementof") := "∈"
+extensions.item("notanelementof") := "∉"
+extensions.item("not an element of") := "∉"
+extensions.item("not element of") := "∉"
+extensions.item("small element of") := "∊"
+extensions.item("smallelementof") := "∊"
+extensions.item("containsasmember") := "∋"
+extensions.item("contains as member") := "∋"
+extensions.item("does not contain as member") := "∌"
+extensions.item("doesnotcontainasmember") := "∌"
+extensions.item("subset of") := "⊂"
+extensions.item("superset of") := "⊃"
+extensions.item("subsetof") := "⊂"
+extensions.item("supersetof") := "⊃"
+extensions.item("right angle") := "∟"
+extensions.item("90deg") := "∟"
+extensions.item("90 angle") := "∟"
+extensions.item("angle") := "∠"
+extensions.item("sqrt") := "√"
+extensions.item("square root") := "√"
+extensions.item("cube root") := "∛"
+extensions.item("cuberoot") := "∛"
+extensions.item("fourthroot") := "∜"
+extensions.item("fourth root") := "∜"
+extensions.item("hypercube root") := "∜"
+extensions.item("hypercuberoot") := "∜"
+extensions.item("and") := "∧"
+extensions.item("disjunction") := "∧"
+extensions.item("or") := "∨"
+extensions.item("conjunction") := "∨"
+extensions.item("intersection") := "∩"
+extensions.item("union") := "∪"
+extensions.item("integral") := "∫"
+extensions.item("double integral") := "∬"
+extensions.item("doubleintegral") := "∭"
+extensions.item("triple integral") := "∬"
+extensions.item("tripleintegral") := "∭"
+extensions.item("star") := "★"
+extensions.item("check") := "☑"
+extensions.item("check2") := "☒"
+extensions.item("ok") := "✓"
+extensions.item("phone") := "✆"
+extensions.item("mail") := "✉"
+extensions.item("email") := "✉"
+extensions.item("home") := "⌂"
+extensions.item("house") := "⌂"
+extensions.item("cloud") := "☁"
+extensions.item("wave") := "⌇"
+extensions.item("hot") := "♨"
+extensions.item("piece") := "☮"
+extensions.item("victory") := "✌"
+extensions.item("radioactive") := "☢"
+extensions.item("death") := "☠"
+extensions.item("smile") := "☺"
+extensions.item("black smile") := "☻"
+extensions.item("blacksmile") := "☻"
+extensions.item("medicine") := "☤"
+extensions.item("plane") := "✈"
+extensions.item("comet") := "☄"
+extensions.item("hand left") := "☜"
+extensions.item("handleft") := "☜"
+extensions.item("handtop") := "☝"
+extensions.item("hand top") := "☝"
+extensions.item("handright") := "☞"
+extensions.item("hand right") := "☞"
+extensions.item("black hand right") := "☛"
+extensions.item("black hand left") := "☚"
+extensions.item("blackhandright") := "☛"
+extensions.item("blackhandleft") := "☚"
+extensions.item("handdown") := "☟"
+extensions.item("hand down") := "☟"
+extensions.item("command") := "⌘"
+extensions.item("cent") := "¢"
+extensions.item("CENT") := "￠"
+extensions.item("ils") := "₪"
+extensions.item("eur") := "€"
+extensions.item("eurocurrency") := "₠"
+extensions.item("currencyexchange") := "₠"
+extensions.item("mnt") := "₮"
+extensions.item("rub") := "⃏"
+extensions.item("roub") := "⃏"
+extensions.item("ru") := "⃏"
+extensions.item("rur") := "⃏"
+extensions.item("gbp") := "£"
+extensions.item("jpy") := "¥"
+extensions.item("currency") := "¤"
+extensions.item("") := ""
+
+;============================================================Main handler
+lastResult := "" ;stores last found symbol
+getCombo(list, cmb){
+    global lastResult := ""
+    str := list.item(cmb)
+    if (str){
+        lastResult := str
+        return true
+    }
+    return false
+}
+;----------------------Clear n last symbols
+clear(n){
+    Loop, %n% {
+        SendInput {BS}
+    }
+}
+;----------------------Tries to convert passed code to symbol
+getUTF(code){
+    
+}
 
 ;========================================================Compose key handler
-AppsKey::
-    ;Cunning hook: AppsKey Up sends {CtrlBreak} that stops Input that AppsKey has started. 
-    Input, combo, V,{CtrlBreak}
-
-    ;AppsKey continues to perform and tries to find passed combination in list of combos.    
-    cmbStr := combos.item(combo)
-    len := StrLen(combo)
-    if (cmbStr){
-        Loop, %len% {
-            SendInput {BS}
-        }
-        SendInput %cmbStr%
+RAlt::
+    ;Cunning hook: RAlt Up sends {CtrlBreak} that stops Input that RAlt has started. 
+    Input, combo, V C,{CtrlBreak}
+    ;RAlt continues to perform and tries to find passed combination.    
+    getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
+    if (lastResult){
+        clear(StrLen(combo))
+        SendInput %lastResult%
     }
     return
 
-AppsKey Up::
+RAlt Up::
     Send {CtrlBreak}
     return
 
-;==========================================================Hotkeys handler
-
-
 ;=========================================================Symbol sequences handler
-
-
-
-;=================================Basic typography
-::[---]::
-    SendInput —
-    return
-^!-::
-    ;KeyWait Control
-    ;KeyWait Alt
-    SendInput —
+~[ Up::
+    Input, combo, V C, []
+    if (ErrorLevel == "EndKey:]") { ;finish sequence
+        getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
+        if (lastResult) {
+            clear(StrLen(combo)+2)
+            SendInput %lastResult%
+        }
+    }
     return
 
-!-::
-    KeyWait Alt
-    SendInput –
-    return
-::[--]::
-    KeyWait Alt
-    SendInput –
-    return
 
-^!+[::
+;===========================================================Hotkeys
+^+!w::
+    SendInput „
+    return    
+^+![::
     SendInput „
     return
-^!+]::
-    SendInput ‟
-    return
-^![::
-    SendInput “
-    return
-^!]::
++![::
     SendInput ”
     return
 ![::
-    SendInput «
-    return
-!]::
-    SendInput »
+    SendInput “
     return
 
-::...::…
-::[...]::…
-::[..]::‥
+^+!]::
+    SendInput ‚
+    return
++!]::
+    SendInput ’
+    return
+!]::
+    SendInput ‘
+    return
+
+!t::
+    SendInput †
+    return
++!t::
+    SendInput ‡
+    return
++!7::
+    SendInput ‡
+    return
+
+!;::
+    SendInput …
+    return
+
++!r::
+    SendInput ‰
+    return
+
++!3::
+    SendInput ‹
+    return
++!4::
+    SendInput ›
+    return
+
+!2::
+    SendInput ™
+    return
+
++!-::
+    SendInput —
+    return
+!-::
+    SendInput –
+    return
+
+!1::
+    SendInput ¡
+    return
+!4::
+    SendInput ¢
+    return
+!3::
+    SendInput £
+    return
+!y::
+    SendInput ¥
+    return
+!6::
+    SendInput §
+    return
++!u::
+    SendInput ¨
+    return
+!g::
+    SendInput ©
+    return
+!9::
+    SendInput ª
+    return
++!\::
+    SendInput »
+    return
+!\::
+    SendInput «
+    return
+!l::
+    SendInput ¬
+    return
+!r::
+    SendInput ®
+    return
++!8::
+    SendInput °
+    return
++!=::
+    SendInput ±
+    return
++!e::
+    SendInput ´
+    return
+!m::
+    SendInput µ
+    return
+!7::
+    SendInput ¶
+    return
++!9::
+    SendInput ·
+    return
++!z::
+    SendInput ¸
+    return
+!0::
+    SendInput º
+    return
++!?::
+    SendInput ¿
+    return
+
+
 
 !Space::
     KeyWait Alt
     SendInput  
     return
 
-::?!::‽
-::!?::‽
-
-::***::⁂
-
-::[deg]::°
-
-::[par]::§
-::[paragraph]::§
-
-;================================Maths
-::[inf]::∞
-::[infinity]::∞
-::[((]::⦅
-::[))]::⦆
-:*:[forall]::∀
-:*:[for all]::∀
-:*:[there exists]::∃
-:*:[thereexists]::∃
-:*:[theredoesntexists]::∄
-:*:[there doesn't exists]::∄
-:*:[complement]:∁
-:*:[diff]::∂
-:*:[dif]::∂
-:*:[differential]::∂
-:*:[empty]::∅
-:*:[element of]::∈
-:*:[elementof]::∈
-:*:[notanelementof]::∉
-:*:[not an element of]::∉
-:*:[not element of]::∉
-:*:[small element of]::∊
-:*:[smallelementof]::∊
-:*:[containsasmember]::∋
-:*:[contains as member]::∋
-:*:[does not contain as member]::∌
-:*:[doesnotcontainasmember]::∌
-:*:[subset of]::⊂
-:*:[superset of]::⊃
-:*:[subsetof]::⊂
-:*:[supersetof]::⊃
-
-:*:[right angle]::∟
-:*:[90deg]::∟
-:*:[90 angle]::∟
-:*:[angle]::∠
-
-:*:[sqrt]::√
-:*:[square root]::√
-:*:[cube root]::∛
-:*:[cuberoot]::∛
-:*:[fourthroot]::∜
-:*:[fourth root]::∜
-:*:[hypercube root]::∜
-:*:[hypercuberoot]::∜
-
-:*:[and]::∧
-:*:[disjunction]::∧
-:*:[or]::∨
-:*:[conjunction]::∨
-:*:[intersection]::∩
-:*:[union]::∪
-:*:[integral]::∫
-:*:[double integral]::∬
-:*:[doubleintegral]::∭
-:*:[triple integral]::∬
-:*:[tripleintegral]::∭
 
 
-::[+-]::±
-::[-+]::∓
-::[-~]::≂
-::[~-]::≃
-::[~~]::≈
 
 !~::
     SendInput ∽
     return
 
-::[<=]::≤
-::[<==]::≦
-::[>=]::≥
-::[>==]::≧
-::[<<]::≪
-::[>>]::≫
-::[<~]::≲
-::[>~]::≳
-::[<>]::≶
-::[><]::≷
-::[==]::≡
-::[!=]::≠
-
-!*::
-+!8::
-    SendInput ×
-    return
+;!*::
+;+!8::
+;    SendInput ×
+;    return
 ^!*::
 ^+!8::
     SendInput ∙
@@ -1080,25 +1502,13 @@ AppsKey Up::
 !/::
     SendInput ÷
     return
-::[/]::÷
-
 +^!=::
     SendInput ≡
     return
-^!=::
-    SendInput ꞊
-    return
+
 !=::
     SendInput ≠
     return
-
-
-
-;============================Shapes
-::[star]::★
-::[star1]::★
-::[star2]::☆
-::[star3]::⋆
 
 !.::
     SendInput ∙
@@ -1109,160 +1519,13 @@ AppsKey Up::
 +!^.::
     SendInput ●
     return
-::[dot]::∙
-::[dot1]::∙
-::[dot2]::•
-::[dot3]::●
-::[dot4]::○
-::[dot5]::◌
-::[dot6]::◎
 
-::[small circle]::∙
-::[circle]::•
-::[big circle]::●
-
-::[square1]::▪
-::[small square]::▪
-::[square2]::■
-::[square]::■
-::[square3]::∎
-::[big square]::∎
-
-::[x0]::☓
-::[x1]::✕
-::[x2]::✖
-::[x3]::✘
-::[x4]::✗
-::[x5]::╳
-::[cross0]::☓
-::[cross1]::✕
-::[cross2]::✖
-::[cross3]::✘
-::[cross4]::✗
-
-::[diamond]::⋄
-::[diamond2]::◇
-::[diamond3]::◆
-
-::[vertical]::|
-::[vertical1]::|
-::[vertical2]::│
-::[vertical3]::┃
-::[vertical4]::┆
-::[vertical5]::┊
-::[vertical6]::╎
-::[vertical7]::┋
-::[|1]::|
-::[|2]::│
-::[|3]::┃
-::[|4]::┆
-::[|5]::┊
-::[|6]::╎
-::[|7]::┋
-
-;=============================Symbols
-::[check]::☑
-::[check2]::☒
-
-::[ok]::✓
-::[ok1]::✓
-::[ok2]::✔
-
-::[phone]::✆
-::[phone1]::✆
-::[phone2]::☎
-::[phone3]::☏
-
-::[mail]::✉
-::[email]::✉
-
-::[home]::⌂
-::[house]::⌂
-
-::[scissors]::✂
-::[scissors1]::✂
-::[scissors2]::✁
-::[scissors3]::✃
-::[scissors4]::✄
-
-::[option]::⌘
-
-::[cloud]::☁
-
-::[wave]::⌇
-!|::
-    SendInput ⌇
-    return
-
-::[pencil]::✍
-::[pencil1]::✍
-::[pencil2]::✎
-::[pencil3]::✏
-::[pencil4]::✐
-
-::[nib1]::✑
-::[nib2]::✒
-
-::[hot]::♨
-::[piece]::☮
-::[victory]::✌
-::[radioactive]::☢
-::[death]::☠
-::[smile]::☺
-::[black smile]::☻
-::[blacksmile]::☻
-::[medicine]::☤
-::[plane]::✈
-::[comet]::☄
-
-::[hand left]::☜
-::[handleft]::☜
-::[handtop]::☝
-::[hand top]::☝
-::[handright]::☞
-::[hand right]::☞
-::[black hand right]::☛
-::[black hand left]::☚
-::[handdown]::☟
-::[hand down]::☟
-
-::[command]::⌘
-
-
-;==========================Law marks
+::...::…
 ::(c)::©
 ::(r)::® 
-::[tm]::™
 ::(tm)::™
-::[sm]::℠
 ::(sm)::℠
 
-;=============================Currency
-:C:[cent]::¢
-:C:[CENT]::￠
-:C:[c-]::¢
-:C:[C-]::￠
-::[ils]::₪
-::[i=]::₪
-::[eur]::€
-::[e=]::€
-::[eurocurrency]::₠
-::[F=]::₣
-::[Fr=]::₣
-::[gbp]::£
-::[gb=]::£
-::[jpy]::¥
-::[y=]::¥
-::[rub]::⃏
-::[roub]::⃏
-::[ru]::⃏
-::[rur]::⃏
-::[R-]::⃏
-::[mnt]::₮
-::[t=]::₮
-::[currency]::¤
-
-;=============================Numbers
 !^1::
     SendInput ¹
     return
@@ -1272,142 +1535,15 @@ AppsKey Up::
 !^3::
     SendInput ³
     return
-::1/2::½
-::1/3::⅓
-::1/4::¼
-::1/5::⅕
-::1/6::⅙
-::1/7::⅐
-::1/8::⅛
-::1/9::⅑
-::1/10::⅒
-::2/3::⅔
-::2/5::⅖
-::3/4::¾
-::3/5::⅗
-::3/8::⅜
-::4/5::⅘
-::5/6::⅚
-::5/8::⅝
-::7/8::⅞
-
-;=============================Circles
-::(1)::⑴
-::(2)::⑵
-::(3)::⑶
-::(4)::⑷
-::(5)::⑸
-::(6)::⑹
-::(7)::⑺
-::(8)::⑻
-::(9)::⑼
-::(10)::⑽
-::(11)::⑾
-::(12)::⑿
-::(13)::⒀
-::(14)::⒁
-::(15)::⒂
-::(16)::⒃
-::(17)::⒄
-::(18)::⒅
-::(19)::⒆
-::(20)::⒇
-
-::[0]::⓪
-::[1]::①
-::[2]::②
-::[3]::③
-::[4]::④
-::[5]::⑤
-::[6]::⑥
-::[7]::⑦
-::[8]::⑧
-::[9]::⑨
-::[10]::⑩
-::[11]::⑪
-::[12]::⑫
-::[13]::⑬
-::[14]::⑭
-::[15]::⑮
-::[16]::⑯
-::[17]::⑰
-::[18]::⑱
-::[19]::⑲
-::[20]::⑳
-
-::[1.]::⒈
-::[2.]::⒉
-::[3.]::⒊
-::[4.]::⒋
-::[5.]::⒌
-::[6.]::⒍
-::[7.]::⒎
-::[8.]::⒏
-::[9.]::⒐
-::[10.]::⒑
-::[11.]::⒒
-::[12.]::⒓
-::[13.]::⒔
-::[14.]::⒕
-::[15.]::⒖
-::[16.]::⒗
-::[17.]::⒘
-::[18.]::⒙
-::[19.]::⒚
-::[20.]::⒛
-
-;===========================Arrows
-+^!Up::
-    SendInput ⇧
-    return
-+^!Down::
-    SendInput ⇩
-    return
-+^!Left::
-    SendInput ⇦
-    return
-::[<-]::
-    SendInput ←
-    return
-+^!Right::
-    SendInput ⇨
-    return
-::[->]::
-    SendInput →
-    return
-+!Up::
-    SendInput ▴
-    return
-+!Down::
-    SendInput ▾
-    return
-+!Left::
-    SendInput ◂
-    return
-+!Right::
-    SendInput ▸
-    return
-^!Up::
-    SendInput ▲
-    return
-^!Down::
-    SendInput ▼
-    return
-^!Left::
-    SendInput ◀
-    return
-^!Right::
-    SendInput ▶
-    return
 !Up::
-    SendInput ↑
+    SendEvent ↑
     return
 !Down::
-    SendInput ↓
+    SendEvent ↓
     return
 !Left::
-    SendInput ←
+    SendEvent ←
     return
 !Right::
-    SendInput →
+    SendEvent →
     return

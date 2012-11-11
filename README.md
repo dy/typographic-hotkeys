@@ -1,81 +1,69 @@
-# Typographic Hotkeys
+# Web designer's keyboard, θ
 
-Extend default Windows keyboard with special typographic symbols like –, —, ™, ℠, ©, ®, €, ≠, ±, ≤, ≶ and other. Script enables **Mac OS X special characters shortcuts**, **Linux compose keys**, **HTML symbol codes**, **MS Office**-like autocorrection and other enhancements.
+[still developing]
 
-* Basic typograpy «», „‟, “”, –, —, … (__Thin space!__)
-* Math ±, ≤, ≥, ×, …
-* Currencies €, ¥, £, … (__Rouble sign supported!__ `[rur]` → ⃏)
-* Shapes ●, ▪, |, …
-* Symbols
-* Arrows ↑,→,↓,←
-* Fractions
-* Special numbers
+Extend default Windows keyboard with a lot of powerful typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a>, <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, **MS Office**-like autocorrection and other typographic opportunities. Besides, Web Designer's Keyboard℠ supplies a _color convertor_ funciton, that can transform any selected sequence of characters to any other, _get html code_ function, that can get html-name of selected symbol, _get utf code_ , _escape_, _string reflect_, _html tags wrapping_.
 
 TODO:
+
 * all possible symbols
 * mac shortcuts
+* utf input
+* birman kbd full
+* gethtmlcode, getutf
+* color convertor
 * readme
 * numerous tests
-* pr: habrahabr, typographic community, authors, questions in forums, official forum, 
+* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa…
+* rename to the web-designer keyboard, make rgb convertor
+* cyrillics full cover & combos
+* reverse string (find reversed equivs)
+* think & make scenarious: habr image, linux user become windows, etc 
+* ms office autocorrection
+* wiki typographic symbols
+* full list of characters
 
 Ideas:
-*rgba to rgb, to hex, to hsl by just select and click hotkey
-*some utf symbol to hmtl notion, like select © → `\&copy\;`
+
+* rgba to rgb, to hex, to hsl by just select and click hotkey. F.e. select → rgba(25,43,21,.6), hold Alt and strike `rgb`, it will be converted … ? How to define background??? Always mix to the white
+* symbol to hmtl notion, like select © → `&copy;`
+* phrases, like f.e., …
+* Images, like [i:fu] will insert `<img src="link_to_fuuu.png"/>`
+* Tags wrapping, for example, selected `phrase` + `AppsKey` + `tag` will wrap text with tag.
+* Generate lorem ipsum
+* Performs simple actions like *5 (duplicates 5 times)
+* Lot of carets, like in sublime text
+* Random data generator (like faker)
+* Translator?
+* ASCII painter?
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
-2. Download <a href="http://dmitry-ivanov.me/playground/windows_typographic_hotkeys/TypographicHotkeys.ahk">TypographicHotkeys.ahk</a>, put it anywhere (i. e. _My Documents_) and open it with Autohotkey™
-3. Get started with `Alt + -`, `Ctrl + Alt + -`, `(c)`, `Alt + →↓←↑`, `Ctrl + Alt + →↓←↑` 
+2. Download <a href="http://dmitry-ivanov.me/playground/windows_typographic_hotkeys/TypographicHotkeys.ahk">TypographicKeyboard.ahk</a>, put it anywhere (i. e. _My Documents_) and open it with Autohotkey™
+
+To make autoloading when windows starts, put it …
 
 ## Usage
+
 There are three different ways of inserting characters.
 
-1. **Mac OS X Shortcuts** way. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were on Mac, but with `⌘` changed to `Ctrl`. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, …
-2. **Linux and Solaris Compose Keys** way. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a></kbd> (also known as _Console Menu Key_, just next to the <kbd>Right Alt</kbd>.).
-3. **HTML Symbol Codes** way. Use common <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a> next way: `[Some_HTML_Symbol_Name]`. For example, `[beta]` will be changed to `β`, and `[mdash]` will be changed to `—`.
-4. Additional enhancements and autocorrections:
+1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, … See <a href="">full list of shortcuts</a>.
+2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the most rarely used <kbd><a href="http://en.wikipedia.org/wiki/Menu_key">Menu Key</a></kbd> (also known as _Console Menu Key_, just next to the <kbd>Right Alt</kbd>.). Compose combinations vastly extended to cover a lot more than Linux/Solaris compose combinations, see <a href="">full list of compose keys</a>.
+3. **Typing in brackets**. Type sequence in square brackets, and it will be automatically changed to according symbol, if exists one. For example, `[beta]` will be changed to `β`, and `[mdash]`, as well as [---] will be changed to `—`. Supports <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a>, compose key combinations and other sequences (see full list).
+4. **Windows characters** method. You can still type keys by `Alt + uCode`. For example, `Alt+0151` will get `—`. Unicode sequences included to combinations, so typing `[0151]` will result the same.
+
+Autoreplacements:
+
  * `(c)` → `©`
  * `(r)` → `®`
- * <kbd>Alt</kbd> + <kbd>↑, →, ↓, ←</kbd> → `↑`, `→`, `↓`, `←`
- * <kbd>Alt</kbd> + <kbd>Space</kbd> → ` ` (thin space)
  * `...` → `…`
-…
 
-## List of supported characters
+Tools
 
-### Basic typography
-* — Em dash, `Alt + Ctrl + -` or `[---]`
-* – En dash, `Alt + -`
-* «», “”, „‟ as `Modifier + [` and `Modifier + ]`
-* **Thin space** on `Alt + space`!
-* … as `...`
-* ± ∓ as `+-`, `-+`
-* ≈ as `Alt + ~`
-* © as `(c)`
-* ® as `(r)`
-* ™ as `[tm]`
-* ℠ as `[sm]`
-* ° as `[deg]`
-* ‽ as `?!` and `!?`
-* ⁂ as `***`
-
-### Math symbols
-* ≠≡꞊ on `Modifier += `
-
-### Shapes
-
-### Symbols
-
-### Currency
-* €, ¥, … as `[EUR]`, `[JPY]` and other <a href="http://en.wikipedia.org/wiki/Currency_code">currency codes</a>
-* €, ¥, … as `[e-]`, `[y-]` and other letter abbrs.
-
-### Fractions & Numbers
-* ½, ⅓ … as `1/2`, `1/3`
-* ①, ⑵, ⒊ as `[1]`, `(2)`, '[3.]'
-
-### Arrows 
-* ←↑→↓ = `Alt + ←, ↑, →, ↓`. 
-* Try to use modifiers
-* Rouble sign (so far only in <a href="http://www.paratype.com/public/">Public Type Family</a>) as `[rur]`
-* I'm tired. Maybe later I will document full list.
+1. [pending] **Convert color**. Transforms found colors in selected string to passed format. For exaple, select `, rgba(25,45,32,.43)`. Hold <kbd>Menu key</kbd>, type rgb and selection will be transformed to [TODO] `, rgb(?,?,?)`. Supported format conversions: rgb, rgba, hsl, hsla, hex, #, plain.
+! Supposed that background is white (most common case). Do not use alpha conversion with background other than white.
+Nice use case: select all your css, press <kbd>Menu Key + rgb</kbd>, all recognized colors will be converted to `rgb` format. It will enhance rendering of page %)
+2. [pending] **Get html**.
+3. [pending] **Get utf**
+4. [pending] **Wrap with tag**
+5. [lorem ipsum generator] **Generates Lorem ipsum (dif langs)**
