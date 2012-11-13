@@ -65,8 +65,8 @@ combos.item("14") := "¼"
 combos.item("12") := "½"
 combos.item("34") := "¾"
 combos.item("??") := "¿"
-combos.item("A`") := "À"
-combos.item("`A") := "À"
+combos.item("A``") := "À"
+combos.item("``A") := "À"
 combos.item("A'") := "Á"
 combos.item("'A") := "Á"
 combos.item("А'") := "Á" ;cyr A
@@ -84,8 +84,8 @@ combos.item("*A") := "Å"
 combos.item("AE") := "Æ"
 combos.item("C,") := "Ç"
 combos.item(",C") := "Ç"
-combos.item("E`") := "È"
-combos.item("`E") := "È"
+combos.item("E``") := "È"
+combos.item("``E") := "È"
 combos.item("E'") := "É"
 combos.item("'E") := "É"
 combos.item("Е'") := "É" ;cyr E
@@ -96,8 +96,8 @@ combos.item("E""") := "Ë"
 combos.item("""E") := "Ë"
 combos.item("E''") := "Ë"
 combos.item("''E") := "Ë"
-combos.item("I`") := "Ì"
-combos.item("`I") := "Ì"
+combos.item("I``") := "Ì"
+combos.item("``I") := "Ì"
 combos.item("I'") := "Í"
 combos.item("'I") := "Í"
 combos.item("I^") := "Î"
@@ -110,8 +110,8 @@ combos.item("D-") := "Ð"
 combos.item("-D") := "Ð"
 combos.item("N~") := "Ñ"
 combos.item("~N") := "Ñ"
-combos.item("O`") := "Ò"
-combos.item("`O") := "Ò"
+combos.item("O``") := "Ò"
+combos.item("``O") := "Ò"
 combos.item("O'") := "Ó"
 combos.item("'O") := "Ó"
 combos.item("О'") := "Ó" ;cyr O
@@ -129,8 +129,8 @@ combos.item("-x") := "∗"
 combos.item("x-") := "∗"
 combos.item("O/") := "Ø"
 combos.item("/O") := "Ø"
-combos.item("`U") := "Ù"
-combos.item("U`") := "Ù"
+combos.item("``U") := "Ù"
+combos.item("U``") := "Ù"
 combos.item("U'") := "Ú"
 combos.item("'U") := "Ú"
 combos.item("U^") := "Û"
@@ -144,8 +144,8 @@ combos.item("'Y") := "Ý"
 combos.item("TH") := "Þ"
 combos.item("HT") := "Þ"
 combos.item("ss") := "ß"
-combos.item("a`") := "à"
-combos.item("`a") := "à"
+combos.item("a``") := "à"
+combos.item("``a") := "à"
 combos.item("'a") := "á"
 combos.item("a'") := "á"
 combos.item("'а") := "á" ;cyr a
@@ -174,8 +174,8 @@ combos.item("''e") := "ë"
 combos.item("e''") := "ë"
 combos.item("e""") := "ë"
 combos.item("""e") := "ë"
-combos.item("i`") := "ì"
-combos.item("`i") := "ì"
+combos.item("i``") := "ì"
+combos.item("``i") := "ì"
 combos.item("'i") := "í"
 combos.item("i'") := "í"
 combos.item("^i") := "î"
@@ -188,8 +188,8 @@ combos.item("d-") := "ð"
 combos.item("-d") := "ð"
 combos.item("n~") := "ñ"
 combos.item("~n") := "ñ"
-combos.item("o`") := "ò"
-combos.item("`o") := "ò"
+combos.item("o``") := "ò"
+combos.item("``o") := "ò"
 combos.item("'o") := "ó"
 combos.item("o'") := "ó"
 combos.item("'о") := "ó" ;cyr o
@@ -206,8 +206,8 @@ combos.item("-:") := "÷"
 combos.item(":-") := "÷"
 combos.item("o/") := "ø"
 combos.item("/o") := "ø"
-combos.item("u`") := "ù"
-combos.item("`u") := "ù"
+combos.item("u``") := "ù"
+combos.item("``u") := "ù"
 combos.item("'u") := "ú"
 combos.item("u'") := "ú"
 combos.item("^u") := "û"
@@ -605,10 +605,10 @@ combos.item("'G") := "Ǵ"
 combos.item("G'") := "Ǵ"
 combos.item("'g") := "ǵ"
 combos.item("g'") := "ǵ"
-combos.item("N`") := "Ǹ"
-combos.item("`N") := "Ǹ"
-combos.item("`n") := "ǹ"
-combos.item("n`") := "ǹ"
+combos.item("N``") := "Ǹ"
+combos.item("``N") := "Ǹ"
+combos.item("``n") := "ǹ"
+combos.item("n``") := "ǹ"
 combos.item("cH") := "Ȟ"
 combos.item("vH") := "Ȟ"
 combos.item("Hv") := "Ȟ"
@@ -665,10 +665,10 @@ combos.item("~V") := "Ṽ"
 combos.item("V~") := "Ṽ"
 combos.item("v~") := "ṽ"
 combos.item("~v") := "ṽ"
-combos.item("`W") := "Ẁ"
-combos.item("W`") := "Ẁ"
-combos.item("`w") := "ẁ"
-combos.item("w`") := "ẁ"
+combos.item("``W") := "Ẁ"
+combos.item("W``") := "Ẁ"
+combos.item("``w") := "ẁ"
+combos.item("w``") := "ẁ"
 combos.item("'W") := "Ẃ"
 combos.item("W'") := "Ẃ"
 combos.item("w'") := "ẃ"
@@ -709,10 +709,10 @@ combos.item("~E") := "Ẽ"
 combos.item("E~") := "Ẽ"
 combos.item("~e") := "ẽ"
 combos.item("e~") := "ẽ"
-combos.item("`Y") := "Ỳ"
-combos.item("Y`") := "Ỳ"
-combos.item("`y") := "ỳ"
-combos.item("y`") := "ỳ"
+combos.item("``Y") := "Ỳ"
+combos.item("Y``") := "Ỳ"
+combos.item("``y") := "ỳ"
+combos.item("y``") := "ỳ"
 combos.item("~Y") := "Ỹ"
 combos.item("Y~") := "Ỹ"
 combos.item("~y") := "ỹ"
@@ -1320,7 +1320,29 @@ clear(n){
 }
 ;----------------------Tries to convert passed code to symbol
 getUTF(code){
-    
+    If RegExMatch(DataIn, "^[0-9a-fA-F]+$")
+    {
+      Loop % StrLen(DataIn) / 2
+         UTF8Code .= Chr("0x" . SubStr(DataIn, A_Index * 2 - 1, 2))
+    }
+}
+;-------------------------Mac diacritics listener. Waits for letter to input and tries to find it
+listenDiacritics(diacr){
+    global lastResult
+    global combos
+    global extensions
+    SendInput {raw}%diacr%
+    Input targetChr, * L1 V C, {CtrlBreak}
+    if (ErrorLevel == "NewInput"){
+        return
+    }
+    targetChr := diacr . targetChr
+    getCombo(combos, targetChr) || getCombo(extensions, targetChr)
+    if (lastResult){
+        clear(StrLen(targetChr))
+        SendInput %lastResult%    
+    }
+    return
 }
 
 ;========================================================Compose key handler
@@ -1340,9 +1362,11 @@ RAlt Up::
     return
 
 ;=========================================================Symbol sequences handler
-~[ Up::
-    Input, combo, V C, []
-    if (ErrorLevel == "EndKey:]") { ;finish sequence
+;~[ Up::
+~sc01a Up::
+    ;TODO: make something to ignore not [] as input.
+    Input, combo, V C, {sc01a}{sc01b}[]
+    if (ErrorLevel == "EndKey:]" || ErrorLevel == "EndKey:sc01B") { ;finish sequence
         getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
         if (lastResult) {
             clear(StrLen(combo)+2)
@@ -1351,46 +1375,99 @@ RAlt Up::
     }
     return
 
+;========================================================Mac diacritics handlers
+;!n::
+;!~::
+!sc031::
++!sc029::
+    listenDiacritics("~")
+    return
+
+;!`::
+!sc029::
+    listenDiacritics("``")
+    return
+
+;!e::
+;!'::
+!sc012::
+!sc028::
+    listenDiacritics("'")
+    return
+
+;!i::
+;!^::
+!sc017::
++!sc007::
+    listenDiacritics("^")
+    return
+
+;!u::
+;!"::
+!sc016::
++!sc028::
+    listenDiacritics("""")
+    return
+
+;!o::
+;+!"::
+!sc016::
++!sc028::
+    listenDiacritics("o")
+    return
+
 
 ;===========================================================Hotkeys
-^+!w::
-    SendInput „
-    return    
-^+![::
+;^+!w::
+^+!sc011::
     SendInput „
     return
-+![::
+;^+![::
+^+!sc01A:: 
+    SendInput „
+    return
+;+![::
++!sc01A::
     SendInput ”
     return
-![::
+;![::
+!sc01A::
     SendInput “
     return
 
-^+!]::
+;^+!]::
+^+!sc01b::
     SendInput ‚
     return
-+!]::
+;+!]::
++!sc01b::
     SendInput ’
     return
-!]::
+;!]::
+!sc01b::
     SendInput ‘
     return
 
-!t::
-    SendInput †
-    return
-+!t::
+;+!t::
++!sc014::
     SendInput ‡
     return
+;!t::
+!sc014::
+    SendInput †
+    return
+
 +!7::
     SendInput ‡
     return
 
-!;::
+;!;::
+!sc027::
     SendInput …
     return
 
-+!r::
+;+!r::
++!sc013::
     SendInput ‰
     return
 
@@ -1408,6 +1485,7 @@ RAlt Up::
 +!-::
     SendInput —
     return
+;!-::
 !-::
     SendInput –
     return
@@ -1421,43 +1499,53 @@ RAlt Up::
 !3::
     SendInput £
     return
-!y::
+;!y::
+!sc015::
     SendInput ¥
     return
 !6::
     SendInput §
     return
-+!u::
+;+!u::
++!sc016::
     SendInput ¨
     return
-!g::
+;!g::
+!sc022::
     SendInput ©
     return
 !9::
     SendInput ª
     return
+;+!\::
 +!\::
     SendInput »
     return
+;!\::
 !\::
     SendInput «
     return
-!l::
+;!l::
+!sc026::
     SendInput ¬
     return
-!r::
+;!r::
+!sc013::
     SendInput ®
     return
 +!8::
     SendInput °
     return
+;+!=::
 +!=::
     SendInput ±
     return
-+!e::
+;+!e::
++!sc012::
     SendInput ´
     return
-!m::
+;!m::
+!sc032::
     SendInput µ
     return
 !7::
@@ -1466,12 +1554,14 @@ RAlt Up::
 +!9::
     SendInput ·
     return
-+!z::
+;+!z::
++!sc02c::
     SendInput ¸
     return
 !0::
     SendInput º
     return
+;+!?::
 +!?::
     SendInput ¿
     return
@@ -1485,11 +1575,6 @@ RAlt Up::
 
 
 
-
-!~::
-    SendInput ∽
-    return
-
 ;!*::
 ;+!8::
 ;    SendInput ×
@@ -1499,14 +1584,11 @@ RAlt Up::
     SendInput ∙
     return
 
-!/::
-    SendInput ÷
-    return
 +^!=::
     SendInput ≡
     return
 
-!=::
+!=::→
     SendInput ≠
     return
 

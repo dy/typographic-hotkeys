@@ -2,7 +2,7 @@
 
 [still developing]
 
-Extend default Windows keyboard with a lot of powerful typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a>, <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, **MS Office**-like autocorrection and other typographic opportunities. Besides, Web Designer's Keyboard℠ supplies a _color convertor_ funciton, that can transform any selected sequence of characters to any other, _get html code_ function, that can get html-name of selected symbol, _get utf code_ , _escape_, _string reflect_, _html tags wrapping_.
+Extend default Windows keyboard with cool typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, **MS Office**-like autocorrection and other typographic opportunities. Besides, Web Designer's Keyboard℠ supplies a _color convertor_ funciton, that can transform recognized colors in selected sequence of characters to target color format, _get utf code_ function, that can get utf code of selected symbol, _escape_, _string reflect_, _html tags wrapping_, _lorem ipsum generator_.
 
 ### TODO:
 
@@ -22,6 +22,8 @@ Extend default Windows keyboard with a lot of powerful typographic tools. Script
 * ms office autocorrection
 * wiki typographic symbols
 * full list of characters
+* a lot of documentation
+
 
 ### Ideas:
 
@@ -36,6 +38,11 @@ Extend default Windows keyboard with a lot of powerful typographic tools. Script
 * Random data generator (like faker)
 * Translator?
 * ASCII painter?
+* escape phrase
+* synonims
+* omonims
+* combos like Entypo & other fonts
+* open console here shortcut
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
