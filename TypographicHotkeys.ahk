@@ -71,6 +71,10 @@ combos.item("A'") := "Á"
 combos.item("'A") := "Á"
 combos.item("А'") := "Á" ;cyr A
 combos.item("'А") := "Á" ;cyr A
+combos.item("A´") := "Á"
+combos.item("´A") := "Á"
+combos.item("А´") := "Á" ;cyr A
+combos.item("´А") := "Á" ;cyr A
 combos.item("A^") := "Â"
 combos.item("^A") := "Â"
 combos.item("A~") := "Ã"
@@ -79,6 +83,8 @@ combos.item("A""") := "Ä"
 combos.item("""A") := "Ä"
 combos.item("A''") := "Ä"
 combos.item("''A") := "Ä"
+combos.item("¨A") := "Ä"
+combos.item("A¨") := "Ä"
 combos.item("A*") := "Å"
 combos.item("*A") := "Å"
 combos.item("AE") := "Æ"
@@ -90,22 +96,32 @@ combos.item("E'") := "É"
 combos.item("'E") := "É"
 combos.item("Е'") := "É" ;cyr E
 combos.item("'Е") := "É" ;cyr E
+combos.item("E´") := "É"
+combos.item("´E") := "É"
+combos.item("Е´") := "É" ;cyr E
+combos.item("´Е") := "É" ;cyr E
 combos.item("E^") := "Ê"
 combos.item("^E") := "Ê"
 combos.item("E""") := "Ë"
 combos.item("""E") := "Ë"
 combos.item("E''") := "Ë"
 combos.item("''E") := "Ë"
+combos.item("¨E") := "Ë"
+combos.item("E¨") := "Ë"
 combos.item("I``") := "Ì"
 combos.item("``I") := "Ì"
 combos.item("I'") := "Í"
 combos.item("'I") := "Í"
+combos.item("I´") := "Í"
+combos.item("´I") := "Í"
 combos.item("I^") := "Î"
 combos.item("^I") := "Î"
 combos.item("I""") := "Ï"
 combos.item("""I") := "Ï"
 combos.item("''I") := "Ï"
 combos.item("I''") := "Ï"
+combos.item("¨I") := "Ï"
+combos.item("I¨") := "Ï"
 combos.item("D-") := "Ð"
 combos.item("-D") := "Ð"
 combos.item("N~") := "Ñ"
@@ -116,6 +132,10 @@ combos.item("O'") := "Ó"
 combos.item("'O") := "Ó"
 combos.item("О'") := "Ó" ;cyr O
 combos.item("'О") := "Ó" ;cyr O
+combos.item("O´") := "Ó"
+combos.item("´O") := "Ó"
+combos.item("О´") := "Ó" ;cyr O
+combos.item("´О") := "Ó" ;cyr O
 combos.item("O^") := "Ô"
 combos.item("^O") := "Ô"
 combos.item("O~") := "Õ"
@@ -124,6 +144,8 @@ combos.item("O""") := "Ö"
 combos.item("""O") := "Ö"
 combos.item("O''") := "Ö"
 combos.item("''O") := "Ö"
+combos.item("¨O") := "Ö"
+combos.item("O¨") := "Ö"
 combos.item("xx") := "×"
 combos.item("-x") := "∗"
 combos.item("x-") := "∗"
@@ -133,14 +155,20 @@ combos.item("``U") := "Ù"
 combos.item("U``") := "Ù"
 combos.item("U'") := "Ú"
 combos.item("'U") := "Ú"
+combos.item("U´") := "Ú"
+combos.item("´U") := "Ú"
 combos.item("U^") := "Û"
 combos.item("^U") := "Û"
 combos.item("U''") := "Ü"
 combos.item("''U") := "Ü"
 combos.item("""U") := "Ü"
 combos.item("U""") := "Ü"
+combos.item("¨U") := "Ü"
+combos.item("U¨") := "Ü"
 combos.item("Y'") := "Ý"
 combos.item("'Y") := "Ý"
+combos.item("Y´") := "Ý"
+combos.item("´Y") := "Ý"
 combos.item("TH") := "Þ"
 combos.item("HT") := "Þ"
 combos.item("ss") := "ß"
@@ -150,6 +178,10 @@ combos.item("'a") := "á"
 combos.item("a'") := "á"
 combos.item("'а") := "á" ;cyr a
 combos.item("а'") := "á" ;cyr a
+combos.item("´a") := "á"
+combos.item("a´") := "á"
+combos.item("´а") := "á" ;cyr a
+combos.item("а´") := "á" ;cyr a
 combos.item("^a") := "â"
 combos.item("a^") := "â"
 combos.item("a~") := "ã"
@@ -158,30 +190,44 @@ combos.item("''a") := "ä"
 combos.item("a''") := "ä"
 combos.item("a""") := "ä"
 combos.item("""a") := "ä"
+combos.item("¨a") := "ä"
+combos.item("a¨") := "ä"
 combos.item("a*") := "å"
 combos.item("*a") := "å"
 combos.item("ae") := "æ"
 combos.item("ае") := "æ" ;cyr ae
 combos.item("c,") := "ç"
 combos.item(",c") := "ç"
+combos.item("e``") := "è"
+combos.item("``e") := "è"
 combos.item("'e") := "é"
 combos.item("e'") := "é" ;cyr e
 combos.item("'е") := "é" ;cyr e
 combos.item("е'") := "é"
+combos.item("´e") := "é"
+combos.item("e´") := "é" ;cyr e
+combos.item("´е") := "é" ;cyr e
+combos.item("е´") := "é"
 combos.item("^e") := "ê"
 combos.item("e^") := "ê"
 combos.item("''e") := "ë"
 combos.item("e''") := "ë"
+combos.item("¨e") := "ë"
+combos.item("e¨") := "ë"
 combos.item("e""") := "ë"
 combos.item("""e") := "ë"
 combos.item("i``") := "ì"
 combos.item("``i") := "ì"
 combos.item("'i") := "í"
 combos.item("i'") := "í"
+combos.item("´i") := "í"
+combos.item("i´") := "í"
 combos.item("^i") := "î"
 combos.item("i^") := "î"
 combos.item("''i") := "ï"
 combos.item("i''") := "ï"
+combos.item("¨i") := "ï"
+combos.item("i¨") := "ï"
 combos.item("i""") := "ï"
 combos.item("""i") := "ï"
 combos.item("d-") := "ð"
@@ -194,12 +240,18 @@ combos.item("'o") := "ó"
 combos.item("o'") := "ó"
 combos.item("'о") := "ó" ;cyr o
 combos.item("о'") := "ó" ;cyr o
+combos.item("´o") := "ó"
+combos.item("o´") := "ó"
+combos.item("´о") := "ó" ;cyr o
+combos.item("о´") := "ó" ;cyr o
 combos.item("^o") := "ô"
 combos.item("o^") := "ô"
 combos.item("o~") := "õ"
 combos.item("~o") := "õ"
 combos.item("''o") := "ö"
 combos.item("o''") := "ö"
+combos.item("¨o") := "ö"
+combos.item("o¨") := "ö"
 combos.item("o""") := "ö"
 combos.item("""o") := "ö"
 combos.item("-:") := "÷"
@@ -210,22 +262,32 @@ combos.item("u``") := "ù"
 combos.item("``u") := "ù"
 combos.item("'u") := "ú"
 combos.item("u'") := "ú"
+combos.item("´u") := "ú"
+combos.item("u´") := "ú"
 combos.item("^u") := "û"
 combos.item("u^") := "û"
 combos.item("''u") := "ü"
 combos.item("u''") := "ü"
+combos.item("¨u") := "ü"
+combos.item("u¨") := "ü"
 combos.item("u""") := "ü"
 combos.item("""u") := "ü"
 combos.item("'y") := "ý" 
 combos.item("y'") := "ý" 
 combos.item("'у") := "ý" ;cyr y
 combos.item("у'") := "ý" ;cyr y
+combos.item("´y") := "ý" 
+combos.item("y´") := "ý" 
+combos.item("´у") := "ý" ;cyr y
+combos.item("у´") := "ý" ;cyr y
 combos.item("th") := "þ"
 combos.item("ht") := "þ"
 combos.item("tb") := "þ"
 combos.item("bt") := "þ"
 combos.item("y''") := "ÿ"
 combos.item("''y") := "ÿ"
+combos.item("¨y") := "ÿ"
+combos.item("y¨") := "ÿ"
 combos.item("""y") := "ÿ"
 combos.item("y""") := "ÿ"
 
@@ -286,6 +348,10 @@ combos.item("C'") := "Ć"
 combos.item("'C") := "Ć"
 combos.item("c'") := "ć"
 combos.item("'c") := "ć"
+combos.item("C´") := "Ć"
+combos.item("´C") := "Ć"
+combos.item("c´") := "ć"
+combos.item("´c") := "ć"
 combos.item("C^") := "Ĉ"
 combos.item("^C") := "Ĉ"
 combos.item("c^") := "ĉ"
@@ -376,6 +442,10 @@ combos.item("'L") := "Ĺ"
 combos.item("L'") := "Ĺ"
 combos.item("'l") := "ĺ"
 combos.item("l'") := "ĺ"
+combos.item("´L") := "Ĺ"
+combos.item("L´") := "Ĺ"
+combos.item("´l") := "ĺ"
+combos.item("l´") := "ĺ"
 combos.item("L,") := "Ļ"
 combos.item(",L") := "Ļ"
 combos.item("l,") := "ļ"
@@ -398,6 +468,10 @@ combos.item("'N") := "Ń"
 combos.item("N'") := "Ń"
 combos.item("'n") := "ń"
 combos.item("n'") := "ń"
+combos.item("´N") := "Ń"
+combos.item("N´") := "Ń"
+combos.item("´n") := "ń"
+combos.item("n´") := "ń"
 combos.item(",N") := "Ņ"
 combos.item("N,") := "Ņ"
 combos.item(",n") := "ņ"
@@ -432,6 +506,10 @@ combos.item("'R") := "Ŕ"
 combos.item("R'") := "Ŕ"
 combos.item("'r") := "ŕ"
 combos.item("r'") := "ŕ"
+combos.item("´R") := "Ŕ"
+combos.item("R´") := "Ŕ"
+combos.item("´r") := "ŕ"
+combos.item("r´") := "ŕ"
 combos.item(",R") := "Ŗ"
 combos.item("R,") := "Ŗ"
 combos.item(",r") := "ŗ"
@@ -446,6 +524,10 @@ combos.item("'S") := "Ś"
 combos.item("S'") := "Ś"
 combos.item("'s") := "ś"
 combos.item("s'") := "ś"
+combos.item("´S") := "Ś"
+combos.item("S´") := "Ś"
+combos.item("´s") := "ś"
+combos.item("s´") := "ś"
 combos.item("^S") := "Ŝ"
 combos.item("S^") := "Ŝ"
 combos.item("^s") := "ŝ"
@@ -518,10 +600,16 @@ combos.item("Y""") := "Ÿ"
 combos.item("""Y") := "Ÿ"
 combos.item("''Y") := "Ÿ"
 combos.item("Y''") := "Ÿ"
+combos.item("¨Y") := "Ÿ"
+combos.item("Y¨") := "Ÿ"
 combos.item("'Z") := "Ź"
 combos.item("Z'") := "Ź"
 combos.item("'z") := "ź"
 combos.item("z'") := "ź"
+combos.item("´Z") := "Ź"
+combos.item("Z´") := "Ź"
+combos.item("´z") := "ź"
+combos.item("z´") := "ź"
 combos.item("cZ") := "Ž"
 combos.item("vZ") := "Ž"
 combos.item("Zv") := "Ž"
@@ -605,6 +693,10 @@ combos.item("'G") := "Ǵ"
 combos.item("G'") := "Ǵ"
 combos.item("'g") := "ǵ"
 combos.item("g'") := "ǵ"
+combos.item("´G") := "Ǵ"
+combos.item("G´") := "Ǵ"
+combos.item("´g") := "ǵ"
+combos.item("g´") := "ǵ"
 combos.item("N``") := "Ǹ"
 combos.item("``N") := "Ǹ"
 combos.item("``n") := "ǹ"
@@ -639,10 +731,14 @@ combos.item("_g") := "ḡ"
 combos.item("g_") := "ḡ"
 combos.item("''H") := "Ḧ"
 combos.item("H''") := "Ḧ"
+combos.item("¨H") := "Ḧ"
+combos.item("H¨") := "Ḧ"
 combos.item("""H") := "Ḧ"
 combos.item("H""") := "Ḧ"
 combos.item("''h") := "ḧ"
 combos.item("h''") := "ḧ"
+combos.item("¨h") := "ḧ"
+combos.item("h¨") := "ḧ"
 combos.item("""h") := "ḧ"
 combos.item("h""") := "ḧ"
 combos.item("H,") := "Ḩ"
@@ -661,6 +757,18 @@ combos.item("'P") := "Ṕ"
 combos.item("P'") := "Ṕ"
 combos.item("'p") := "ṕ"
 combos.item("p'") := "ṕ"
+combos.item("´K") := "Ḱ"
+combos.item("K´") := "Ḱ"
+combos.item("´k") := "ḱ"
+combos.item("k´") := "ḱ"
+combos.item("´M") := "Ḿ"
+combos.item("M´") := "Ḿ"
+combos.item("´m") := "ḿ"
+combos.item("m´") := "ḿ"
+combos.item("´P") := "Ṕ"
+combos.item("P´") := "Ṕ"
+combos.item("´p") := "ṕ"
+combos.item("p´") := "ṕ"
 combos.item("~V") := "Ṽ"
 combos.item("V~") := "Ṽ"
 combos.item("v~") := "ṽ"
@@ -673,20 +781,32 @@ combos.item("'W") := "Ẃ"
 combos.item("W'") := "Ẃ"
 combos.item("w'") := "ẃ"
 combos.item("'w") := "ẃ"
+combos.item("´W") := "Ẃ"
+combos.item("W´") := "Ẃ"
+combos.item("w´") := "ẃ"
+combos.item("´w") := "ẃ"
 combos.item("W''") := "Ẅ"
 combos.item("''W") := "Ẅ"
+combos.item("¨W") := "Ẅ"
+combos.item("W¨") := "Ẅ"
 combos.item("W""") := "Ẅ"
 combos.item("""W") := "Ẅ"
 combos.item("w''") := "ẅ"
 combos.item("''w") := "ẅ"
+combos.item("¨w") := "ẅ"
+combos.item("w¨") := "ẅ"
 combos.item("w""") := "ẅ"
 combos.item("""w") := "ẅ"
 combos.item("''X") := "Ẍ"
 combos.item("X''") := "Ẍ"
+combos.item("¨X") := "Ẍ"
+combos.item("X¨") := "Ẍ"
 combos.item("X""") := "Ẍ"
 combos.item("""X") := "Ẍ"
 combos.item("''x") := "ẍ"
 combos.item("x''") := "ẍ"
+combos.item("¨x") := "ẍ"
+combos.item("x¨") := "ẍ"
 combos.item("x""") := "ẍ"
 combos.item("""x") := "ẍ"
 combos.item("^Z") := "Ẑ"
@@ -695,6 +815,8 @@ combos.item("^z") := "ẑ"
 combos.item("z^") := "ẑ"
 combos.item("t''") := "ẗ"
 combos.item("''t") := "ẗ"
+combos.item("¨t") := "ẗ"
+combos.item("t¨") := "ẗ"
 combos.item("""t") := "ẗ"
 combos.item("t""") := "ẗ"
 combos.item("w*") := "ẘ"
@@ -1388,11 +1510,21 @@ RAlt Up::
     listenDiacritics("``")
     return
 
+;+!
++!sc028::
+    SendInput Æ
+    return
+
+;!'::
+!sc028::
+    SendInput æ
+    return
+
 ;!e::
 ;!'::
 !sc012::
-!sc028::
-    listenDiacritics("'")
+;!sc028:: ;superceded by ae
+    listenDiacritics("´")
     return
 
 ;!i::
@@ -1405,16 +1537,29 @@ RAlt Up::
 ;!u::
 ;!"::
 !sc016::
-+!sc028::
-    listenDiacritics("""")
+;+!sc028::
+    listenDiacritics("¨")
     return
 
-;!o::
-;+!"::
-!sc016::
-+!sc028::
-    listenDiacritics("o")
+;+!a::
++!sc01e::
+    SendInput Å
     return
+;+!c::
++!sc02e::
+    SendInput Ç
+    return
+!sc02e::
+    SendInput ç
+    return
+;+!o::
++!sc18::
+    SendInput Ø
+    return
+!sc18::
+    SendInput ø
+    return
+
 
 
 ;===========================================================Hotkeys
@@ -1565,8 +1710,14 @@ RAlt Up::
 +!?::
     SendInput ¿
     return
-
-
+;!s::
+!sc01f::
+    SendInput ß
+    return
+;!a::
+!sc01e::
+    SendInput å
+    return
 
 !Space::
     KeyWait Alt

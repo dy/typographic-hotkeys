@@ -43,6 +43,10 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * omonims
 * combos like Entypo & other fonts
 * open console here shortcut
+* words & symbols counter
+* symbolds popup 
+* duplicate
+* row numbers
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
