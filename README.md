@@ -6,9 +6,8 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 
 ### TODO:
 
-* all possible symbols
-* mac shortcuts
 * utf input
+* all possible symbols
 * birman kbd full
 * gethtmlcode, getutf
 * color convertor

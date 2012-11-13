@@ -1,5 +1,11 @@
 ﻿#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
 
+;==================================Make load on startup, if launched first time
+sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
+IfNotExist, %sname%
+    ;MsgBox, %sname%
+    FileCreateShortcut, %A_ScriptFullPath%, %sname%
+
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡The main combos array. There are all combinations for input stored
 combos := ComObjCreate("Scripting.Dictionary")
 
