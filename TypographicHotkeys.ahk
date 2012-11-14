@@ -2,7 +2,7 @@
 
 ;==================================Make load on startup, if launched first time
 sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
-IfNotExist, %sname%
+;IfNotExist, %sname%
     ;MsgBox, %sname%
     FileCreateShortcut, %A_ScriptFullPath%, %sname%
 
@@ -1429,6 +1429,32 @@ extensions.item("jpy") := "¥"
 extensions.item("currency") := "¤"
 extensions.item("") := ""
 
+;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡Programs
+;-------------------helpers
+toHex(code)
+{    
+    SetFormat, IntegerFast, H
+    a := code + 0
+    a := SubStr(a, 3, StrLen(a))
+    SetFormat, Integer, D
+    ;MsgBox, %a%
+    return a
+}
+;wide up @code string to @length positions
+toFixed(code, length){
+    res := ""
+    handleCount := length
+    Loop, Parse, code
+    {
+        handleCount--
+        res := res . A_LoopField       
+    }
+    Loop, %handleCount%
+    {
+        res := "0" . res
+    }
+    return res
+}
 ;============================================================Main handler
 lastResult := "" ;stores last found symbol
 getCombo(list, cmb){
@@ -1446,12 +1472,17 @@ clear(n){
         SendInput {BS}
     }
 }
-;----------------------Tries to convert passed code to symbol
-getUTF(code){
-    If RegExMatch(DataIn, "^[0-9a-fA-F]+$")
-    {
-      Loop % StrLen(DataIn) / 2
-         UTF8Code .= Chr("0x" . SubStr(DataIn, A_Index * 2 - 1, 2))
+;----------------------Tries to output combo
+;------------Bad function style, but it's simplier to output here
+getCharFromUTF(combo){
+    code := combo + 0
+    if (code > 255){ ;do utf
+        comboHex := toHex(code)
+        comboHex := toFixed(comboHex, 4)
+        SendInput {U+%code%}
+    } else { ;do ascii
+        code := toFixed(code, 4)
+        SendInput {ASC %code%}
     }
 }
 ;-------------------------Mac diacritics listener. Waits for letter to input and tries to find it
@@ -1473,6 +1504,7 @@ listenDiacritics(diacr){
     return
 }
 
+
 ;========================================================Compose key handler
 RAlt::
     ;Cunning hook: RAlt Up sends {CtrlBreak} that stops Input that RAlt has started. 
@@ -1482,6 +1514,13 @@ RAlt::
     if (lastResult){
         clear(StrLen(combo))
         SendInput %lastResult%
+    } 
+    else {
+        utf := RegExMatch(combo, "[0-9]+")
+        if (utf) { ;if no combos found - try to send Alt+… command, but extended to unicode
+            clear(StrLen(combo))
+            getCharFromUTF(combo)
+        }
     }
     return
 
@@ -1499,6 +1538,12 @@ RAlt Up::
         if (lastResult) {
             clear(StrLen(combo)+2)
             SendInput %lastResult%
+        } else {
+            utf := RegExMatch(combo, "[0-9]{4,}")
+            if (utf) { ;if no combos found - try to send Alt+… command, but extended to unicode
+                clear(StrLen(combo)+2)
+                getCharFromUTF(combo)
+            }
         }
     }
     return
@@ -1633,6 +1678,9 @@ RAlt Up::
     SendInput ™
     return
 
+^+!-::
+    SendInput  — 
+    return
 +!-::
     SendInput —
     return
@@ -1725,6 +1773,14 @@ RAlt Up::
     SendInput å
     return
 
+^+!Space:: ;emspace
+    KeyWait Alt
+    SendInput  
+    return
++!Space:: ;&nobr;
+    KeyWait Alt
+    SendInput  
+    return
 !Space::
     KeyWait Alt
     SendInput  
@@ -1745,7 +1801,7 @@ RAlt Up::
     SendInput ≡
     return
 
-!=::→
+!=::
     SendInput ≠
     return
 

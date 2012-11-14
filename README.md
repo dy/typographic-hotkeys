@@ -6,7 +6,6 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 
 ### TODO:
 
-* utf input
 * all possible symbols
 * birman kbd full
 * gethtmlcode, getutf
@@ -22,6 +21,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * wiki typographic symbols
 * full list of characters
 * a lot of documentation
+* make .exe and test autoload (startup)
 
 
 ### Ideas:
@@ -46,6 +46,8 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * symbolds popup 
 * duplicate
 * row numbers
+* selected string to base64
+* show language right on input near caret before input
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -89,3 +91,10 @@ Wrap selected with tag
 ### [pending] Lorem ipsum generator
 
 Text, dif languages, fake data, fake imgs
+
+## Have done
+* Windows <a href="http://en.wikipedia.org/wiki/Alt_code">Alt-codes</a> extended to full UTF and now in combos.
+* Mac OSX Shortcuts
+* Add to startup
+* Linux & Solaris compose keys
+* Hotstrings
