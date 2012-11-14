@@ -6,20 +6,23 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 
 ### TODO:
 
-* all possible symbols
+* lorem ipsum
+* typetest (font, type elements)
+* html ()
+* all possible symbols from utfgraphics
 * birman kbd full
 * gethtmlcode, getutf
 * color convertor
 * readme
 * numerous tests
-* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa…
+* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia…
 * rename to the web-designer keyboard, make rgb convertor
 * cyrillics full cover & combos
 * reverse string (find reversed equivs)
 * think & make scenarious: habr image, linux user become windows, etc 
 * ms office autocorrection
 * wiki typographic symbols
-* full list of characters
+* full list of characters  
 * a lot of documentation
 * make .exe and test autoload (startup)
 
@@ -44,10 +47,14 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * open console here shortcut
 * words & symbols counter
 * symbolds popup 
-* duplicate
+* duplicate on ctrl+shift+d
 * row numbers
 * selected string to base64
 * show language right on input near caret before input
+* data-generator. For example: [list] will generate simple html-list. [list:md] will generate list in markdown syntax. So, [list:wiki] also has sense.
+* Microdata-generator
+* Fake formats: html, json
+* Typograph: format selected text
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -59,7 +66,7 @@ To make autoloading when windows starts, put it …
 
 ### Inserting characters
 
-There are few methods if inserting special characters.
+There are few ways to insert special characters.
 
 1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt</kbd> + <kbd>-</kbd> = `–`, <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>-</kbd> = `—`, … See <a href="">full list of shortcuts</a>.
 2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the <kbd>AltGr</kbd> (the same as <kbd>Right Alt</kbd>). Compose combinations vastly extended to cover a lot more than just Linux/Solaris combinations, see <a href="">full list</a>.
@@ -94,7 +101,7 @@ Text, dif languages, fake data, fake imgs
 
 ## Have done
 * Windows <a href="http://en.wikipedia.org/wiki/Alt_code">Alt-codes</a> extended to full UTF and now in combos.
-* Mac OSX Shortcuts
-* Add to startup
+* <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OSX Shortcuts</a>
+* Add to windows startup
 * Linux & Solaris compose keys
 * Hotstrings
