@@ -7,8 +7,8 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 ### TODO:
 
 * lorem ipsum
-* typetest (font, type elements)
-* html ()
+* typographic test pages (font, type elements)
+* html elements ()
 * all possible symbols from utfgraphics
 * birman kbd full
 * gethtmlcode, getutf
@@ -17,12 +17,12 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * numerous tests
 * pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia…
 * rename to the web-designer keyboard, make rgb convertor
-* cyrillics full cover & combos
+* cyrillics full cover & combos & extended
 * reverse string (find reversed equivs)
 * think & make scenarious: habr image, linux user become windows, etc 
 * ms office autocorrection
 * wiki typographic symbols
-* full list of characters  
+* show list of characters  
 * a lot of documentation
 * make .exe and test autoload (startup)
 
