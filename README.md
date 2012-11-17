@@ -10,7 +10,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * typographic test pages (font, type elements)
 * html elements ()
 * all possible symbols from utfgraphics
-* birman kbd full
+* > birman kbd full
 * gethtmlcode, getutf
 * color convertor
 * readme
@@ -55,6 +55,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * Microdata-generator
 * Fake formats: html, json
 * Typograph: format selected text
+* any kind of compilers like LESS, SASS, 
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -100,6 +101,8 @@ Wrap selected with tag
 Text, dif languages, fake data, fake imgs
 
 ## Have done
+* 
+* Lorem Ipsum generator
 * Windows <a href="http://en.wikipedia.org/wiki/Alt_code">Alt-codes</a> extended to full UTF and now in combos.
 * <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OSX Shortcuts</a>
 * Add to windows startup

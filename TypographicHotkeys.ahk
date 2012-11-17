@@ -4,9 +4,14 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
+;TODO:
+; some bugs with RightAlt when alttabbing windows
+; some bugs when combo outside of [], for example []lorem, and besides, when just ] appeared. So, when you see [], try to grab combo inside, not a listening of something.
+
 #Include ./inc/Combinations.ahk
 #Include ./inc/Util.ahk
-#Include ./inc/Lorem.ahk
+#Include ./inc/Faker.ahk
+#Include ./inc/Selection.ahk
 
 
 #Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
@@ -67,16 +72,16 @@ RAlt::
     ;Cunning hook: RAlt Up sends {CtrlBreak} that stops Input that RAlt has started. 
     Input, combo, V C,{CtrlBreak}
     ;RAlt continues to perform and tries to find passed combination.  
-    getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
+    getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo) || getCombo(birmans, combo)
     if (lastResult){
         clear(StrLen(combo))
         Send %lastResult%
     } 
     else {
-        utf := RegExMatch(combo, "[0-9]+")
+        utf := RegExMatch(combo, "[0-9]{2,8}")
         if (utf) { ;if no combos found - try to send Alt+… command, but extended to unicode
             clear(StrLen(combo))
-            getCharFromUTF(combo)
+            getCharFromUTF(combo) 
         }
     }
     return
@@ -105,7 +110,34 @@ RAlt Up::
     }
     return
 
-;========================================================Mac diacritics handlers
+
+;========================================================Selection Modifier key listener (color conversion, typograf, and so on)
+AppsKey:: 
+    Input, combo, ,{CtrlBreak}
+    comboCorrect := checkSelectionCombo(combo)
+    if (comboCorrect){
+
+        backupClipboard()
+
+        Send ^c
+        source := clipboard
+        treatRes := treatSelection[combo](clipboard)
+
+        clipboard = %treatRes%
+        Send ^v
+
+        restoreClipboard()
+    } 
+    else {
+    }
+    return
+
+AppsKey Up::
+    SendEvent {CtrlBreak}
+    return
+
+
+;========================================================Mac dead keys diacritics handlers/listeners
 ;!n::
 ;!~::
 !sc031::
@@ -169,6 +201,36 @@ RAlt Up::
     return
 
 
+;=====================================================Birman diacritics/dead keys listeners
+; TODO: Birman Ralt should not interfer with Combos. So, fuck it up.
+;Shift & Ralt & `::
+;    return
+;+Ralt & Q::
+;    return
+;+Ralt & R::
+;    return
+;+Ralt & 6::
+;    return
+;+Ralt & ;::
+;    return
+;+Ralt & /::
+;    return
+;+Ralt & n::
+;    return
+;+Ralt & v::
+;    return
+;+Ralt & z::
+;    return
+
+
+;===============================================Birman hotkeys
+;Ralt.
+
+;+Ralt.
+;RShift & Ralt & sc034::
+;LShift & Ralt & sc034::
+;    Send ”
+;    return
 
 ;===========================================================Hotkeys
 ;^+!w::
@@ -345,12 +407,12 @@ RAlt Up::
 
 
 
-;!*::
+;!x::
 ;+!8::
-;    Send ×
-;    return
-^!*::
-^+!8::
+!sc02d::
+    Send ×
+    return
++!*::
     Send ∙
     return
 
@@ -362,14 +424,18 @@ RAlt Up::
     Send ≠
     return
 
-!.::
-    Send ∙
+;TODO:
+;+!^.::
++!^sc034::
+    Send ●
     return
-+!.::
+;+!.::
++!sc034::
     Send •
     return
-+!^.::
-    Send ●
+;!.::
+!sc034::
+    Send ∙
     return
 
 ::...::…
@@ -378,15 +444,37 @@ RAlt Up::
 ::(tm)::™
 ::(sm)::℠
 
-!^1::
+^+!1::
     Send ¹
     return
-!^2::
+^+!2::
     Send ²
     return
-!^3::
+^+!3::
     Send ³
     return
+^+!4::
+    Send ⁴
+    return
+^+!5::
+    Send ⁵
+    return
+^+!6::
+    Send ⁶
+    return
+^+!7::
+    Send ⁷
+    return
+^+!8::
+    Send ⁸
+    return
+^+!9::
+    Send ⁹
+    return
+^+!0::
+    Send ⁰
+    return
+
 !Up::
     SendEvent ↑
     return

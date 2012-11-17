@@ -30,5 +30,16 @@ clear(n){
         SendInput {BS}
     }
 }
+;----------------------------Clipboard helpers
+clipBackup := ""
+backupClipboard(){  
+    global clipBackup  
+    clipBackup := clipboard
+}
+restoreClipboard(){    
+    Sleep, 80
+    global clipBackup  
+    clipboard = %clipBackup%
+}
 
 
