@@ -65,13 +65,47 @@ listenDiacritics(diacr){
     }
     return
 }
-
+;----------------------------Birman deadkeys escaper
+escapeBirmanDiacritics(combo){
+    ;`, q=˘, 6 = ˆ, /=´, n=˜, v = ˇ, r = ˚, z = ¸, ; = ¨
+    first := substr(combo, 1, 1)
+    diacr := ""
+    if (first == "?") {
+        diacr := "´"
+    } else if (first == "N" || first == "Т"){
+        diacr := "˜"
+    } else if (first == "V" || first == "М"){
+        diacr := "ˇ"
+    } else if (first == "C" || first == "С"){
+        diacr := "˜"
+    } else if (first == "Z" || first == "Я"){
+        diacr := "¸"
+    } else if (first == ":" || first == "Ж"){
+        diacr := "¨"
+    } else if (first == "R" || first == "К"){
+        diacr := "˚"
+    } else if (first == "Q" || first == "Й"){
+        diacr := "˘"
+    } else if (first == "^"){
+        diacr := "ˆ"
+    } else if (first == "~" || first == "Ё"){
+        diacr := "`"
+    }
+    if (diacr) {
+        combo := diacr . substr(combo, 2, strlen(combo))
+    }
+    return combo
+}
 
 ;========================================================Compose key handler
 RAlt::
     ;Cunning hook: RAlt Up sends {CtrlBreak} that stops Input that RAlt has started. 
     Input, combo, V C,{CtrlBreak}
-    ;RAlt continues to perform and tries to find passed combination.  
+    ;RAlt continues to perform and tries to find passed combination.
+
+    ;Convert first letter to birman's kbd deadkey
+    combo := escapeBirmanDiacritics(combo)
+
     getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo) || getCombo(birmans, combo)
     if (lastResult){
         clear(StrLen(combo))
@@ -142,7 +176,7 @@ AppsKey Up::
 ;!~::
 !sc031::
 +!sc029::
-    listenDiacritics("~")
+    listenDiacritics("˜")
     return
 
 ;!`::
@@ -171,7 +205,7 @@ AppsKey Up::
 ;!^::
 !sc017::
 +!sc007::
-    listenDiacritics("^")
+    listenDiacritics("ˆ")
     return
 
 ;!u::
@@ -201,36 +235,6 @@ AppsKey Up::
     return
 
 
-;=====================================================Birman diacritics/dead keys listeners
-; TODO: Birman Ralt should not interfer with Combos. So, fuck it up.
-;Shift & Ralt & `::
-;    return
-;+Ralt & Q::
-;    return
-;+Ralt & R::
-;    return
-;+Ralt & 6::
-;    return
-;+Ralt & ;::
-;    return
-;+Ralt & /::
-;    return
-;+Ralt & n::
-;    return
-;+Ralt & v::
-;    return
-;+Ralt & z::
-;    return
-
-
-;===============================================Birman hotkeys
-;Ralt.
-
-;+Ralt.
-;RShift & Ralt & sc034::
-;LShift & Ralt & sc034::
-;    Send ”
-;    return
 
 ;===========================================================Hotkeys
 ;^+!w::

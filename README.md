@@ -56,6 +56,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * Fake formats: html, json
 * Typograph: format selected text
 * any kind of compilers like LESS, SASS, 
+* highlighting of invisible symbols, number of spaces etc
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
