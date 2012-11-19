@@ -1,15 +1,24 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Warn  ; Recommended for catching common errors.
+#Warn UseUnsetGlobal ; Recommended for catching common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+;Set the Coordinate Modes before any threads can be executed
 
-;TODO:
+
+; TODO:
 ; some bugs with RightAlt when alttabbing windows
 ; some bugs when combo outside of [], for example []lorem, and besides, when just ] appeared. So, when you see [], try to grab combo inside, not a listening of something.
+; some bugs with compose in SciTe
+; if language - cyrillic, make «» instead of "" on key 2
+; correct birman diacritics: ?! doesnt give ‽
+; sometimes it gives → when laptop awakes
+; make listview: it's not bad, actually, for character & description
 
+#Include ./inc/Gdip.ahk
 #Include ./inc/Combinations.ahk
 #Include ./inc/Util.ahk
+#Include ./inc/Groups.ahk
 #Include ./inc/Faker.ahk
 #Include ./inc/Selection.ahk
 
@@ -70,26 +79,28 @@ escapeBirmanDiacritics(combo){
     ;`, q=˘, 6 = ˆ, /=´, n=˜, v = ˇ, r = ˚, z = ¸, ; = ¨
     first := substr(combo, 1, 1)
     diacr := ""
-    if (first == "?") {
-        diacr := "´"
-    } else if (first == "N" || first == "Т"){
-        diacr := "˜"
-    } else if (first == "V" || first == "М"){
-        diacr := "ˇ"
-    } else if (first == "C" || first == "С"){
-        diacr := "˜"
-    } else if (first == "Z" || first == "Я"){
-        diacr := "¸"
-    } else if (first == ":" || first == "Ж"){
-        diacr := "¨"
-    } else if (first == "R" || first == "К"){
-        diacr := "˚"
-    } else if (first == "Q" || first == "Й"){
-        diacr := "˘"
-    } else if (first == "^"){
-        diacr := "ˆ"
-    } else if (first == "~" || first == "Ё"){
-        diacr := "`"
+    if (strlen(combo) == 2) {
+        if (first == "?") {
+            diacr := "´"
+        } else if (first == "N" || first == "Т"){
+            diacr := "˜"
+        } else if (first == "V" || first == "М"){
+            diacr := "ˇ"
+        } else if (first == "C" || first == "С"){
+            diacr := "˜"
+        } else if (first == "Z" || first == "Я"){
+            diacr := "¸"
+        } else if (first == ":" || first == "Ж"){
+            diacr := "¨"
+        } else if (first == "R" || first == "К"){
+            diacr := "˚"
+        } else if (first == "Q" || first == "Й"){
+            diacr := "˘"
+        } else if (first == "^"){
+            diacr := "ˆ"
+        } else if (first == "~" || first == "Ё"){
+            diacr := "`"
+        }
     }
     if (diacr) {
         combo := diacr . substr(combo, 2, strlen(combo))
@@ -107,13 +118,13 @@ RAlt::
     combo := escapeBirmanDiacritics(combo)
 
     getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo) || getCombo(birmans, combo)
+    
     if (lastResult){
         clear(StrLen(combo))
         Send %lastResult%
-    } 
-    else {
+    } else { ;if no combos found - try to send Alt+… command, but extended to unicode
         utf := RegExMatch(combo, "[0-9]{2,8}")
-        if (utf) { ;if no combos found - try to send Alt+… command, but extended to unicode
+        if (utf) { 
             clear(StrLen(combo))
             getCharFromUTF(combo) 
         }
@@ -145,30 +156,52 @@ RAlt Up::
     return
 
 
-;========================================================Selection Modifier key listener (color conversion, typograf, and so on)
+;========================================================Web-dev key behaviour
 AppsKey:: 
-    Input, combo, ,{CtrlBreak}
-    comboCorrect := checkSelectionCombo(combo)
-    if (comboCorrect){
+    Input, combo, V ,{CtrlBreak}
 
-        backupClipboard()
+    ;seek for where is caret now
+    ;CaretPos := getCaretPosition()
+    ;CaretX := CaretPos["x"]
+    ;CaretY := CaretPos["y"]
 
-        Send ^c
-        source := clipboard
-        treatRes := treatSelection[combo](clipboard)
+    ;MsgBox, X%CaretX%, Y%CaretY%
 
-        clipboard = %treatRes%
-        Send ^v
+    ;Menu, TestMenu, add, Item1, MenuHandler
+    ;Menu, TestMenu, Show, %CaretX%, %CaretY%
 
-        restoreClipboard()
-    } 
-    else {
+    combo := combo . ""
+
+    if (combo || combo == 0) { 
+        ;Something typed while appkey was pressed
+        ;selectBefore(strlen(combo)) ;select inputted combo
+
+        if (strlen(combo) == 1){
+            ref := getCharRef(combo)
+            if (ref) {
+                group := ref.group, desc := ref.desc, groupSet := getGroupSet(group)
+                MsgBox, %group%:%desc%:%groupSet%
+            }
+        }
+
+        ;Loop, 10
+        ;{sdfds
+        ;    LV_Add("", A_Index, "a", "b", "c")
+        ;}
+    } else { 
+        ;Appskey just pressed and released
     }
+
     return
 
 AppsKey Up::
     SendEvent {CtrlBreak}
     return
+
+MenuHandler:
+    MsgBox, Hello
+    return
+
 
 
 ;========================================================Mac dead keys diacritics handlers/listeners

@@ -3,6 +3,10 @@
 ;treatSelection := new Object();
 
 
+selectionCombos := {}
+selectionCombos.item("rgb") := 
+
+
 checkSelectionCombo(combo) {
 	return true
 }

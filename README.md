@@ -6,26 +6,27 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 
 ### TODO:
 
-* lorem ipsum
 * typographic test pages (font, type elements)
 * html elements ()
 * all possible symbols from utfgraphics
-* > birman kbd full
 * gethtmlcode, getutf
 * color convertor
 * readme
 * numerous tests
-* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia…
+* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia, get link on script in every comment with (c)…
 * rename to the web-designer keyboard, make rgb convertor
 * cyrillics full cover & combos & extended
 * reverse string (find reversed equivs)
 * think & make scenarious: habr image, linux user become windows, etc 
 * ms office autocorrection
 * wiki typographic symbols
-* show list of characters  
+* show list of characters balloon
 * a lot of documentation
 * make .exe and test autoload (startup)
-
+* fix all bugs
+* Symbol suggestions n → (ñ, ň, ń, ǹ, ņ) when type some character with RAlt.
+* Make text selected when lorem ipsum generator worked out. It will allow to copy or delete this text
+* Make more dense keyboard shortcuts.
 
 ### Ideas:
 
@@ -34,19 +35,19 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * phrases, like f.e., …
 * Images, like [i:fu] will insert `<img src="link_to_fuuu.png"/>`
 * Tags wrapping, for example, selected `phrase` + `AppsKey` + `tag` will wrap text with tag.
-* Generate lorem ipsum
 * Performs simple actions like *5 (duplicates 5 times)
 * Lot of carets, like in sublime text
 * Random data generator (like faker)
 * Translator?
 * ASCII painter?
 * escape phrase
+* html escape
 * synonims
 * omonims
 * combos like Entypo & other fonts
 * open console here shortcut
 * words & symbols counter
-* symbolds popup 
+* symbols popup 
 * duplicate on ctrl+shift+d
 * row numbers
 * selected string to base64
@@ -57,6 +58,13 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * Typograph: format selected text
 * any kind of compilers like LESS, SASS, 
 * highlighting of invisible symbols, number of spaces etc
+* show string enumeration
+* zen coding
+* toUpperCase
+* toLowerCase
+* tocamelcase
+* mouse slower down (sniper key)
+* record actions: start record, stop record, repeat
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -102,10 +110,9 @@ Wrap selected with tag
 Text, dif languages, fake data, fake imgs
 
 ## Have done
-* 
+* <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard</a> behaviour
 * Lorem Ipsum generator
-* Windows <a href="http://en.wikipedia.org/wiki/Alt_code">Alt-codes</a> extended to full UTF and now in combos.
+* Windows <a href="http://en.wikipedia.org/wiki/Alt_code">Alt-codes</a> extended to UTF
 * <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OSX Shortcuts</a>
-* Add to windows startup
+* Auto startup
 * Linux & Solaris compose keys
-* Hotstrings
