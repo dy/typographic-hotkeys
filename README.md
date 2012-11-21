@@ -31,13 +31,15 @@ Transforms found colors in selected string to passed format. For exaple, select 
 ! Supposed that background is white (most common case). Do not use alpha conversion with background other than white.
 Nice use case: select all your css, press <kbd>Menu Key + rgb</kbd>, all recognized colors will be converted to `rgb` format. It will enhance rendering of page %)
 
-### 4. [pending] Get code
 
-Html, utf
-
-### 5. Fake data generator
+### 4. Fake data generator
 
 Text, dif languages, fake data, fake imgs
+
+### Helpers
+
+1. Current keyboard layout in-place balloon (img)
+2. HTML & UTF-codes balloon (img)
 
 ## TODO:
 
@@ -74,15 +76,16 @@ Text, dif languages, fake data, fake imgs
 * Auto startup
 * Linux & Solaris compose keys
 
-## → Project is closing ←
+## ✕ Project is closing
 
 Reasons of escaping:
 
 * It's difficult to implement nice GUI with Autohotkey™. It only suggests simple basic components, which is not very suitable for application's cases. C/C++ will allow to implement any UI.
 * Any crossplatform idea is hacked at the root; C/C++ code will allow to think about migration.
 * Autohotkey swarms with bugs, which is difficult to catch and to understand.
-* Very unusual syntax of autohotkey scripts (something in a middle of Pascal, JavaScript and Basic‽) with a lot of oddities.
+* Very unusual syntax of autohotkey scripts (a mix of Pascal, JavaScript and VBasic‽) with a lot of oddities.
+* No JSON support.
 * Difficult debugging of DllCalls and memory-related tasks.
-* Native app will get more flexibility & speed.
+* Low flexibility & speed.
 
-I'm planning to replace typographic hotkeys with <a href="">**Web-developer's keyboard**</a> – a better native replacement on C++.
+I'm planning to replace typographic hotkeys with <a href="">**Web-developer's keyboard**</a> – a better native replacement written on C++.

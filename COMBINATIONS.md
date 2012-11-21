@@ -40,3 +40,5 @@
 * I'm tired. Maybe later I will document full list.
 
 ## Compose key combinations
+
+## Named combinations
