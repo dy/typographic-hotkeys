@@ -11,6 +11,10 @@ checkSelectionCombo(combo) {
 	return true
 }
 
+;============================================ Tags wrapper
+
+
+
 ;============================================ Color
 
 ;----------Converts all occurances of color to rgb-format

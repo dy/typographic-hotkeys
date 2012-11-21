@@ -6,6 +6,10 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 
 ### TODO:
 
+* Fake address, description
+* Fake localization
+* Color convertor
+* Ctrl + left or dblclick = select word correctly
 * typographic test pages (font, type elements)
 * html elements ()
 * all possible symbols from utfgraphics
@@ -27,6 +31,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * Symbol suggestions n → (ñ, ň, ń, ǹ, ņ) when type some character with RAlt.
 * Make text selected when lorem ipsum generator worked out. It will allow to copy or delete this text
 * Make more dense keyboard shortcuts.
+
 
 ### Ideas:
 
@@ -65,6 +70,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * tocamelcase
 * mouse slower down (sniper key)
 * record actions: start record, stop record, repeat
+* code autoformatter
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™

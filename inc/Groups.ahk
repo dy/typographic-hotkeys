@@ -113,8 +113,8 @@ charReferences.item("}") := ""
 groups.item("_") := "_"
 charReferences.item("_") := "_"
 
-groups.item("+") := ""
-charReferences.item("+") := ""
+groups.item("+") := "+±"
+charReferences.item("+") := "+"
 
 groups.item("№") := ""
 charReferences.item("№") := ""
@@ -165,9 +165,19 @@ charReferences.item("@") := "a"
 
 groups.item("b") := "b"
 charReferences.item("b") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
+charReferences.item("") := "b"
 
-groups.item("c") := "c" 
+groups.item("c") := "c©" 
 charReferences.item("c") := "c"
+charReferences.item("©") := "c"
 
 groups.item("d") := "d" 
 charReferences.item("d") := "d"
@@ -192,7 +202,11 @@ charReferences.item("n") := "n"
 groups.item("o") := "oø°" 
 charReferences.item("°") := "o, degree"
 
-groups.item("p") := "p" charReferences.item("p") := "p"
+groups.item("p") := "p" 
+charReferences.item("p") := "p"
+charReferences.item("℗") := "p"
+charReferences.item("") := "p"
+
 groups.item("q") := "q" charReferences.item("q") := "q"
 groups.item("r") := "r" charReferences.item("r") := "r"
 groups.item("s") := "s" charReferences.item("s") := "s"
@@ -303,6 +317,14 @@ groups.item("Я") := "Я" charReferences.item("Я") := "Я"
 
 
 ;================================== Other associations
+;------------------------Diacritics
+groups.item("¨") := "¨¸´"
+charReferences.item("¸") := "¨, cedil"
+charReferences.item("¨") := "¨, dieresis" 
+charReferences.item("´") := "¨, acute accent" 
+
+;------------------------Phonetics
+
 ;------------------------Arrows
 
 

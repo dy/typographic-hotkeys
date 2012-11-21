@@ -18,12 +18,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Include ./inc/Gdip.ahk
 #Include ./inc/Combinations.ahk
 #Include ./inc/Util.ahk
-#Include ./inc/Groups.ahk
 #Include ./inc/Faker.ahk
-#Include ./inc/Selection.ahk
+;#Include ./inc/Groups.ahk
+;#Include ./inc/Menu.ahk
+;#Include ./inc/HTML.ahk
+;#Include ./inc/Selection.ahk
 
 
 #Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
+
+menuGui = 1
+
+;initializeMenu()
+
 
 ;==================================Make load on startup, if launched first time
 sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
@@ -115,7 +122,7 @@ RAlt::
     ;RAlt continues to perform and tries to find passed combination.
 
     ;Convert first letter to birman's kbd deadkey
-    combo := escapeBirmanDiacritics(combo)
+    ;combo := escapeBirmanDiacritics(combo)
 
     getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo) || getCombo(birmans, combo)
     
@@ -157,50 +164,86 @@ RAlt Up::
 
 
 ;========================================================Web-dev key behaviour
-AppsKey:: 
-    Input, combo, V ,{CtrlBreak}
+;AppsKey Up::
+;    SendEvent {CtrlBreak}
+;    return
+
+;AppsKey::
+;    SendEvent {CtrlBreak} ;That's a fucking strange bugfix intended to get rid of "initial pumping" of AppKey. If to switch it ;off, first launch will not be handled correctly (keypressing will be ignored)
+;    
+;    menuType := "" ;type of menuType to perform 
+;
+;   backupClipboard()
+;
+;    ;Something goes wrong here
+;    SendInput ^c
+;
+;    ;TODO: check not is copied something, but is selected something. Because of in Sublime nothing selected, but entire row copied
+;    ;if (clipboard) {
+;    ;    ;selection isn't empty.
+;    ;    menuType := "selection"
+;    ;    Input, combo, V,{CtrlBreak}
+;    ;    MsgBox, stopd
+;    ;} else {  
+;        ;MsgBox, isabout
+;        ;selection is empty. Type symbols  
+;        Input, combo, V ,{CtrlBreak}
+;        ;MsgBox, justafter
+;        menuType := "selection"
+;        selection := clipboard
+    ;}
+    
 
     ;seek for where is caret now
     ;CaretPos := getCaretPosition()
     ;CaretX := CaretPos["x"]
     ;CaretY := CaretPos["y"]
 
-    ;MsgBox, X%CaretX%, Y%CaretY%
+    ;testBinary()
 
     ;Menu, TestMenu, add, Item1, MenuHandler
     ;Menu, TestMenu, Show, %CaretX%, %CaretY%
 
-    combo := combo . ""
+;    combo := combo . ""
+;
+;    if (combo || combo == 0) { 
+;        ;Something typed while appkey was pressed
+;        ;selectBefore(strlen(combo)) ;select inputted combo;;
+;
+;        if (menuType == "selection") {
+;            ;If wrap intention - wrap with html tag
+;            ;resStr := wrapWithTag(clipboard, combo)
+;            ;clipboard = %resStr%
+;            ;Send ^v
+;        } else if (strlen(combo) == 1) {
+;            ;
+;        } else {
 
-    if (combo || combo == 0) { 
-        ;Something typed while appkey was pressed
-        ;selectBefore(strlen(combo)) ;select inputted combo
-
-        if (strlen(combo) == 1){
-            ref := getCharRef(combo)
-            if (ref) {
-                group := ref.group, desc := ref.desc, groupSet := getGroupSet(group)
-                MsgBox, %group%:%desc%:%groupSet%
-            }
-        }
+;        }
 
         ;Loop, 10
         ;{sdfds
         ;    LV_Add("", A_Index, "a", "b", "c")
         ;}
-    } else { 
+
+;    } else { 
         ;Appskey just pressed and released
-    }
+;        if (menuType == "selection") {
+            ;Nothing was typed – call menu of selected symbol    
+;            ref := getCharRef(selection)
+;            if (ref) {
+;                group := ref.group, desc := ref.description, groupSet := getGroupSet(group)
+;                MsgBox, %group%|%desc%|%groupSet%;
 
-    return
+                ;TODO: make listView
+;                showMenu(group)
+;            }
+;        }
+;    }
 
-AppsKey Up::
-    SendEvent {CtrlBreak}
-    return
+;    restoreClipboard()
 
-MenuHandler:
-    MsgBox, Hello
-    return
+;    return
 
 
 

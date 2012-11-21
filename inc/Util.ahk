@@ -46,6 +46,45 @@ restoreClipboard(){
     global clipBackup  
     clipboard = %clipBackup%
 }
+;-----------------------Bin tests
+testBinary(){
+
+;2 bytes is always reserved for technical needs
+;Digits are strings too
+;v1 := 123 ; length is 6
+;v1 := 0xa ; length is 6
+;v1 := 1234 ; length is 14
+;v1 := 0x01 ; length is 14
+;v1 := 0xff ; length is 14
+;v1 := 0x12345 ; length is 14
+;v1 := "zxfvklm" ; length is 14
+;v1 := 0x123456 ; length is 126
+;v1 := "zxfvklm0" ; length is 126
+
+;v1 := 0
+;NumPut(0, v1, 0, "UInt" )
+;cap1 := varsetcapacity(v1 )
+
+;cap2 := varsetcapacity(v2, 8 )
+;v1adr := &v1
+;v2 := 0
+;v2 := NumGet(v1, 0, "UInt")
+
+;MsgBox, v1 = %v1% : %cap1%  v1adr = %v1adr%  v2 = %v2% : %cap2%
+
+;b1 := v1 ^ v2
+
+;MsgBox, %b1%
+
+
+}
+
+
+
+
+
+
+
 ;---------------------------Get caret coords
 getCaretPosition(){
     ;First - make system getCaretPos
