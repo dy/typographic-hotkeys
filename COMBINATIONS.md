@@ -1,4 +1,6 @@
-# List of key combinations
+# List of typographic key combinations
+
+## Hotkeys
 
 ### Basic typography
 * — Em dash, `Alt + Ctrl + -` or `[---]`
@@ -36,3 +38,5 @@
 * Try to use modifiers
 * Rouble sign (so far only in <a href="http://www.paratype.com/public/">Public Type Family</a>) as `[rur]`
 * I'm tired. Maybe later I will document full list.
+
+## Compose key combinations
