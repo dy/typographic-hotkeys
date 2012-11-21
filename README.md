@@ -12,10 +12,10 @@ Typographic Hotkeys™ extends default Windows keyboard with cool typographic to
 
 There are few ways to insert special characters.
 
-1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt + -</kbd> = `–`, <kbd>Shift + Alt + -</kbd> = `—`, … See <a href="">full list of shortcuts</a>.
-2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the <kbd>AltGr</kbd> (the same as <kbd>Right Alt</kbd>). Compose combinations vastly extended to cover a lot more than just Linux/Solaris combinations, see <a href="https://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md">full list</a>.
-3. **Typing in brackets**. Type sequence in square brackets, and it will be automatically changed to according symbol, if exists one. For example, `[beta]` will be changed to `β`, and `[mdash]`, as well as `[---]` will be changed to `—`. Supports <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a>, compose key combinations and other sequences (see full list).
-4. **Windows Alt-codes** method. You can still type keys by `Alt + uCode`. For example, `Alt+0151` will get `—`. Unicode sequences included to combinations, so typing `[0151]` will result the same.
+1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt + -</kbd> = `–`, <kbd>Shift + Alt + -</kbd> = `—`, … See <a href="https://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#hotkeys">full list of shortcuts</a>.
+2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the <kbd>AltGr</kbd> (the same as <kbd>Right Alt</kbd>). Compose combinations vastly extended to cover a lot more than just Linux/Solaris combinations, see <a href="http://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#compose-key-combinations">full list</a>.
+3. **Typing in brackets**. Type sequence in square brackets, and it will be automatically changed to according symbol, if exists one. For example, `[beta]` will be changed to `β`, and `[mdash]`, as well as `[---]` will be changed to `—`. Supports <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a>, compose key combinations and other sequences (see <a href="https://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#named-combinations">full list</a>).
+4. **Windows Alt-codes**. You can still type keys by <kbd>Alt + uCode</kbd>. For example, <kbd>Alt+0151</kbd> will get `—`. Unicode sequences are included to combinations, so typing `[0151]` will result the same.
 
 ### 2. Autoreplacements
 
@@ -78,10 +78,11 @@ Text, dif languages, fake data, fake imgs
 
 Reasons of escaping:
 
-* It's difficult to implement nice GUI with Autohotkey™. It only suggests simple basic components, which is not very suitable for application's cases. C/C++ will allow to any UI.
+* It's difficult to implement nice GUI with Autohotkey™. It only suggests simple basic components, which is not very suitable for application's cases. C/C++ will allow to implement any UI.
 * Any crossplatform idea is hacked at the root; C/C++ code will allow to think about migration.
 * Autohotkey swarms with bugs, which is difficult to catch and to understand.
-* Very unusual syntax of autohotkey scripts (something between Pascal, JavaScript and Basic ‽) with a lot of oddities.
+* Very unusual syntax of autohotkey scripts (something in a middle of Pascal, JavaScript and Basic‽) with a lot of oddities.
 * Difficult debugging of DllCalls and memory-related tasks.
+* Native app will get more flexibility & speed.
 
 I'm planning to replace typographic hotkeys with <a href="">**Web-developer's keyboard**</a> – a better native replacement on C++.
