@@ -1,36 +1,33 @@
 # Web designer's keyboard, θ
 
-[still developing]
+Project is closing and migrating to native windows application. There remain only common simple tasks, like color convertor and fake data generator.
+Main reasons for this:
+– It's difficult to implement nice GUI with Autohotkey. It only suggests simple basic components, which is not very suitable for application's cases. C/C++ will allow to do even Win8 UI.
+– Any crossplatform idea is hacked at the root; C/C++ will allow to migrate code.
+– Autohotkey swarms with bugs, which is difficult to catch and understand
+– It's unusual syntax of autohotkey scripts (something between Pascal, JavaScript and Basic ‽) and difficult debugging of DllCalls
 
 Extend default Windows keyboard with cool typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, **MS Office**-like autocorrection and other typographic opportunities. Besides, Web Designer's Keyboard℠ supplies a _color convertor_ funciton, that can transform recognized colors in selected sequence of characters to target color format, _get utf code_ function, that can get utf code of selected symbol, _escape_, _string reflect_, _html tags wrapping_, _lorem ipsum generator_.
 
 ### TODO:
 
-* Fake address, description
-* Fake localization
+* Fake address
 * Color convertor
-* Ctrl + left or dblclick = select word correctly
 * typographic test pages (font, type elements)
 * html elements ()
 * all possible symbols from utfgraphics
 * gethtmlcode, getutf
-* color convertor
 * readme
 * numerous tests
 * pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia, get link on script in every comment with (c)…
 * rename to the web-designer keyboard, make rgb convertor
 * cyrillics full cover & combos & extended
-* reverse string (find reversed equivs)
 * think & make scenarious: habr image, linux user become windows, etc 
-* ms office autocorrection
-* wiki typographic symbols
-* show list of characters balloon
+* wikipedia typographic symbols
 * a lot of documentation
 * make .exe and test autoload (startup)
 * fix all bugs
-* Symbol suggestions n → (ñ, ň, ń, ǹ, ņ) when type some character with RAlt.
 * Make text selected when lorem ipsum generator worked out. It will allow to copy or delete this text
-* Make more dense keyboard shortcuts.
 
 
 ### Ideas:
@@ -45,10 +42,15 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * Random data generator (like faker)
 * Translator?
 * ASCII painter?
+* Ctrl + left or dblclick = select word correctly
+* reverse string (find reversed equivs)
+* ms office autocorrection
 * escape phrase
+* show list of characters balloon
 * html escape
 * synonims
 * omonims
+* Symbol suggestions n → (ñ, ň, ń, ǹ, ņ) when type some character with RAlt.
 * combos like Entypo & other fonts
 * open console here shortcut
 * words & symbols counter
@@ -71,6 +73,7 @@ Extend default Windows keyboard with cool typographic tools. Script enables <a h
 * mouse slower down (sniper key)
 * record actions: start record, stop record, repeat
 * code autoformatter
+* autosuggestions of tags, data & so on
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -116,6 +119,8 @@ Wrap selected with tag
 Text, dif languages, fake data, fake imgs
 
 ## Have done
+* Densed kbd shortcuts
+* Lorem ipsum localisation
 * <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard</a> behaviour
 * Lorem Ipsum generator
 * Windows <a href="http://en.wikipedia.org/wiki/Alt_code">Alt-codes</a> extended to UTF

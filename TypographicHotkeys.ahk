@@ -122,7 +122,7 @@ RAlt::
     ;RAlt continues to perform and tries to find passed combination.
 
     ;Convert first letter to birman's kbd deadkey
-    ;combo := escapeBirmanDiacritics(combo)
+    combo := escapeBirmanDiacritics(combo)
 
     getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo) || getCombo(birmans, combo)
     
@@ -148,7 +148,7 @@ RAlt Up::
     ;TODO: make something to ignore not [] as input.
     Input, combo, V C, {sc01a}{sc01b}[]
     if (ErrorLevel == "EndKey:]" || ErrorLevel == "EndKey:sc01B") { ;finish sequence
-        getLorem(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
+        getFake(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
         if (lastResult) {
             clear(StrLen(combo)+2)
             Send %lastResult%
@@ -459,10 +459,6 @@ RAlt Up::
 !0::
     Send º
     return
-;+!?::
-+!?::
-    Send ¿
-    return
 ;!s::
 !sc01f::
     Send ß
@@ -486,7 +482,12 @@ RAlt Up::
     return
 
 
-
+^+!sc02d::
+    Send ✕
+    return
++!sc02d::
+    Send ✖
+    return
 ;!x::
 ;+!8::
 !sc02d::
@@ -555,15 +556,57 @@ RAlt Up::
     Send ⁰
     return
 
+^+!Up::
+    Send ▲
+    return
++!Up::
+    Send ▴
+    return
 !Up::
-    SendEvent ↑
+    Send ↑
+    return
+^+!Down::
+    Send ▼
+    return
++!Down::
+    Send ▾
     return
 !Down::
-    SendEvent ↓
+    Send ↓
+    return
+^+!Left::
+    Send ◀
+    return
++!Left::
+    Send ◂
     return
 !Left::
-    SendEvent ←
+    Send ←
+    return
+^+!Right::
+    Send ▶
+    return
++!Right::
+    Send ▸
     return
 !Right::
-    SendEvent →
+    Send →
+    return
+
+
+;===================Specials
+;^+!?::
+;^+!/::
+^+!sc035::
+    Send ؟
+    return
+;+!?::
+;+!/::
++!sc035::
+    Send ¿
+    return
+;!?::
+;!/::
+!sc035::
+    Send ‽
     return
