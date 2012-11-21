@@ -1,6 +1,6 @@
 # Typographic Hotkeys
 
-Typographic Hotkeys™ extends default Windows keyboard with cool typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">**Mac OS X special characters shortcuts**</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">**Linux compose keys**</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">**Solaris compose keys**</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">**HTML symbol codes**</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">**Ilya Birman keyboard layout**</a> behaviour, MS Office-like autocorrection and other typographic opportunities. Besides, Typographic Hotkeys℠ supplies _color convertor_, that can transform recognized colors in selection to any color format, _get utf code_ function, that can get utf code of selected symbol and _in-place fake data generator_.
+Typographic Hotkeys™ extends default Windows keyboard with cool typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, MS Office-like autocorrection and other typographic opportunities. Besides, Typographic Hotkeys℠ supplies _color convertor_, that can transform recognized colors in selection to any color format, _get utf code_ function, that can get utf code of selected symbol and _in-place fake data generator_.
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -25,7 +25,7 @@ Sequences below will be automatically transformed when typing has finished
  * `(r)` → `®`
  * `...` → `…`
 
-### 3. [pendine] Convert color
+### 3. [pending] Convert color
 
 Transforms found colors in selected string to passed format. For exaple, select `, rgba(25,45,32,.43)`. Hold <kbd>Menu key</kbd>, type rgb and selection will be transformed to [TODO] `, rgb(?,?,?)`. Supported format conversions: rgb, rgba, hsl, hsla, hex, #, plain.
 ! Supposed that background is white (most common case). Do not use alpha conversion with background other than white.
@@ -45,6 +45,7 @@ Text, dif languages, fake data, fake imgs
 * English language tooltip
 * What utf code tooltip
 * Color convertor
+* Image with description
 * typographic test pages (font, type elements)
 * html elements ()
 * all possible symbols from utfgraphics
@@ -73,8 +74,7 @@ Text, dif languages, fake data, fake imgs
 * Auto startup
 * Linux & Solaris compose keys
 
-## Project is closing
-Look at <a href="">**Web-developer's keyboard**</a> – a better native replacement.
+## → Project is closing ←
 
 Reasons of escaping:
 
@@ -83,3 +83,5 @@ Reasons of escaping:
 * Autohotkey swarms with bugs, which is difficult to catch and to understand.
 * Very unusual syntax of autohotkey scripts (something between Pascal, JavaScript and Basic ‽) with a lot of oddities.
 * Difficult debugging of DllCalls and memory-related tasks.
+
+I'm planning to replace typographic hotkeys with <a href="">**Web-developer's keyboard**</a> – a better native replacement on C++.
