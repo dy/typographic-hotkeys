@@ -4,7 +4,7 @@ Typographic Hotkeys™ extend default Windows keyboard with some useful typograp
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
-2. Download <a href="http://dmitry-ivanov.me/playground/windows_typographic_hotkeys/TypographicHotkeys.ahk">TypographicKeyboard.ahk</a>, put it anywhere (i. e. _My Documents_) and open it with Autohotkey™
+2. Download <a href="https://github.com/downloads/dfcreative/windows_typographic_hotkeys/TypographicHotkeys.zip">Typographic Hotkeys archive</a>, extract it anywhere (i. e. _My Documents_) and open it with Autohotkey™
 
 ## Use Cases
 
