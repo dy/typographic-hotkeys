@@ -122,7 +122,7 @@ fakeData["en"]["streetSuffix"] := array( "Alley","Avenue","Branch","Bridge","Bro
 
 fakeData["ru"]["country"] := array("Украина", "Российская Федерация", "США", "Канада", "Австралия", "Австрия", "Азербайджан", "Аландские острова", "Албания", "Алжир", "Американские острова Самоа", "Ангилья","Ангола", "Андорра", "Антарктика", "Антигуа и Барбуда", "Аргентина", "Армения","Аруба", "Афганистан, Исламская Республика", "Багамы", "Бангладеш", "Барбадос", "Бахрейн",        "Белиз", "Белоруссия", "Бельгия", "Бермудские Острова", "Болгария", "Боливия","Босния и Герцеговина", "Ботсвана", "Бразилия", "Британская территория Индийского океана","Бруней Даруссалам", "Буркина Фасо", "Бурунди", "Бутан", "Вануату","Великобритания", "Венгрия", "Венесуэла", "Виргинские о-ва, Великобритания", "Виргинские о-ва, США","Восточный Тимор", "Вьетнам", "Габон", "Гаити", "Гайана","Гамбия", "Гана", "Гваделупа", "Гватемала", "Гвинея","Гвинея-Биссау", "Германия", "Гибралтар", "Гонгконг", "Гондурас","Государство-город Ватикан", "Гренада", "Гренландия", "Греция", "Грузия","Гуам", "Дания", "Джерси", "Джибути", "Доминиканская Республика","Египет", "Замбия", "Западная Сахара", "Зимбабве", "Израиль","Индия", "Индонезия", "Иордания", "Ирак", "Иран","Ирландия", "Исландия", "Испания", "Италия", "Йемен","Казахстан, Республика", "Каймановы Острова", "Камбоджа", "Камерун", "Катар","Кения", "Кипр", "Кирибати", "Китай", "Кокосовые острова","Колумбия", "Коморские Острова", "Конго, Демократическая Республика", "Конго, Республика", "Коста-Рика","Кот-д’Ивуар", "Куба", "Кувейт", "Кыргызстан", "Лаос","Латвия", "Лесото", "Либерия", "Ливан", "Ливия","Литва", "Лихтенштейн", "Люксембург", "Маврикий", "Мавритания","Мадагаскар, Республика", "Майотта", "Макао", "Македония, Республика", "Малави","Малайзия", "Мали", "Мальдивы", "Мальта", "Марокко","Мартиник", "Маршалловы Острова", "Мексика", "Мелкие отдаленные острова США", "Мозамбик","Молдова", "Монако", "Монголия", "Монтсеррат", "Мьянма","Намибия", "Науру", "Непал", "Нигерия", "Нигерия","Нидерландские Антильские острова", "Нидерланды", "Никарагуа", "Ниуэ", "Новая Зеландия","Новая Каледония", "Норвегия", "Объединённые Арабские Эмираты", "О. Гернси", "Оман","Острова Зеленого Мыса", "Острова Кука", "Острова Теркс И Кайкос", "Острова Уоллис и Футуна", "Острова Херд и Макдональд","Остров Буве", "Остров Доминика", "Остров Мэн", "Остров Норфолк", "Остров Святого Мартина","Остров Святой Елены", "О. Южная Георгия И Южные Сандвичевы Острова", "Пакистан", "Палау", "Палестина","Панама", "Папуа-Новая Гвинея", "Парагвай", "Перу", "Питкерн", "Польша", "Португалия", "Пуэрто-Рико", "Реюньон", "Рождественские острова","Руанда", "Румыния", "Сальвадор", "Самоа", "Сан-Марино","Сан-Томе и Принсипи", "Саудовская Аравия", "Свазиленд", "Северная Корея", "Северные Марианские Острова","Сейшельские Острова", "Сен-Бартельми", "Сенегал", "Сен-Пьер и Микелон", "Сент-Винсент и Гренадины","Сент-Киттс и Невис", "Сент-Люсия", "Сербия", "Сербия и Черногория, Государственный Союз", "Сингапур","Сирия", "Словацкая республика", "Словения", "Соломонские острова", "Сомали","Судан", "Суринам", "Сьерра-Леоне", "Таджикистан", "Тайвань","Тайланд", "Танзания", "Того", "Токелау", "Тонга","Тринидад и Тобаго", "Тувалу", "Тунис", "Туркмения", "Турция","Уганда", "Узбекистан", "Уругвай", "Фарерские острова", "Федеративные Штаты Микронезии","Фиджи", "Филиппины", "Финляндия", "Фолклендские о-ва", "Франция","Французская Гвинея", "Французская Полинезия", "Французские Южные Территории", "Хорватия", "Чад","Черногория", "Чешская Республика", "Чили", "Швейцария", "Швеция","Шпицберген и Ян-Майен", "Шри-Ланка", "Эквадор", "Экваториальная Гвинея", "Эритрея","Эстония", "Эфиопия", "Южная Корея", "Южно-Африканская Республика", "Ямайка", "Япония")
 
-fakeData["en"]["country"] := array("Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica (the territory South of 60 deg S)","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island (Bouvetoya)","Brazil","British Indian Ocean Territory (Chagos Archipelago)","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling)Islands", "Colombia", "Comoros","Congo","Congo","Cook Islands","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faroe Islands","Falkland Islands (Malvinas)","Fiji","Finland","France","French Guiana","French Polynesia","French Southern Territories","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana","Haiti","Heard Island and McDonald Islands","Holy See (Vatican City State)","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Korea","Korea","Kuwait","Kyrgyz Republic","Lao People's Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libyan Arab Jamahiriya","Liechtenstein","Lithuania","Luxembourg","Macao","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands Antilles","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","Northern Mariana Islands","Norway","Oman","Pakistan","Palau","Palestinian Territory","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn Islands","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russian Federation","Rwanda","Saint Barthelemy","Saint Helena","Saint Kitts and Nevis","Saint Lucia","Saint Martin","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia (Slovak Republic)","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","Spain","Sri Lanka","Sudan","Suriname","Svalbard & Jan Mayen Islands","Swaziland","Sweden","Switzerland","Syrian Arab Republic","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","United States Minor Outlying Islands","United States Virgin Islands","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Wallis and Futuna","Western Sahara","Yemen","Zambia","Zimbabwe")
+fakeData["en"]["country"] := array("Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica (the territory South of 60 deg S)","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island (Bouvetoya)","Brazil","British Indian Ocean Territory (Chagos Archipelago)","British Virgin Islands","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling)Islands", "Colombia", "Comoros","Congo","Congo","Cook Islands","Costa Rica","Cote d’Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faroe Islands","Falkland Islands (Malvinas)","Fiji","Finland","France","French Guiana","French Polynesia","French Southern Territories","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana","Haiti","Heard Island and McDonald Islands","Holy See (Vatican City State)","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Korea","Korea","Kuwait","Kyrgyz Republic","Lao People's Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libyan Arab Jamahiriya","Liechtenstein","Lithuania","Luxembourg","Macao","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands Antilles","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","Northern Mariana Islands","Norway","Oman","Pakistan","Palau","Palestinian Territory","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn Islands","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russian Federation","Rwanda","Saint Barthelemy","Saint Helena","Saint Kitts and Nevis","Saint Lucia","Saint Martin","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia (Slovak Republic)","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","Spain","Sri Lanka","Sudan","Suriname","Svalbard & Jan Mayen Islands","Swaziland","Sweden","Switzerland","Syrian Arab Republic","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","United States Minor Outlying Islands","United States Virgin Islands","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Wallis and Futuna","Western Sahara","Yemen","Zambia","Zimbabwe")
 
 fakeData["ru"]["postcode"] := array("#####")
 fakeData["en"]["postcode"] := array("?# #??", "?## #??", "??# #??", "??## #??", "?#? #??", "??#? #??")
@@ -147,76 +147,18 @@ fakeData["ru"]["streetNameFormats"] := array("{{firstName}} {{streetSuffix}}","{
 fakeData["ru"]["streetAddressFormats"] := array("{{buildingNumber}} {{streetName}}","{{buildingNumber}} {{streetName}}","{{secondaryAddress}}\n{{streetName}}")
 
 fakeData["ru"]["phoneFormats"] := array("(812) ###-##-##","(495) ###-####","+7 (922) ###-####","(35222) ##-####","8-800-###-####")
-fakeData["en"]["phoneFormats"] := array("+44(0)##########","+44(0)#### ######","+44(0)#########","+44(0)#### #####","0##########","0#########","0#### ######","0#### #####","(0####) ######","(0####) #####",)
+fakeData["en"]["phoneFormats"] := array("+44(0)##########","+44(0)#### ######","+44(0)#########","+44(0)#### #####","0##########","0#########","0#### ######","0#### #####","(0####) ######","(0####) #####")
 
 fakeData["en"]["emailDomain"] := array("gmail.com", "yahoo.com", "hotmail.com", "gmail.co.uk", "yahoo.co.uk", "hotmail.co.uk")
-fakeData["en"]["domain"] = array("com", "com", "com", "com", "com", "com", "biz", "info", "net", "org", "co.uk");
+fakeData["en"]["domain"] = array("com", "com", "com", "com", "com", "com", "biz", "info", "net", "org", "co.uk")
 
-fakeData["ru"]["domain"] := array("com", "com", "net", "org", "ru", "ru", "ru", "ru");
+fakeData["ru"]["domain"] := array("com", "com", "net", "org", "ru", "ru", "ru", "ru")
 
 
 ;---------------Ru person
-fakeData["ru"]["firstName"] := array(
-        'Александр', 'Алексей', 'Дмитрий', 'Сергей', 'Андрей', 'Антон', 'Артём',
-        'Артемий', 'Виталий', 'Владимир', 'Денис', 'Евгений', 'Иван', 'Игорь',
-        'Константин', 'Максим', 'Михаил', 'Николай', 'Павел', 'Роман', 'Станислав',
-        'Август', 'Адам', 'Адриан', 'Аким', 'Ананий', 'Анатолий', 'Антонин',
-        'Аполлон', 'Аркадий', 'Арсений', 'Богдан', 'Болеслав', 'Борис', 'Бронислав',
-        'Вадим', 'Валентин', 'Валериан', 'Валерий', 'Василий', 'Вениамин', 'Виктор',
-        'Викентий', 'Виль', 'Витольд', 'Владислав', 'Владлен', 'Всеволод', 'Вячеслав',
-        'Геннадий', 'Георгий', 'Герасим', 'Герман', 'Глеб', 'Гордей', 'Григорий',
-        'Давид', 'Дан', 'Даниил', 'Данила', 'Добрыня', 'Донат', 'Егор', 'Ефим',
-        'Захар', 'Игнатий', 'Игнат', 'Илларион', 'Илья', 'Иннокентий', 'Иосиф',
-        'Ираклий', 'Кирилл', 'Клим', 'Кузьма', 'Лаврентий', 'Лев', 'Леонид', 'Макар',
-        'Марк', 'Матвей', 'Милан', 'Мирослав', 'Назар', 'Никита', 'Никодим',
-        'Олег', 'Пётр', 'Платон', 'Прохор', 'Радислав', 'Рафаил', 'Родион',
-        'Ростислав', 'Руслан', 'Савва', 'Сава', 'Святослав', 'Семён', 'Степан',
-        'Стефан', 'Тарас', 'Тимофей', 'Тит', 'Фёдор', 'Феликс', 'Филипп', 'Юлиан',
-        'Юлий', 'Юрий', 'Яков', 'Ян', 'Ярослав',
-    );
-fakeData["ru"]["midName"] := array(
-        'Александрович', 'Алексеевич', 'Андреевич', 'Дмитриевич', 'Евгеньевич',
-        'Сергеевич', 'Иванович', 'Фёдорович', 'Львович', 
-    );
-fakeData["ru"]["lastName"] := array(
-        'Смирнов', 'Иванов', 'Кузнецов', 'Соколов', 'Попов', 'Лебедев', 'Козлов',
-        'Новиков', 'Морозов', 'Петров', 'Волков', 'Соловьёв', 'Васильев', 'Зайцев',
-        'Павлов', 'Семёнов', 'Голубев', 'Виноградов', 'Богданов', 'Воробьёв',
-        'Фёдоров', 'Михайлов', 'Беляев', 'Тарасов', 'Белов', 'Комаров', 'Орлов',
-        'Киселёв', 'Макаров', 'Андреев', 'Ковалёв', 'Ильин', 'Гусев', 'Титов',
-        'Кузьмин', 'Кудрявцев', 'Баранов', 'Куликов', 'Алексеев', 'Степанов',
-        'Яковлев', 'Сорокин', 'Сергеев', 'Романов', 'Захаров', 'Борисов', 'Королёв',
-        'Герасимов', 'Пономарёв', 'Григорьев', 'Лазарев', 'Медведев', 'Ершов',
-        'Никитин', 'Соболев', 'Рябов', 'Поляков', 'Цветков', 'Данилов', 'Жуков',
-        'Фролов', 'Журавлёв', 'Николаев', 'Крылов', 'Максимов', 'Сидоров', 'Осипов',
-        'Белоусов', 'Федотов', 'Дорофеев', 'Егоров', 'Матвеев', 'Бобров', 'Дмитриев',
-        'Калинин', 'Анисимов', 'Петухов', 'Антонов', 'Тимофеев', 'Никифоров',
-        'Веселов', 'Филиппов', 'Марков', 'Большаков', 'Суханов', 'Миронов', 'Ширяев',
-        'Александров', 'Коновалов', 'Шестаков', 'Казаков', 'Ефимов', 'Денисов',
-        'Громов', 'Фомин', 'Давыдов', 'Мельников', 'Щербаков', 'Блинов', 'Колесников',
-        'Карпов', 'Афанасьев', 'Власов', 'Маслов', 'Исаков', 'Тихонов', 'Аксёнов',
-        'Гаврилов', 'Родионов', 'Котов', 'Горбунов', 'Кудряшов', 'Быков', 'Зуев',
-        'Третьяков', 'Савельев', 'Панов', 'Рыбаков', 'Суворов', 'Абрамов', 'Воронов',
-        'Мухин', 'Архипов', 'Трофимов', 'Мартынов', 'Емельянов', 'Горшков', 'Чернов',
-        'Овчинников', 'Селезнёв', 'Панфилов', 'Копылов', 'Михеев', 'Галкин', 'Назаров',
-        'Лобанов', 'Лукин', 'Беляков', 'Потапов', 'Некрасов', 'Хохлов', 'Жданов',
-        'Наумов', 'Шилов', 'Воронцов', 'Ермаков', 'Дроздов', 'Игнатьев', 'Савин',
-        'Логинов', 'Сафонов', 'Капустин', 'Кириллов', 'Моисеев', 'Елисеев', 'Кошелев',
-        'Костин', 'Горбачёв', 'Орехов', 'Ефремов', 'Исаев', 'Евдокимов', 'Калашников',
-        'Кабанов', 'Носков', 'Юдин', 'Кулагин', 'Лапин', 'Прохоров', 'Нестеров',
-        'Харитонов', 'Агафонов', 'Муравьёв', 'Ларионов', 'Федосеев', 'Зимин', 'Пахомов',
-        'Шубин', 'Игнатов', 'Филатов', 'Крюков', 'Рогов', 'Кулаков', 'Терентьев',
-        'Молчанов', 'Владимиров', 'Артемьев', 'Гурьев', 'Зиновьев', 'Гришин', 'Кононов',
-        'Дементьев', 'Ситников', 'Симонов', 'Мишин', 'Фадеев', 'Комиссаров', 'Мамонтов',
-        'Носов', 'Гуляев', 'Шаров', 'Устинов', 'Вишняков', 'Евсеев', 'Лаврентьев',
-        'Брагин', 'Константинов', 'Корнилов', 'Авдеев', 'Зыков', 'Бирюков', 'Шарапов',
-        'Никонов', 'Щукин', 'Дьячков', 'Одинцов', 'Сазонов', 'Якушев', 'Красильников',
-        'Гордеев', 'Самойлов', 'Князев', 'Беспалов', 'Уваров', 'Шашков', 'Бобылёв',
-        'Доронин', 'Белозёров', 'Рожков', 'Самсонов', 'Мясников', 'Лихачёв', 'Буров',
-        'Сысоев', 'Фомичёв', 'Русаков', 'Стрелков', 'Гущин', 'Тетерин', 'Колобов',
-        'Субботин', 'Фокин', 'Блохин', 'Селиверстов', 'Пестов', 'Кондратьев', 'Силин',
-        'Меркушев', 'Лыткин', 'Туров',
-    );
+fakeData["ru"]["firstName"] := array("Александр", "Алексей", "Дмитрий", "Сергей", "Андрей", "Антон", "Артём","Артемий", "Виталий", "Владимир", "Денис", "Евгений", "Иван", "Игорь","Константин", "Максим", "Михаил", "Николай", "Павел", "Роман", "Станислав","Август", "Адам", "Адриан", "Аким", "Ананий", "Анатолий", "Антонин","Аполлон", "Аркадий", "Арсений", "Богдан", "Болеслав", "Борис", "Бронислав","Вадим", "Валентин", "Валериан", "Валерий", "Василий", "Вениамин", "Виктор","Викентий", "Виль", "Витольд", "Владислав", "Владлен", "Всеволод", "Вячеслав","Геннадий", "Георгий", "Герасим", "Герман", "Глеб", "Гордей", "Григорий","Давид", "Дан", "Даниил", "Данила", "Добрыня", "Донат", "Егор", "Ефим","Захар", "Игнатий", "Игнат", "Илларион", "Илья", "Иннокентий", "Иосиф","Ираклий", "Кирилл", "Клим", "Кузьма", "Лаврентий", "Лев", "Леонид", "Макар","Марк", "Матвей", "Милан", "Мирослав", "Назар", "Никита", "Никодим","Олег", "Пётр", "Платон", "Прохор", "Радислав", "Рафаил", "Родион","Ростислав", "Руслан", "Савва", "Сава", "Святослав", "Семён", "Степан","Стефан", "Тарас", "Тимофей", "Тит", "Фёдор", "Феликс", "Филипп", "Юлиан","Юлий", "Юрий", "Яков", "Ян", "Ярослав")
+fakeData["ru"]["midName"] := array("Александрович", "Алексеевич", "Андреевич", "Дмитриевич", "Евгеньевич","Сергеевич", "Иванович", "Фёдорович", "Львович")
+fakeData["ru"]["lastName"] := array("Смирнов", "Иванов", "Кузнецов", "Соколов", "Попов", "Лебедев", "Козлов","Новиков", "Морозов", "Петров", "Волков", "Соловьёв", "Васильев", "Зайцев","Павлов", "Семёнов", "Голубев", "Виноградов", "Богданов", "Воробьёв","Фёдоров", "Михайлов", "Беляев", "Тарасов", "Белов", "Комаров", "Орлов","Киселёв", "Макаров", "Андреев", "Ковалёв", "Ильин", "Гусев", "Титов","Кузьмин", "Кудрявцев", "Баранов", "Куликов", "Алексеев", "Степанов","Яковлев", "Сорокин", "Сергеев", "Романов", "Захаров", "Борисов", "Королёв","Герасимов", "Пономарёв", "Григорьев", "Лазарев", "Медведев", "Ершов","Никитин", "Соболев", "Рябов", "Поляков", "Цветков", "Данилов", "Жуков","Фролов", "Журавлёв", "Николаев", "Крылов", "Максимов", "Сидоров", "Осипов","Белоусов", "Федотов", "Дорофеев", "Егоров", "Матвеев", "Бобров", "Дмитриев","Калинин", "Анисимов", "Петухов", "Антонов", "Тимофеев", "Никифоров","Веселов", "Филиппов", "Марков", "Большаков", "Суханов", "Миронов", "Ширяев","Александров", "Коновалов", "Шестаков", "Казаков", "Ефимов", "Денисов","Громов", "Фомин", "Давыдов", "Мельников", "Щербаков", "Блинов", "Колесников","Карпов", "Афанасьев", "Власов", "Маслов", "Исаков", "Тихонов", "Аксёнов","Гаврилов", "Родионов", "Котов", "Горбунов", "Кудряшов", "Быков", "Зуев","Третьяков", "Савельев", "Панов", "Рыбаков", "Суворов", "Абрамов", "Воронов","Мухин", "Архипов", "Трофимов", "Мартынов", "Емельянов", "Горшков", "Чернов","Овчинников", "Селезнёв", "Панфилов", "Копылов", "Михеев", "Галкин", "Назаров","Лобанов", "Лукин", "Беляков", "Потапов", "Некрасов", "Хохлов", "Жданов","Наумов", "Шилов", "Воронцов", "Ермаков", "Дроздов", "Игнатьев", "Савин","Логинов", "Сафонов", "Капустин", "Кириллов", "Моисеев", "Елисеев", "Кошелев","Костин", "Горбачёв", "Орехов", "Ефремов", "Исаев", "Евдокимов", "Калашников","Кабанов", "Носков", "Юдин", "Кулагин", "Лапин", "Прохоров", "Нестеров","Харитонов", "Агафонов", "Муравьёв", "Ларионов", "Федосеев", "Зимин", "Пахомов","Шубин", "Игнатов", "Филатов", "Крюков", "Рогов", "Кулаков", "Терентьев","Молчанов", "Владимиров", "Артемьев", "Гурьев", "Зиновьев", "Гришин", "Кононов","Дементьев", "Ситников", "Симонов", "Мишин", "Фадеев", "Комиссаров", "Мамонтов","Носов", "Гуляев", "Шаров", "Устинов", "Вишняков", "Евсеев", "Лаврентьев","Брагин", "Константинов", "Корнилов", "Авдеев", "Зыков", "Бирюков", "Шарапов","Никонов", "Щукин", "Дьячков", "Одинцов", "Сазонов", "Якушев", "Красильников","Гордеев", "Самойлов", "Князев", "Беспалов", "Уваров", "Шашков", "Бобылёв","Доронин", "Белозёров", "Рожков", "Самсонов", "Мясников", "Лихачёв", "Буров","Сысоев", "Фомичёв", "Русаков", "Стрелков", "Гущин", "Тетерин", "Колобов","Субботин", "Фокин", "Блохин", "Селиверстов", "Пестов", "Кондратьев", "Силин","Меркушев", "Лыткин", "Туров")
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ Lorem ipsum
 getLorem(request){
@@ -233,12 +175,14 @@ getLorem(request){
 
     maxLeNumber := lorem.MaxIndex()
 
-    Random, leNumber, 1, %maxLeNumber% ;number to be used as lorem version. 
+    leNumber := randNum ( 1, %maxLeNumber% ) ;number to be used as lorem version. 
     
     reqlen := StrLen(request)
     clear(reqlen + 2)
 
     backupClipboard()
+
+    msgbox, %lenumber%
 
     if (RegExMatch(request, "w[ ]?[0-9]+", words)){
         ;output lorem by words
