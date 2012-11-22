@@ -143,6 +143,7 @@ RAlt Up::
     return
 
 ;=========================================================Symbol sequences handler
+;TODO: some bugs on ["regionSuffix"] etc
 ;~[ Up::
 ~sc01a Up::
     ;TODO: make something to ignore not [] as input.

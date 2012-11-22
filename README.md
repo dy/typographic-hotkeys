@@ -1,6 +1,6 @@
 # Typographic Hotkeys
 
-Typographic Hotkeys™ extends default Windows keyboard with cool typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, MS Office-like autocorrection and other typographic opportunities. Besides, Typographic Hotkeys℠ supplies _color convertor_, that can transform recognized colors in selection to any color format, _get utf code_ function, that can get utf code of selected symbol and _in-place fake data generator_.
+Typographic Hotkeys™ extend default Windows keyboard with some useful typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, MS Office-like autocorrection and other typographic opportunities. Besides, Typographic Hotkeys℠ supplies _color convertor_, that can transform recognized colors in selection to any color format, _get utf code_ function, that can get utf code of selected symbol and _in-place fake data generator_.
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -36,7 +36,7 @@ Nice use case: select all your css, press <kbd>Menu Key + rgb</kbd>, all recogni
 
 Text, dif languages, fake data, fake imgs
 
-### Helpers
+### 5. Helpers
 
 1. Current keyboard layout in-place balloon (img)
 2. HTML & UTF-codes balloon (img)
@@ -82,10 +82,16 @@ Reasons of escaping:
 
 * It's difficult to implement nice GUI with Autohotkey™. It only suggests simple basic components, which is not very suitable for application's cases. C/C++ will allow to implement any UI.
 * Any crossplatform idea is hacked at the root; C/C++ code will allow to think about migration.
-* Autohotkey swarms with bugs, which is difficult to catch and to understand.
-* Very unusual syntax of autohotkey scripts (a mix of Pascal, JavaScript and VBasic‽) with a lot of oddities.
+* Autohotkey scripts swarms with bugs, which is difficult to catch and to understand.
+* Very unusual syntax of autohotkey scripts (a mix of Pascal, JavaScript and VBasic‽) with a lot of oddities in behaviour.
 * No JSON support.
 * Difficult debugging of DllCalls and memory-related tasks.
 * Low flexibility & speed.
 
 I'm planning to replace typographic hotkeys with <a href="">**Web-developer's keyboard**</a> – a better native replacement written on C++.
+
+## License
+MIT
+
+## Credits
+Fake data generator was highly inspired by Faker PHP library, than was inspired by Faker Ruby gem, that was inired by Faker perl lib
