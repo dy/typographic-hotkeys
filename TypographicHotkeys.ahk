@@ -1,12 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-#Warn UseUnsetGlobal ; Recommended for catching common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
-;Set the Coordinate Modes before any threads can be executed
-
-
-; TODO:
+﻿; TODO:
 ; some bugs with RightAlt when alttabbing windows
 ; some bugs when combo outside of [], for example []lorem, and besides, when just ] appeared. So, when you see [], try to grab combo inside, not a listening of something.
 ; some bugs with compose in SciTe
@@ -14,22 +6,33 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; correct birman diacritics: ?! doesnt give ‽
 ; sometimes it gives → when laptop awakes
 ; make listview: it's not bad, actually, for character & description
+; sometimes catches bug, like with fakeData["en"]["lastName"] changes to something with umlaut ¨ and 3-4 symbols of length
+; make destructors & inspect on memory leaks
 
-#Include ./inc/Gdip.ahk
-#Include ./inc/Combinations.ahk
-#Include ./inc/Util.ahk
-#Include ./inc/Faker.ahk
+
+;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#Warn UseUnsetGlobal ; Recommended for catching common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
+
+locals := ["ru","en"]
+local := "en" ;current language
+
+
+;#Include ./inc/Gdip.ahk
+#Include inc/KbdLayout.ahk
+#Include inc/Combinations.ahk
+#Include inc/Util.ahk
+#Include inc/Faker.ahk
 ;#Include ./inc/Groups.ahk
 ;#Include ./inc/Menu.ahk
 ;#Include ./inc/HTML.ahk
 ;#Include ./inc/Selection.ahk
 
 
-#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
-
-menuGui = 1
-
-;initializeMenu()
 
 
 ;==================================Make load on startup, if launched first time
@@ -143,13 +146,12 @@ RAlt Up::
     return
 
 ;=========================================================Symbol sequences handler
-;TODO: some bugs on ["regionSuffix"] etc
 ;~[ Up::
 ~sc01a Up::
     ;TODO: make something to ignore not [] as input.
     Input, combo, V C, {sc01a}{sc01b}[]
     if (ErrorLevel == "EndKey:]" || ErrorLevel == "EndKey:sc01B") { ;finish sequence
-        getFake(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
+        status := getFake(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
         if (lastResult) {
             clear(StrLen(combo)+2)
             Send %lastResult%
@@ -245,7 +247,6 @@ RAlt Up::
 ;    restoreClipboard()
 
 ;    return
-
 
 
 ;========================================================Mac dead keys diacritics handlers/listeners

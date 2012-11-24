@@ -43,7 +43,7 @@ Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
-* Fake address
+* Fake address – multiplicator, date, time
 * English language tooltip
 * What utf code tooltip
 * Color convertor
