@@ -187,78 +187,90 @@ getFake(request){
 
     ;parse request
     reqlen := StrLen(request)
+
+    mult := 1 ;number of times to insert data
+    if(!RegExMatch(request, "[0-9]+", mult)){
+        mult := 1
+    }
+
     if (RegExMatch(request, "^lorem")){
         clear(reqlen + 2)
         return getLorem(request)
     } else if (RegExMatch(request, "^addr")) {  
         clear(reqlen + 2)  
-        return makeField("address")
+        return makeField("address", mult)
 
     } else if (RegExMatch(request, "^адр")) {  
         clear(reqlen + 2)
         local := "ru"
-        return makeField("address")
+        return makeField("address", mult)
 
     } else if (RegExMatch(request, "^phone")) {
         clear(reqlen + 2)  
-        return makeField("phone")
+        return makeField("phone", mult)
 
     } else if (RegExMatch(request, "^тел")) {
         clear(reqlen + 2)  
         local := "ru"
-        return makeField("phone")
+        return makeField("phone", mult)
 
     } else if (RegExMatch(request, "^(mail|email)")) { 
         clear(reqlen + 2)
-        return makeField("email")
+        return makeField("email", mult)
 
     } else if (RegExMatch(request, "^(почт|эл)")) { 
         clear(reqlen + 2)
         local := "ru"
-        return makeField("email")
+        return makeField("email", mult)
 
     } else if (RegExMatch(request, "^name")) { 
         clear(reqlen + 2) 
-        return makeField("name")
+        return makeField("name", mult)
 
     } else if (RegExMatch(request, "^имя")) { 
         clear(reqlen + 2)
         local := "ru"
-        return makeField("name")
+        return makeField("name", mult)
 
     } else if (RegExMatch(request, "^date")) {  
         clear(reqlen + 2)
-        return makeField("date")
+        return makeField("date", mult)
 
     } else if (RegExMatch(request, "^дата")) {  
         clear(reqlen + 2)
         local := "ru"
-        return makeField("date")
+        return makeField("date", mult)
 
     } else if (RegExMatch(request, "^time")) { 
         clear(reqlen + 2) 
-        return makeField("time")
+        return makeField("time", mult)
 
     } else if (RegExMatch(request, "^время")) { 
         clear(reqlen + 2) 
         local := "ru"
-        return makeField("time")
+        return makeField("time", mult)
 
     }
     return false
 }
 
 ;-------------------------------------------------------------Just initial handler of getfake method
-rRes := "" ;result of rendering
+rRes := "" ;result of rendering (private thing, do not touch it)
 toLowerFlag := false ;Shall we or not to convert rendering to lower case while proccess
-makeField(field){
+makeField(field, mult){
     global local
     global rRes := ""
 
     backupClipboard()
 
-    res := renderFormat(field)
+    res := ""
+
+    Loop, %mult% {
+        rRes := ""
+        res .= renderFormat(field) . "`n"
+    }
     ;msgBox, %res%
+
     clipboard = %res%
 
     Send ^v
