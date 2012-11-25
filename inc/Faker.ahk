@@ -80,7 +80,7 @@ fakeData["en"]["lastName"].insert(fakeData["en"]["lastName"].maxIndex(),"Hoeger"
 fakeData["en"]["lastName"].insert(fakeData["en"]["lastName"].maxIndex(),"Quigley","Quitzon","Rath","Ratke","Rau","Raynor","Reichel","Reichert","Reilly","Reinger","Rempel","Renner","Reynolds","Rice","Rippin","Ritchie","Robel","Roberts","Rodriguez","Rogahn","Rohan","Rolfson","Romaguera","Roob","Rosenbaum","Rowe","Ruecker","Runolfsdottir","Runolfsson","Runte","Russel","Rutherford","Ryan","Sanford","Satterfield","Sauer","Sawayn","Schaden","Schaefer","Schamberger","Schiller","Schimmel","Schinner","Schmeler","Schmidt","Schmitt","Schneider","Schoen","Schowalter","Schroeder","Schulist","Schultz","Schumm","Schuppe","Schuster","Senger","Shanahan","Shields","Simonis","Sipes","Skiles","Smith","Smitham","Spencer","Spinka","Sporer","Stamm","Stanton","Stark","Stehr","Steuber","Stiedemann","Stokes","Stoltenberg","Stracke","Streich","Stroman","Strosin","Swaniawski","Swift","Terry","Thiel","Thompson","Tillman","Torp","Torphy","Towne","Toy","Trantow","Tremblay","Treutel","Tromp","Turcotte","Turner","Ullrich","Upton","Vandervort","Veum","Volkman","Von","VonRueden","Waelchi","Walker","Walsh","Walter","Ward","Waters","Watsica","Weber","Wehner","Weimann","Weissnat","Welch","West","White","Wiegand","Wilderman","Wilkinson","Will","Williamson","Willms","Windler","Wintheiser","Wisoky","Wisozk","Witting","Wiza","Wolf","Wolff","Wuckert","Wunsch","Wyman","Yost","Yundt","Zboncak","Zemlak","Ziemann","Zieme","Zulauf")
 
 fakeData["en"]["namePrefix"] := array("Mr.","Mrs.","Ms.","Miss","Dr.")
-fakeData["en"]["nameSuffix"] = array("Jr.","Sr.","I","II","III","IV","V","MD","DDS","PhD","DVM")
+fakeData["en"]["nameSuffix"] := array("Jr.","Sr.","I","II","III","IV","V","MD","DDS","PhD","DVM")
 
 ;--------dates
 fakeData["ru"]["MMMM"] := array("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
@@ -354,8 +354,20 @@ getFake(request){
         local := "ru"
         return makeField("time", mult)
 
+    } else if (RegExMatch(request, """[\w\s]+""")) {
+        ;Custom generator string
+        clear(reqlen + 2)
+        formatStr := recognizeFormatContent(request)
+        ;RegExMatch(request, "", mult)
+        ;makeCustomFormat(formatStr, mult)
+        return 
     }
     return false
+}
+;Returns string inside quotes
+recognizeFormatContent(req){
+    RegExMatch(req,"", formatStr)
+    msgbox %formatstr%
 }
 
 ;-------------------------------------------------------------Just initial handler of getfake method
@@ -382,6 +394,30 @@ makeField(field, mult){
 
     return true
 }
+;Custom format
+makeCustomFormat(formatStr, mult){
+    global local
+    global rRes := ""
+
+    msgBox, %formatStr%
+
+    backupClipboard()
+
+    res := ""
+
+    Loop, %mult% {
+        rRes := ""
+        res .= parseFormat(formatStr)
+    }
+    ;msgBox, %res%
+
+    clipboard = %res%
+
+    Send ^v
+    restoreClipboard()
+
+    return true
+}
 
 
 ;---------------------------------------------------------------------------------Basic method that renders any passed tpl
@@ -398,7 +434,7 @@ renderFormat(field){
         if (fakeData[local][field].Name) { ;if field is function - launch it
             value := fakeData[local][field].()
         } else {
-            ;If there"s array of such elements, pick one from range
+            ;If there's array of such elements, pick one from range
             value := lexNum(randFrom(fakeData[local][field]))        
         }
         if (toLowerFlag) {
@@ -421,16 +457,20 @@ renderFormat(field){
         field .= "Formats"    
         if (fakeData[local][field]){
             format := randFrom(fakeData[local][field])
-            RegExMatch(format, "(\{\{[a-zA-Z0-9]+\}\}(?CHandleField)|[-?!#\s,.:;@\/\\\|](?CHandleSpace))" )
+            parseFormat(format)
         } else if (fakeData["en"][field]) {
             format := randFrom(fakeData["en"][field])
-            RegExMatch(format, "(\{\{[a-zA-Z0-9]+\}\}(?CHandleField)|[-?!#\s,.:;@\/\\\|](?CHandleSpace))" )
+            parseFormat(format)
         } else {
-            Msgbox, format <%field%> doesn"t exists 
+            Msgbox, Format {{<%field%>}} doesn't exist
         }        
     }
     
     return rRes
+}
+;----------------format handler
+parseFormat(formatStr){    
+    RegExMatch(formatStr, "(\{\{[a-zA-Z0-9]+\}\}(?CHandleField)|[-?!#\s,.:;@\/\\\|](?CHandleSpace))" )
 }
 ;----------------used in adr regexp, handles field-found cases 
 HandleField(field, pos) {

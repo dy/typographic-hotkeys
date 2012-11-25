@@ -43,7 +43,19 @@ backupClipboard(){
 }
 restoreClipboard(){    
     Sleep, 80
-    global clipBackup  
+    global clipBackup
     clipboard = %clipBackup%
 }
-;-----------------------Bin tests
+;---------retrieves selected text
+getSelectedText(){
+    Send ^c
+    return clipboard
+}
+;-------inserts text
+insert(text){
+    clipboard = %text%
+    Send ^v
+    return text
+}
+
+;-----------------------Bin testsBin testsBin tests

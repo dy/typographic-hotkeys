@@ -43,8 +43,9 @@ Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
-* Fake address – now, pass, random format
-* English language tooltip
+* Fake address – now, pass, custom format, list
+* Generate data hotkey
+* Make visual identifiers than input began
 * What utf code tooltip
 * Color convertor
 * Image with description

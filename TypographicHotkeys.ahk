@@ -24,9 +24,10 @@ local := "en" ;current language
 
 ;#Include ./inc/Gdip.ahk
 #Include inc/KbdLayout.ahk
-#Include inc/Combinations.ahk
 #Include inc/Util.ahk
+#Include inc/Combinations.ahk
 #Include inc/Faker.ahk
+#Include inc/Typograf.ahk
 ;#Include ./inc/Groups.ahk
 ;#Include ./inc/Menu.ahk
 ;#Include ./inc/HTML.ahk
@@ -90,7 +91,7 @@ escapeBirmanDiacritics(combo){
     first := substr(combo, 1, 1)
     diacr := ""
     if (strlen(combo) == 2) {
-        if (first == "?") {
+        if (first == "?" && combo != "?!") {
             diacr := "´"
         } else if (first == "N" || first == "Т"){
             diacr := "˜"
@@ -117,6 +118,34 @@ escapeBirmanDiacritics(combo){
     }
     return combo
 }
+;===================================================== Make typograf of selected text
+;+^t::
+^+!sc014::
+    backupClipboard()
+    insert(typograf(getSelectedText()))
+    restoreClipboard()
+    return
+
+
+;=====================================================Duplicate shortcut: problem with selecting text
+;repeatDuplicateFlag := false ;is duplicate repeated
+;+^d::
+;^+sc020::
+;    global repeatDuplicateFlag
+;    backupClipboard()
+;    if (!repeatDuplicateFlag) {
+;        repeatDuplicateFlag := true
+;        Send ^c{Right}
+;    }
+;    Send ^v
+;    SetTimer, finishDuplicate, -550
+;    return
+
+;finishDuplicate:
+;    global repeatDuplicateFlag
+;    repeatDuplicateFlag := false
+;    restoreClipboard()
+;    return
 
 ;========================================================Compose key handler
 RAlt::
@@ -145,11 +174,19 @@ RAlt Up::
     SendEvent {CtrlBreak}
     return
 
+;PgUp::
+;    rate := DllCall("GetCaretBlinkTime")
+;    msgBox, %rate%
+;    return
+
+
 ;=========================================================Symbol sequences handler
-;~[ Up::
 ~sc01a Up::
-    ;TODO: make something to ignore not [] as input.
-    Input, combo, V C, {sc01a}{sc01b}[]
+;~[::
+    ;TODO: make something to ignore not [] as input. For special format line {{}}
+    ;TODO: make something to handle not input, but expression between []
+    Input, combo, V C, []{sc01a}{sc01b} ;""{sc028}{sc01}
+    ;msgbox, stop %errorlevel% %combo%
     if (ErrorLevel == "EndKey:]" || ErrorLevel == "EndKey:sc01B") { ;finish sequence
         status := getFake(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
         if (lastResult) {
@@ -162,6 +199,8 @@ RAlt Up::
                 getCharFromUTF(combo)
             }
         }
+    } else { ;finished by escape
+
     }
     return
 
@@ -247,6 +286,8 @@ RAlt Up::
 ;    restoreClipboard()
 
 ;    return
+
+
 
 
 ;========================================================Mac dead keys diacritics handlers/listeners
