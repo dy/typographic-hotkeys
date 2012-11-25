@@ -82,6 +82,92 @@ fakeData["en"]["lastName"].insert(fakeData["en"]["lastName"].maxIndex(),"Quigley
 fakeData["en"]["namePrefix"] := array("Mr.","Mrs.","Ms.","Miss","Dr.")
 fakeData["en"]["nameSuffix"] = array("Jr.","Sr.","I","II","III","IV","V","MD","DDS","PhD","DVM")
 
+;--------dates
+fakeData["ru"]["MMMM"] := array("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
+fakeData["ru"]["MMM"] := array("Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сент", "Окт", "Ноя", "Дек")
+fakeData["en"]["MMMM"] := array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+fakeData["en"]["MMM"] := array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+fakeData["en"]["MM"] := array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
+fakeData["en"]["m"] := func("fakeDataM")
+fakeDataM(){ 
+return randNum(1,12)
+}
+
+fakeData["en"]["dddd"] := array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+fakeData["ru"]["dddd"] := array("Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье")
+fakeData["en"]["ddd"] := array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+fakeData["ru"]["ddd"] := array("Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс")
+fakeData["en"]["dd"] := func("fakeDataDD")
+fakeDataDD(){
+return randNum(0,3) . randNum(0,9)
+}
+fakeData["en"]["d"] := array("1", "2")
+fakeDataD(){
+return randNum(1,31)
+}
+
+fakeData["en"]["yyyy"] := func("fakeDataYYYY")
+fakeDataYYYY(){
+return randNum(1900,2030)
+}
+fakeData["en"]["yy"] := func("fakeDataYY")
+fakeDataYY(){
+return lexnum("##")
+}
+fakeData["en"]["y"] := func("fakeDataY")
+fakeDataY(){
+return randNum(0,99)
+}
+
+fakeData["en"]["hh"] := func("fakeDataHH")
+fakeDataHH(){
+t := randNum(0,12)
+if (t < 10) {
+    t := "0" . t
+}
+return t
+}
+fakeData["en"]["h"] := func("fakeDataH")
+fakeDataH(){
+return randNum(0,12)
+}
+fakeData["en"]["hh24"] := func("fakeDataHH24")
+fakeData["ru"]["hh"] := func("fakeDataHH24")
+fakeDataHH24(){
+t := randNum(0,24)
+if (t < 10) {
+    t := "0" . t
+}
+return t
+}
+fakeData["en"]["h24"] := func("fakeDataH24")
+fakeData["ru"]["h"] := func("fakeDataH24")
+fakeDataH24(){
+return randNum(0,24)
+}
+fakeData["en"]["mi"] := func("fakeDataSS")
+fakeData["en"]["i"] := func("fakeDataS")
+fakeData["en"]["ss"] := func("fakeDataSS")
+fakeDataSS(){
+t := randNum(0,60)
+if (t < 10) {
+    t := "0" . t
+}
+return t
+}
+fakeData["en"]["s"] := func("fakeDataS")
+fakeDataS(){
+return randNum(0,60)
+}
+fakeData["en"]["tt"] := func("fakeDataTT")
+fakeDataTT(){
+return randFrom(array("AM", "PM"))
+}
+fakeData["en"]["t"] := func("fakeDataT")
+fakeDataT(){
+return randFrom(array("A", "P"))
+}
+
 ;------------------------------------------------------Formats
 fakeData["ru"]["addressFormats"] := array("{{postcode}}, {{region}} {{regionSuffix}}, {{cityPrefix}} {{city}}, {{streetPrefix}} {{street}}, {{buildingNumber}}")
 fakeData["en"]["addressFormats"] := array("{{streetAddress}} {{city}} {{postcode}}")
@@ -106,6 +192,15 @@ fakeData["en"]["userNameFormats"] := array("{{lastName}}.{{firstName}}","{{first
 
 fakeData["en"]["urlFormats"] := array("http://www.{{domainName}}/","http://{{domainName}}/")
 fakeData["ru"]["urlFormats"] := array("http://www.{{domainName}}/","http://{{domainName}}/")
+
+fakeData["en"]["dateFormats"] := array("{{yyyy}}-{{mm}}-{{dd}}")
+fakeData["ru"]["dateFormats"] := array("{{dd}}.{{mm}}.{{yyyy}}")
+fakeData["en"]["timeFormats"] := array("{{HH}}:{{Mi}}:{{SS}} {{TT}}")
+fakeData["ru"]["timeFormats"] := array("{{HH24}}:{{Mi}}:{{SS}}")
+fakeData["en"]["shortTimeFormats"] := array("{{HH}}:{{Mi}} {{TT}}")
+fakeData["ru"]["shortTimeFormats"] := array("{{HH24}}:{{Mi}}")
+fakeData["en"]["dateTimeFormats"] := array("{{date}} {{time}}")
+
 
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ FUNCTIONS
@@ -150,7 +245,7 @@ randFrom(range){
 }
 ;---------------------------------Fill string with letters instead of ? and digits instead of #
 lexnum(string){
-    numHasMet := false
+    numHasMet := false ;is numeric met at least once
 
     res := ""
 
@@ -171,6 +266,7 @@ lexnum(string){
     }
     return res
 }
+
 
 ;----------------------------------------------------------------------- Front controller
 ; Algorithm:
@@ -232,6 +328,10 @@ getFake(request){
         local := "ru"
         return makeField("name", mult)
 
+    } else if (RegExMatch(request, "^(datetime|dateTime)")) { 
+        clear(reqlen + 2)
+        return makeField("dateTime", mult)
+
     } else if (RegExMatch(request, "^date")) {  
         clear(reqlen + 2)
         return makeField("date", mult)
@@ -244,6 +344,10 @@ getFake(request){
     } else if (RegExMatch(request, "^time")) { 
         clear(reqlen + 2) 
         return makeField("time", mult)
+
+    } else if (RegExMatch(request, "^(stime|short\s?time|short\s?Time)")) { 
+        clear(reqlen + 2) 
+        return makeField("shortTime", mult)
 
     } else if (RegExMatch(request, "^время")) { 
         clear(reqlen + 2) 
@@ -291,15 +395,23 @@ renderFormat(field){
     ;MsgBox, renderFormat field:%field% rres:%rRes%
 
     if (fakeData[local][field]) { 
-        ;If there"s array of such elements, pick one from range
-        value := lexNum(randFrom(fakeData[local][field]))
+        if (fakeData[local][field].Name) { ;if field is function - launch it
+            value := fakeData[local][field].()
+        } else {
+            ;If there"s array of such elements, pick one from range
+            value := lexNum(randFrom(fakeData[local][field]))        
+        }
         if (toLowerFlag) {
             StringLower, value, value
         }
         rRes .= value
     } else if (fakeData["en"][field]) {
-        ;If there"s array of such elements in english, pick one from range
-        value := lexNum(randFrom(fakeData["en"][field]))
+        if (fakeData["en"][field].Name) { ;if field is function - launch it
+            value := fakeData["en"][field].()
+        } else { 
+            ;If there"s array of such elements in english, pick one from range
+            value := lexNum(randFrom(fakeData["en"][field]))
+        }
         if (toLowerFlag) {
             StringLower, value, value
         }
@@ -309,10 +421,10 @@ renderFormat(field){
         field .= "Formats"    
         if (fakeData[local][field]){
             format := randFrom(fakeData[local][field])
-            RegExMatch(format, "(\{\{[a-zA-Z]+\}\}(?CHandleField)|[?!#\s,.:;@\/\\\|](?CHandleSpace))" )
+            RegExMatch(format, "(\{\{[a-zA-Z0-9]+\}\}(?CHandleField)|[-?!#\s,.:;@\/\\\|](?CHandleSpace))" )
         } else if (fakeData["en"][field]) {
             format := randFrom(fakeData["en"][field])
-            RegExMatch(format, "(\{\{[a-zA-Z]+\}\}(?CHandleField)|[?!#\s,.:;@\/\\\|](?CHandleSpace))" )
+            RegExMatch(format, "(\{\{[a-zA-Z0-9]+\}\}(?CHandleField)|[-?!#\s,.:;@\/\\\|](?CHandleSpace))" )
         } else {
             Msgbox, format <%field%> doesn"t exists 
         }        

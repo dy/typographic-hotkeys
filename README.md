@@ -43,7 +43,7 @@ Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
-* Fake address – multiplicator, date, time
+* Fake address – now, pass, random format
 * English language tooltip
 * What utf code tooltip
 * Color convertor
@@ -54,7 +54,7 @@ Text, dif languages, fake data, fake imgs
 * gethtmlcode, getutf
 * readme
 * numerous tests
-* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia, get link on script in every comment with (c)…
+* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia, get link on script in every comment with (c), lj designers, …
 * rename to the web-designer keyboard, make rgb convertor
 * cyrillics full cover & combos & extended
 * think & make scenarious: habr image, linux user become windows, etc 
