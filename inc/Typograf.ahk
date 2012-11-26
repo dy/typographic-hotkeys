@@ -6,29 +6,31 @@
 ; combos change
 
 
-pun := "\s\.,;:\(\)-–—_\?\!\…" ;punctuation after word
+punct := "\s\.,;:\(\)-–—_\?\!\…" ;punctuation after word
 quo := "\""\'«»‘’‚“”„"
 pre := "(||||||)"
 en := "a-zA-Z"
 ru := "а-яА-Я"
-num := "0-9"
+num := "0-9" ;TODO:add fractions
 math := "\+\-\*\/\\"
 currency := "$€¥Ħ₤£⃏"
-all := en.ru.num.pun.math.currency
+all := en.ru.num.punct.math.currency
+word := "\w"
 
 ;======================================================================== CLEAN MISTAKES
 clean := ComObjCreate("Scripting.Dictionary")
 clean.item("") := ""
 clean.item("\s{2,}") := " "
 clean.item("\t+") := " "
-clean.item("([\w" . quo . num . "]+)[\s\t]+([" . pun . "]+)") := "$1$2"  ;delete spaces before punctuation
+clean.item("([\w" . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
 
 ;===================================================================================== TYPOGRAPHIC SYMBOLS
 typography := ComObjCreate("Scripting.Dictionary")
 typography.item("") := ""
 typography.item("\+\-") := "±"
 typography.item("\-\+") := "∓"
-;typography.item("([".ru."]+)[""]([".ru."]+)[""]") := "$1«$2„$3“$4»"
+typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°"
+;typography.item("([".num."]+)[""]([".ru."]+)[""]") := "$1«$2„$3“$4»"
 typography.item("""(.*)""" ) := "«$1»"
 
 
@@ -57,15 +59,15 @@ orphography.item(" динь\s?динь") := "динь-динь"
 orphography.item(" дин\s?дон") := "дин-дон"
 orphography.item(" динь\s?динь\s?динь") := "динь-динь-динь"
 
-orphography.item(" кое".pun) := ""
-orphography.item(" кой".pun) := ""
-orphography.item(" ка".pun) := ""
-orphography.item(" либо".pun) := ""
-orphography.item(" нибудь".pun) := ""
-orphography.item(" то".pun) := ""
-orphography.item(" тка".pun) := ""
-orphography.item(" с".pun) := ""
-orphography.item(" де".pun) := ""
+orphography.item(" кое".punct) := ""
+orphography.item(" кой".punct) := ""
+orphography.item(" ка".punct) := ""
+orphography.item(" либо".punct) := ""
+orphography.item(" нибудь".punct) := ""
+orphography.item(" то".punct) := ""
+orphography.item(" тка".punct) := ""
+orphography.item(" с".punct) := ""
+orphography.item(" де".punct) := ""
 ;TODO: кое-, кой-, -ка, -либо, -нибудь, -то, -тка, -с, -де
 
 ;===================================================================================== PUNCTUATION

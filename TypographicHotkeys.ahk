@@ -86,6 +86,7 @@ listenDiacritics(diacr){
     return
 }
 ;----------------------------Birman deadkeys escaper
+;Make Birmat not destructive for basic combos like ^0
 escapeBirmanDiacritics(combo){
     ;`, q=˘, 6 = ˆ, /=´, n=˜, v = ˇ, r = ˚, z = ¸, ; = ¨
     first := substr(combo, 1, 1)
@@ -346,6 +347,9 @@ RAlt Up::
     Send ç
     return
 ;+!o::
+^+!sc18::
+    Send °
+    return
 +!sc18::
     Send Ø
     return
