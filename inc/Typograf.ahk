@@ -1,67 +1,111 @@
 ﻿;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ Typograf is a script that corrects typography of selected text
 
-rules := ComObjCreate("Scripting.Dictionary")
+;TODO:
+; define language
+; grammatic modules
+; combos change
 
 
-;===========================================Solaris compose keys
-pun := "([\s.,;:\(\)-–—])" ;punctuation after word
+pun := "\s\.,;:\(\)-–—_\?\!\…" ;punctuation after word
+quo := "\""\'«»‘’‚“”„"
 pre := "(||||||)"
-rules.item("\s{2,}") := " "
-rules.item("\t+") := " "
-rules.item("(\w+) а ") := "$1, а "
-rules.item("(\w+) но  ") := "$1, но "
+en := "a-zA-Z"
+ru := "а-яА-Я"
+num := "0-9"
+math := "\+\-\*\/\\"
+currency := "$€¥Ħ₤£⃏"
+all := en.ru.num.pun.math.currency
 
-rules.item(" из\s?за ") := " из-за "
-rules.item(" из\s?под ") := " из-под "
-rules.item(" по\s?над ") := " по-над "
-rules.item(" по\s?за ") := " по-за "
+;======================================================================== CLEAN MISTAKES
+clean := ComObjCreate("Scripting.Dictionary")
+clean.item("") := ""
+clean.item("\s{2,}") := " "
+clean.item("\t+") := " "
+clean.item("([\w" . quo . num . "]+)[\s\t]+([" . pun . "]+)") := "$1$2"  ;delete spaces before punctuation
 
-rules.item(" ей\s?богу".pun) := " ей-богу$1"
-rules.item(" ей\s?же\s?ей".pun) := " ей-же-ей$1"
-rules.item(" о\s?го\s?го".pun) := " о-го-го$1"
-rules.item(" ха\s?ха\s?ха".pun) := " ха-ха-ха$1"
-rules.item(" ха\s?ха".pun) := " ха-ха$1"
-rules.item(" ой\s?ой".pun) := " ой-ой$1"
-rules.item(" ой\s?ой\s?ой".pun) := " ой-ой-ой$1"
-rules.item(" цып\s?цып".pun) := "цып-цып$1"
-rules.item(" цып\s?цып\s?цып".pun) := "цып-цып-цып$1"
-rules.item(" цып\s?цып\s?цып\s?цып".pun) := "цып-цып-цып-цып$1"
-rules.item(" цып\s?цып\s?цып\s?цып\s?цып".pun) := "цып-цып-цып-цып-цып$1"
-rules.item(" динь\s?динь".pun) := "динь-динь$1"
-rules.item(" дин\s?дон".pun) := "дин-дон$1"
-rules.item(" динь\s?динь\s?динь".pun) := "динь-динь-динь$1"
+;===================================================================================== TYPOGRAPHIC SYMBOLS
+typography := ComObjCreate("Scripting.Dictionary")
+typography.item("") := ""
+typography.item("\+\-") := "±"
+typography.item("\-\+") := "∓"
+;typography.item("([".ru."]+)[""]([".ru."]+)[""]") := "$1«$2„$3“$4»"
+typography.item("""(.*)""" ) := "«$1»"
 
-rules.item(" кое".pun) := ""
-rules.item(" кой".pun) := ""
-rules.item(" ка".pun) := ""
-rules.item(" либо".pun) := ""
-rules.item(" нибудь".pun) := ""
-rules.item(" то".pun) := ""
-rules.item(" тка".pun) := ""
-rules.item(" с".pun) := ""
-rules.item(" де".pun) := ""
+
+;=================================================================================== ORPHOGRAPHY
+orphography := ComObjCreate("Scripting.Dictionary")
+orphography.item("(\w+) а ") := "$1, а "
+orphography.item("(\w+) но  ") := "$1, но "
+
+orphography.item(" из\s?за ") := " из-за "
+orphography.item(" из\s?под ") := " из-под "
+orphography.item(" по\s?над ") := " по-над "
+orphography.item(" по\s?за ") := " по-за "
+
+orphography.item(" ей\s?богу") := " ей-богу"
+orphography.item(" ей\s?же\s?ей") := " ей-же-ей"
+orphography.item(" о\s?го\s?го") := " о-го-го"
+orphography.item(" ха\s?ха\s?ха") := " ха-ха-ха"
+orphography.item(" ха\s?ха") := " ха-ха"
+orphography.item(" ой\s?ой") := " ой-ой"
+orphography.item(" ой\s?ой\s?ой") := " ой-ой-ой"
+orphography.item(" цып\s?цып") := "цып-цып"
+orphography.item(" цып\s?цып\s?цып") := "цып-цып-цып"
+orphography.item(" цып\s?цып\s?цып\s?цып") := "цып-цып-цып-цып"
+orphography.item(" цып\s?цып\s?цып\s?цып\s?цып") := "цып-цып-цып-цып-цып"
+orphography.item(" динь\s?динь") := "динь-динь"
+orphography.item(" дин\s?дон") := "дин-дон"
+orphography.item(" динь\s?динь\s?динь") := "динь-динь-динь"
+
+orphography.item(" кое".pun) := ""
+orphography.item(" кой".pun) := ""
+orphography.item(" ка".pun) := ""
+orphography.item(" либо".pun) := ""
+orphography.item(" нибудь".pun) := ""
+orphography.item(" то".pun) := ""
+orphography.item(" тка".pun) := ""
+orphography.item(" с".pun) := ""
+orphography.item(" де".pun) := ""
 ;TODO: кое-, кой-, -ка, -либо, -нибудь, -то, -тка, -с, -де
 
+;===================================================================================== PUNCTUATION
+punctuation := ComObjCreate("Scripting.Dictionary")
+
+punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
+punctuation.item("([\w,]+)\s-{1,4}\s?") := "$1 — "
+
+;TODO: nobr's
 
 
-rules.item("+-") := "±"
-rules.item("") := ""
-rules.item("") := ""
-rules.item("") := ""
-rules.item("") := ""
-rules.item("") := ""
-rules.item("") := ""
 
 
-;================================== Correct typographics of text
+
+;==================================================================================== Main typographer
 typograf(text){
-	global rules
-	keys := rules.keys()
+	global typography
+	global orphography
+	global clean
+	;global syntax
+	global punctuation
+
+	text := applyRules(text, clean)
+	text := applyRules(text, typography)
+	text := applyRules(text, punctuation)
+	text := applyRules(text, orphography)
+
+	return text
+}
+
+applyRules(text, rules){
+	keys := rules.keys() ;Keys() ignores first element
 	length := keys.maxIndex()
+	;msgbox, in %text%
 	Loop, %length%{
 		key := keys[a_index]
 		repl := rules.item(keys[a_index])
-		RegExReplace(text, key, repl)
-	}
+		;msgbox, "%key%" → "%repl%"
+		text := RegExReplace(text, key, repl)
+	}	
+	;msgbox, out %text%
 	return text
 }

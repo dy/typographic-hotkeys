@@ -48,13 +48,14 @@ restoreClipboard(){
 }
 ;---------retrieves selected text
 getSelectedText(){
-    Send ^c
-    return clipboard
+    Send ^{insert}
+    val := clipboard
+    return val
 }
 ;-------inserts text
 insert(text){
     clipboard = %text%
-    Send ^v
+    Send +{insert}
     return text
 }
 

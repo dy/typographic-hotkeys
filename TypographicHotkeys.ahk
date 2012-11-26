@@ -122,7 +122,7 @@ escapeBirmanDiacritics(combo){
 ;+^t::
 ^+!sc014::
     backupClipboard()
-    insert(typograf(getSelectedText()))
+    insert( typograf( getSelectedText() ) )
     restoreClipboard()
     return
 
