@@ -148,6 +148,11 @@ escapeBirmanDiacritics(combo){
 ;    restoreClipboard()
 ;    return
 
+;======================================================= Fix windows ctrl + backsp
+^sc00e::
+    Send +^{Left}{Delete} 
+    return
+
 ;========================================================Compose key handler
 RAlt::
     ;Cunning hook: RAlt Up sends {CtrlBreak} that stops Input that RAlt has started. 

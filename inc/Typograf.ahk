@@ -5,8 +5,15 @@
 ; grammatic modules
 ; combos change
 
+;missed . at the end of sentences
+;recognizing of lists
+;double quotes
+;spaces pefore punctuation
+
 
 punct := "\s\.,;:\(\)-–—_\?\!\…" ;punctuation after word
+spaces := "     " ;all kind of spaces: en, em, punct, simple, nobr
+dashes := "-–—"
 quo := "\""\'«»‘’‚“”„"
 pre := "(||||||)"
 en := "a-zA-Z"
@@ -20,17 +27,24 @@ word := "\w"
 ;======================================================================== CLEAN MISTAKES
 clean := ComObjCreate("Scripting.Dictionary")
 clean.item("") := ""
-clean.item("\s{2,}") := " "
+clean.item("[" . spaces . "]{2,}") := " "  ;TODO: this friend cleans ever enters
 clean.item("\t+") := " "
 clean.item("([\w" . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
+clean.item("-{2,6}") := "—" ;clear simple double-dashes
 
 ;===================================================================================== TYPOGRAPHIC SYMBOLS
 typography := ComObjCreate("Scripting.Dictionary")
 typography.item("") := ""
+typography.item("(c)") := "©"
+typography.item("(r)") := "®"
+typography.item("(p)") := "℗"
+typography.item("(tm)") := "™"
+typography.item("(sm)") := "℠"
 typography.item("\+\-") := "±"
 typography.item("\-\+") := "∓"
-typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°"
-;typography.item("([".num."]+)[""]([".ru."]+)[""]") := "$1«$2„$3“$4»"
+
+typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°" ;degrees
+;typography.item("([".num."]+)[""]([".ru."]+)[""]") := "$1«$2„$3“$4»" ;quotes
 typography.item("""(.*)""" ) := "«$1»"
 
 
@@ -91,9 +105,9 @@ typograf(text){
 	global punctuation
 
 	text := applyRules(text, clean)
-	text := applyRules(text, typography)
-	text := applyRules(text, punctuation)
-	text := applyRules(text, orphography)
+	;text := applyRules(text, typography)
+	;text := applyRules(text, punctuation)
+	;text := applyRules(text, orphography)
 
 	return text
 }
