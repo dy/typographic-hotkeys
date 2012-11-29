@@ -43,10 +43,7 @@ Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
-* Fake address – now, pass, custom format, list
-* Generate data hotkey
-* Make visual identifiers than input began
-* What utf code tooltip
+* Generate data hotkey for handling selection w/data
 * Color convertor
 * Image with description
 * typographic test pages (font, type elements)

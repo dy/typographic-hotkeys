@@ -1,5 +1,4 @@
 ﻿; TODO:
-; some bugs with RightAlt when alttabbing windows
 ; some bugs when combo outside of [], for example []lorem, and besides, when just ] appeared. So, when you see [], try to grab combo inside, not a listening of something.
 ; some bugs with compose in SciTe
 ; if language - cyrillic, make «» instead of "" on key 2
@@ -8,7 +7,7 @@
 ; make listview: it's not bad, actually, for character & description
 ; sometimes catches bug, like with fakeData["en"]["lastName"] changes to something with umlaut ¨ and 3-4 symbols of length
 ; make destructors & inspect on memory leaks
-
+; simple ["…"] went bad
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
@@ -132,23 +131,20 @@ escapeBirmanDiacritics(combo){
 ;repeatDuplicateFlag := false ;is duplicate repeated
 ;+^d::
 ;^+sc020::
-;    global repeatDuplicateFlag
 ;    backupClipboard()
-;    if (!repeatDuplicateFlag) {
-;        repeatDuplicateFlag := true
-;        Send ^c{Right}
-;    }
-;    Send ^v
-;    SetTimer, finishDuplicate, -550
-;    return
-
-;finishDuplicate:
-;    global repeatDuplicateFlag
-;    repeatDuplicateFlag := false
+;
+;    text := getSelectedText()
+;    len := strlen(text) - 1
+;
+;    Send {End}
+;    insert(text)
+;
+;    Send {Left %len%}+{Right %len%}
+;
 ;    restoreClipboard()
 ;    return
 
-;======================================================= Fix windows ctrl + backsp
+;=========================== Fix windows ctrl + backsp
 ^sc00e::
     Send +^{Left}{Delete} 
     return

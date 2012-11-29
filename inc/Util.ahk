@@ -1,4 +1,4 @@
-﻿;-------------------Dec code to Hex with no 0x
+;-------------------Dec code to Hex with no 0x
 toHex(code)
 {    
     SetFormat, IntegerFast, H
@@ -49,6 +49,7 @@ restoreClipboard(){
 ;---------retrieves selected text
 getSelectedText(){
     Send ^{insert}
+    Sleep, 50 ;to assure copying has finished
     val := clipboard
     return val
 }
