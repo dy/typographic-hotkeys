@@ -52,7 +52,7 @@ Text, dif languages, fake data, fake imgs
 * gethtmlcode, getutf
 * readme
 * numerous tests
-* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia, get link on script in every comment with (c), lj designers, …
+* pr: habrahabr, typographic community, authors of blogs, questions in forums, official forum, mythgol, retrogroup vk, Alex Bur, Korolkova, UTF table idea, Serof Lexa, Wikipedia, get link on script in every comment with (c), lj designers, grammar nazi & I ♥ ru public …
 * rename to the web-designer keyboard, make rgb convertor
 * cyrillics full cover & combos & extended
 * think & make scenarious: habr image, linux user become windows, etc 

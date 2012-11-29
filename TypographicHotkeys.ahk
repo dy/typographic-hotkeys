@@ -8,6 +8,7 @@
 ; sometimes catches bug, like with fakeData["en"]["lastName"] changes to something with umlaut ¨ and 3-4 symbols of length
 ; make destructors & inspect on memory leaks
 ; simple ["…"] went bad
+; TODO: debug photoshop
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
@@ -122,7 +123,9 @@ escapeBirmanDiacritics(combo){
 ;+^t::
 ^+!sc014::
     backupClipboard()
+	
     insert( typograf( getSelectedText() ) )
+	
     restoreClipboard()
     return
 

@@ -49,14 +49,19 @@ restoreClipboard(){
 ;---------retrieves selected text
 getSelectedText(){
     Send ^{insert}
-    Sleep, 50 ;to assure copying has finished
+	;Send ^c
+    Sleep, 180 ;to assure copying has finished
     val := clipboard
+	;msgbox, %val%
     return val
 }
 ;-------inserts text
 insert(text){
+	;msgbox, %text%
     clipboard = %text%
+	Sleep, 180
     Send +{insert}
+	;Send ^v
     return text
 }
 

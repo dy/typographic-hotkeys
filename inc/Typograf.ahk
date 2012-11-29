@@ -44,7 +44,8 @@ clean := ComObjCreate("Scripting.Dictionary")
 clean.item("") := ""
 clean.item("[" . space . "]{2,}") := " "
 clean.item("\t+") := " "
-clean.item("([\w" . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
+clean.item("([" . word . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
+clean.item("([" . punct . "]+)([" . word . quo . num . "]+)") := "$1 $2"  ;delete spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
 clean.item("([" . lquo . lbrace . "])[" . space . "]+([" . word . "]+)") := "$1$2" ;clean spaces between leftquote ∨ leftbrace ∧ word 
@@ -127,10 +128,12 @@ orphography := ComObjCreate("Scripting.Dictionary")
 orphography.item("(\w+) а ") := "$1, а "
 orphography.item("(\w+) но  ") := "$1, но "
 
-orphography.item("[" . space . "]из[" . space . "]?за[" . space . "]") := " из-за "
-orphography.item("[" . space . "]из[" . space . "]?под[" . space . "]") := " из-под "
-orphography.item("[" . space . "]по[" . space . "]?над[" . space . "]") := " по-над "
-orphography.item("[" . space . "]по[" . space . "]?за[" . space . "]") := " по-за "
+orphography.item("i)([" . space . newline . "]?)(из)[" . space . "]?за([" . space . punct . "])") := "$1$2-за$3"
+orphography.item("i)([" . space . newline . "]?)(из)[" . space . "]?под([" . space . punct . "])") := "$1$2-под$3"
+orphography.item("i)([" . space . newline . "]?)(по)[" . space . "]?над([" . space . punct . "])") := "$1$2-над$3"
+orphography.item("i)([" . space . newline . "]?)(по)[" . space . "]?за([" . space . punct . "])") := "$1$2-за$3"
+orphography.item("i)([" . space . newline . "]?)(по)[" . space . "]?за([" . space . punct . "])") := "$1$2-за$3"
+orphography.item("i)([" . space . newline . "]?)(вс)[её][" . space . "]?таки([" . space . punct . "])") := "$1$2ё-таки$3"
 
 orphography.item("[" . space . "]ей[" . space . "]?богу[" . space . "]") := " ей-богу "
 orphography.item("[" . space . "]ей[" . space . "]?же[" . space . "]?ей[" . space . "]") := " ей-же-ей "
@@ -147,38 +150,50 @@ orphography.item("[" . space . "]динь[" . space . "]?динь[" . space . "]
 orphography.item("[" . space . "]дин[" . space . "]?дон[" . space . "]") := " дин-дон "
 orphography.item("[" . space . "]динь[" . space . "]?динь[" . space . "]?динь[" . space . "]") := " динь-динь-динь "
 
-lparticle := "кое|кой"
-rparticle := "ка|либо|нибудь|то|тка|с|де"
-
 partnoun := "какой-либо|кое-кто|кое-что|кто-либо|такой-то|тот-то|чей-либо|чей-нибудь|чей-то|какой-то|кое-какой|кое-кто|кое-чей|кое-что|кой-какой|кой-кто|кто-либо|кто-нибудь|кто-то|куда-нибудь|что-либо|что-нибудь|что-то|какой-нибудь"
 
 urparticle := "либо|нибудь|то" ;universal right particle
 ulparticle := "кто|что|где|когда|зачем|почему|как|кем|чем|кому|чему|ком|чем|кого|чего|кем|чем|чей|какой|куда"
 
-orphography.item("i)(" . ulparticle . ")[" . space . "]?(" . urparticle . ")[" . space . "]") := "$1-$2 "
+orphography.item("i)(" . ulparticle . ")[" . space . dash . hyphen . "]*(" . urparticle . ")[" . space . "]") := "$1-$2 "
 
-orphography.item("[" . space . "]такой[" . space . "]?то[" . space . "]") := " такой-то "
-orphography.item("[" . space . "]тот[" . space . "]?то[" . space . "]") := " тот-то "
-orphography.item("[" . space . "]кое[" . space . "]?какой[" . space . "]") := " кое-какой "
-orphography.item("[" . space . "]кое[" . space . "]?кто[" . space . "]") := " кое-кто "
-orphography.item("[" . space . "]кое[" . space . "]?чей[" . space . "]") := " кое-чей "
-orphography.item("[" . space . "]кое[" . space . "]?чей[" . space . "]") := " кое-куда "
-orphography.item("[" . space . "]кое[" . space . "]?что[" . space . "]") := " кое-что "
-orphography.item("[" . space . "]кой[" . space . "]?какой[" . space . "]") := " кой-какой "
-orphography.item("[" . space . "]кой[" . space . "]?какой[" . space . "]") := " кой-куда "
-orphography.item("[" . space . "]кой[" . space . "]?кто[" . space . "]") := " кой-кто "
-orphography.item("[" . space . "]давай[" . space . "]?ка[" . space . "]") := " давай-ка "
-orphography.item("[" . space . "]ну[" . space . "]?тка[" . space . "]") := " ну-тка "
-orphography.item("[" . space . "]да[" . space . "]?с[" . space . "]") := " да-с "
+orphography.item("[" . space . newline . "]такой[" . space . "]?то[" . space . "]") := " такой-то "
+orphography.item("[" . space . newline . "]тот[" . space . "]?то[" . space . "]") := " тот-то "
+orphography.item("[" . space . newline . "]кое[" . space . "]?какой[" . space . "]") := " кое-какой "
+orphography.item("[" . space . newline . "]кое[" . space . "]?кто[" . space . "]") := " кое-кто "
+orphography.item("[" . space . newline . "]кое[" . space . "]?чей[" . space . "]") := " кое-чей "
+orphography.item("[" . space . newline . "]кое[" . space . "]?чей[" . space . "]") := " кое-куда "
+orphography.item("[" . space . newline . "]кое[" . space . "]?что[" . space . "]") := " кое-что "
+orphography.item("[" . space . newline . "]кой[" . space . "]?какой[" . space . "]") := " кой-какой "
+orphography.item("[" . space . newline . "]кой[" . space . "]?какой[" . space . "]") := " кой-куда "
+orphography.item("[" . space . newline . "]кой[" . space . "]?кто[" . space . "]") := " кой-кто "
+orphography.item("[" . space . newline . "]давай[" . space . "]?ка[" . space . "]") := " давай-ка "
+orphography.item("[" . space . newline . "]ну[" . space . "]?тка[" . space . "]") := " ну-тка "
+orphography.item("[" . space . newline . "]да[" . space . "]?с[" . space . "]") := " да-с "
+
+arparticle := "ка|тка|де|кась" ;aux right particle ;TODO: make cyr с handling
+
+orphography.item("([" . word . "]+)[" . space . "]+(" . arparticle . ")([" . space . punct . quo . brace . "]+)") := "$1-$2$3"
+
+alparticle := "кое|кой"
+
+orphography.item("i)([" . space . newline . "]+)(" . alparticle . ")[" . space . "]{1,4}(" . ulparticle . "+)") := "$1$2-$3"
 
 ;===================================================================================== PUNCTUATION
 punctuation := ComObjCreate("Scripting.Dictionary")
 
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
-punctuation.item("([\w,]+)\s-{1,4}\s?") := "$1 — "
+punctuation.item("([" . word . "]+)[" . space . "][" . hyphen . "]{1,4}[" . space . "]?") := "$1 — "
 punctuation.item("\.[" . space . "]([" . ru . "]+)") := ". $T{1}" ;make sentences from Capital
 
-punctuation.item("([" . space . "]+)(а|но)") := ",$1$2"
+punctuation.item("([^\,])([" . space . "]+)(а|но)[" . space . punct . "]") := "$1, $3 "
+
+punctuation.item("\.\.\.") := "…"
+punctuation.item("([" . word . "]+)\.\.") := "$1." ;remove doubles: so bat because of i'm lazy to make any cycles
+punctuation.item("\,\,+") := ","
+punctuation.item("\;+") := ";"
+punctuation.item("([^\?])\?\?([^\?])") := "$1?$2"
+punctuation.item("([^\!])\!\!([^\!])") := "$1!$2" 
 
 ;dot at the end of sentence
 ;TODO: ignorable parts like pre, code etc
