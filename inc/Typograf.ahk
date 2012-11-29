@@ -152,15 +152,13 @@ rparticle := "ка|либо|нибудь|то|тка|с|де"
 
 partnoun := "какой-либо|кое-кто|кое-что|кто-либо|такой-то|тот-то|чей-либо|чей-нибудь|чей-то|какой-то|кое-какой|кое-кто|кое-чей|кое-что|кой-какой|кой-кто|кто-либо|кто-нибудь|кто-то|куда-нибудь|что-либо|что-нибудь|что-то|какой-нибудь"
 
-orphography.item("[" . space . "]какой[" . space . "]?либо[" . space . "]") := " какой-либо "
-orphography.item("[" . space . "]кое[" . space . "]?кто[" . space . "]") := " кое-кто "
-orphography.item("[" . space . "]кое[" . space . "]?что[" . space . "]") := " кое-что "
+urparticle := "либо|нибудь|то" ;universal right particle
+ulparticle := "кто|что|где|когда|зачем|почему|как|кем|чем|кому|чему|ком|чем|кого|чего|кем|чем|чей|какой|куда"
+
+orphography.item("i)(" . ulparticle . ")[" . space . "]?(" . urparticle . ")[" . space . "]") := "$1-$2 "
+
 orphography.item("[" . space . "]такой[" . space . "]?то[" . space . "]") := " такой-то "
 orphography.item("[" . space . "]тот[" . space . "]?то[" . space . "]") := " тот-то "
-orphography.item("[" . space . "]чей[" . space . "]?либо[" . space . "]") := " чей-либо "
-orphography.item("[" . space . "]чей[" . space . "]?нибудь[" . space . "]") := " чей-нибудь "
-orphography.item("[" . space . "]чей[" . space . "]?то[" . space . "]") := " чей-то "
-orphography.item("[" . space . "]какой[" . space . "]?то[" . space . "]") := " кокой-то "
 orphography.item("[" . space . "]кое[" . space . "]?какой[" . space . "]") := " кое-какой "
 orphography.item("[" . space . "]кое[" . space . "]?кто[" . space . "]") := " кое-кто "
 orphography.item("[" . space . "]кое[" . space . "]?чей[" . space . "]") := " кое-чей "
@@ -169,18 +167,7 @@ orphography.item("[" . space . "]кое[" . space . "]?что[" . space . "]") :
 orphography.item("[" . space . "]кой[" . space . "]?какой[" . space . "]") := " кой-какой "
 orphography.item("[" . space . "]кой[" . space . "]?какой[" . space . "]") := " кой-куда "
 orphography.item("[" . space . "]кой[" . space . "]?кто[" . space . "]") := " кой-кто "
-orphography.item("[" . space . "]кто[" . space . "]?либо[" . space . "]") := " кто-либо "
-orphography.item("[" . space . "]кто[" . space . "]?нибудь[" . space . "]") := " кто-нибудь "
-orphography.item("[" . space . "]кто[" . space . "]?то[" . space . "]") := " кто-то "
-orphography.item("[" . space . "]куда[" . space . "]?нибудь[" . space . "]") := " куда-нибудь "
-orphography.item("[" . space . "]что[" . space . "]?либо[" . space . "]") := " что-либо "
-orphography.item("[" . space . "]что[" . space . "]?нибудь[" . space . "]") := " что-нибудь "
-orphography.item("[" . space . "]что[" . space . "]?то[" . space . "]") := " что-то "
-orphography.item("[" . space . "]какой[" . space . "]?нибудь[" . space . "]") := " какой-нибудь "
 orphography.item("[" . space . "]давай[" . space . "]?ка[" . space . "]") := " давай-ка "
-orphography.item("[" . space . "]как[" . space . "]?нибудь[" . space . "]") := " как-нибудь "
-orphography.item("[" . space . "]как[" . space . "]?либо[" . space . "]") := " как-либо "
-orphography.item("[" . space . "]как[" . space . "]?то[" . space . "]") := " как-то "
 orphography.item("[" . space . "]ну[" . space . "]?тка[" . space . "]") := " ну-тка "
 orphography.item("[" . space . "]да[" . space . "]?с[" . space . "]") := " да-с "
 
@@ -190,6 +177,8 @@ punctuation := ComObjCreate("Scripting.Dictionary")
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
 punctuation.item("([\w,]+)\s-{1,4}\s?") := "$1 — "
 punctuation.item("\.[" . space . "]([" . ru . "]+)") := ". $T{1}" ;make sentences from Capital
+
+punctuation.item("([" . space . "]+)(а|но)") := ",$1$2"
 
 ;dot at the end of sentence
 ;TODO: ignorable parts like pre, code etc
