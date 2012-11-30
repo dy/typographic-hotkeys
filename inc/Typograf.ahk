@@ -11,13 +11,13 @@
 ;ending spaces cut – is it goo or bad?
 
 
-punct := "\.\,\;\:\_\?\!\¿\؟\‽\…\&" ;punctuation after word
+punct := "\.\,\;\:\_\?\!\¿\؟\‽\…\&\\" ;punctuation after word
 space := "     \t" ;all kind of spaces: en, em, punct, simple, nobr
-newline := "\n"
-dash := "–—" ;not hyphen!
+newline := "\n\r"
+dash := "–—−" ;not hyphen!
 hyphen := "-"
 lquo := "\""\'«‘“‚„〞‹"
-rquo := "»’”\""\'〝›"
+rquo := "»’”\'〝›"
 quo := rquo . lquo
 lbrace := "\(\{\["
 rbrace := "\)\]\}"
@@ -25,7 +25,8 @@ brace := lbrace . rbrace
 pre := "(||||||)"
 en := "a-zA-Z"
 ru := "а-яА-Я"
-num := "0-9\.\," ;TODO:add fractions
+num := "0-9" ;TODO:add fractions
+romNum := "IVML"
 math := "\+\-\*\/\%±≠≡"
 currency := "$€¥Ħ₤£⃏"
 word := "\w" . ru . en
@@ -48,7 +49,8 @@ clean.item("([" . word . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  
 clean.item("([" . punct . "]+)([" . word . quo . num . "]+)") := "$1 $2"  ;add spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
-clean.item("([" . lquo . lbrace . "])[" . space . "]+([" . word . "]+)") := "$1$2" ;clean spaces between leftquote ∨ leftbrace ∧ word 
+clean.item("([" . lquo . lbrace . "])[" . space . "]+") := "$1" ;clean spaces between leftquote ∨ leftbrace ∧ word
+clean.item("[" . space . "]+([" . rquo . rbrace . "])") := "$1" ;clean space before brace & quo
 
 cleanRepeatedWords(str){
 delim := "    `n`r"
@@ -103,24 +105,26 @@ return result
 ;===================================================================================== TYPOGRAPHIC SYMBOLS
 typography := ComObjCreate("Scripting.Dictionary")
 typography.item("") := ""
-typography.item("\(c\)") := "©"
-typography.item("\(с\)") := "©"
-typography.item("\(r\)") := "®"
-typography.item("\(p\)") := "℗"
-typography.item("\(tm\)") := "™"
-typography.item("\(sm\)") := "℠"
-typography.item("\+\-") := "±"
-typography.item("\-\+") := "∓"
+typography.item("i)\([cс]\)") := "©"
+typography.item("i)\(r\)") := "®"
+typography.item("i)\(p\)") := "℗"
+typography.item("i)\(tm\)") := "™"
+typography.item("i)\(sm\)") := "℠"
 
 typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°" ;degrees
 
 typography.item("([" . word . esos . "])([" . dash . "])([" . word . bsos . "])") := "$1 $2 $3" ;wrap dashes with thin spaces
-typography.item("\""([^" . en . quo . "]*)\""([" . ru . space . ",-:]*)\""([^" . en . quo . "]*)\""" ) := "«$1„$2”$3»"  ;TODO: look for at least one ru before/after/inside
+
+typography.item("\""([^" . en . quo . "]*)\""([" . ru . space . ",-:]*)\""([^" . en . quo . newline . "]*)\""" ) := "«$1„$2”$3»"  ;TODO: look for at least one ru before/after/inside
+typography.item("\""([^" . en . quo . "]*)\""([" . ru . space . ",-:]*)\""" ) := "«$1«$2»"  ;TODO: look for at least one ru before/after/inside
 typography.item("""([^" . en . quo . "]+)""" ) := "«$1»"  ;TODO: look for at least one ru before/after/inside
 
-typography.item("([" . num . "])[" . space . "]?([" . punct . "])[" . space . "]([" . num . "])") := "$1$2$3"
-typography.item("([" . num . math . "]+)[" . space . "]%") := "$1%"
+enShortener := "t|d|s|re"
+typography.item("(\b[" . word . "]+)'(" . enShortener . "[\b])") := "$1’$2" ;don't apostrophe change to correct
 
+typography.item("§([" . num . romNum . "]+)") := "§ $1"
+
+typography.item("№([" . num . word . punct . "]+)") := "№ $1"
 
 
 
@@ -182,11 +186,13 @@ alparticle := "кое|кой"
 
 orphography.item("i)([" . space . newline . "]+)(" . alparticle . ")[" . space . "]{1,4}(" . ulparticle . "+)") := "$1$2-$3"
 
+orphography.item("(\b[" . num . "]+[" . space . dash . ru . hyphen . "]+[" . num . "]+[" . space . ru . hyphen . "]?)г.") := "$1гг."
+
 ;===================================================================================== PUNCTUATION
 punctuation := ComObjCreate("Scripting.Dictionary")
 
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
-punctuation.item("([" . word . "]+)[" . space . "][" . hyphen . "]{1,4}[" . space . "]?") := "$1 — "
+punctuation.item("([" . word . punct . "]+)[" . space . "][" . hyphen . "]{1,4}[" . space . "]?") := "$1 — "
 punctuation.item("\.[" . space . "]([" . ru . "]+)") := ". $T{1}" ;make sentences from Capital
 
 punctuation.item("([^\,])([" . space . "]+)(а|но)[" . space . punct . "]") := "$1, $3 "
@@ -197,6 +203,8 @@ punctuation.item("\,\,+") := ","
 punctuation.item("\;+") := ";"
 punctuation.item("([^\?])\?\?([^\?])") := "$1?$2"
 punctuation.item("([^\!])\!\!([^\!])") := "$1!$2" 
+
+punctuation.item("[" . hyphen . "][" . space . "]([" . word . "])") := "— $1" ;start dialogue sentence with dash
 
 ;dot at the end of sentence
 ;TODO: ignorable parts like pre, code etc
@@ -209,6 +217,33 @@ nobrs.item("") := ""
 
 
 ;==================================TODO: hyphens
+
+
+
+;===================================== Math
+mathRules := ComObjCreate("Scripting.Dictionary")
+
+mathRules.item("") := ""
+mathRules.item("\b1\/4\b") := "¼"
+mathRules.item("\b1\/2\b") := "½"
+mathRules.item("\b1\/3\b") := "⅓"
+mathRules.item("\b1\/5\b") := "⅕"
+mathRules.item("\b1\/6\b") := "⅙"
+mathRules.item("\b1\/7\b") := "⅐"
+mathRules.item("\b2\/3\b") := "⅔"
+mathRules.item("\b3\/4\b") := "¾"
+mathRules.item("\b2\/5\b") := "⅖"
+mathRules.item("\b3\/5\b") := "⅗"
+mathRules.item("\+\-") := "±"
+mathRules.item("\-\+") := "∓"
+mathRules.item("([" . space . newline . "]|^)([" . currency . num . "]+)[" . space . "]?([" . punct . "])[" . space . "]?([" . num . "]+)") := "$1$2$3$4" ;Digits make closer
+mathRules.item("([" . num . math . "])[" . space . "]%") := "$1%" ;Percent closer
+mathRules.item("([" . num . "]+)[" . space . "]?[xх][" . space . "]?([" . num . "]+)") := "$1×$2"
+mathRules.item("([" . num . "]+)[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]+)") := "$1−$2"
+;mathRules.item("") := ""
+;mathRules.item("") := ""
+
+
 
 
 ;============================================ ACCENTS
@@ -224,12 +259,14 @@ typograf(text){
 	global clean
 	;global syntax
 	global punctuation
+	global mathRules
 
 	text := applyRules(text, clean)
 	text := cleanRepeatedWords(text)
 	text := applyRules(text, typography)
 	text := applyRules(text, punctuation)
 	text := applyRules(text, orphography)
+	text := applyRules(text, mathRules)
 
 	return text
 }
