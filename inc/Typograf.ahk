@@ -11,7 +11,7 @@
 ;ending spaces cut – is it goo or bad?
 
 
-punct := "\.\,\;\:\_\?\!\¿\؟\‽\…" ;punctuation after word
+punct := "\.\,\;\:\_\?\!\¿\؟\‽\…\&" ;punctuation after word
 space := "     \t" ;all kind of spaces: en, em, punct, simple, nobr
 newline := "\n"
 dash := "–—" ;not hyphen!
@@ -25,8 +25,8 @@ brace := lbrace . rbrace
 pre := "(||||||)"
 en := "a-zA-Z"
 ru := "а-яА-Я"
-num := "0-9" ;TODO:add fractions
-math := "\+\-\*\/\\"
+num := "0-9\.\," ;TODO:add fractions
+math := "\+\-\*\/\%±≠≡"
 currency := "$€¥Ħ₤£⃏"
 word := "\w" . ru . en
 esos := rquo . rbrace ;ending symbol of sentence
@@ -45,7 +45,7 @@ clean.item("") := ""
 clean.item("[" . space . "]{2,}") := " "
 clean.item("\t+") := " "
 clean.item("([" . word . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
-clean.item("([" . punct . "]+)([" . word . quo . num . "]+)") := "$1 $2"  ;delete spaces after punctuation
+clean.item("([" . punct . "]+)([" . word . quo . num . "]+)") := "$1 $2"  ;add spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
 clean.item("([" . lquo . lbrace . "])[" . space . "]+([" . word . "]+)") := "$1$2" ;clean spaces between leftquote ∨ leftbrace ∧ word 
@@ -117,6 +117,9 @@ typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°" ;degrees
 typography.item("([" . word . esos . "])([" . dash . "])([" . word . bsos . "])") := "$1 $2 $3" ;wrap dashes with thin spaces
 typography.item("\""([^" . en . quo . "]*)\""([" . ru . space . ",-:]*)\""([^" . en . quo . "]*)\""" ) := "«$1„$2”$3»"  ;TODO: look for at least one ru before/after/inside
 typography.item("""([^" . en . quo . "]+)""" ) := "«$1»"  ;TODO: look for at least one ru before/after/inside
+
+typography.item("([" . num . "])[" . space . "]?([" . punct . "])[" . space . "]([" . num . "])") := "$1$2$3"
+typography.item("([" . num . math . "]+)[" . space . "]%") := "$1%"
 
 
 
