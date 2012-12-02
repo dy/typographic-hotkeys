@@ -16,11 +16,11 @@
 
 
 punct := "\.\,\;\:\_\?\!\¿\؟\‽\…\&\\" ;punctuation after word
-space := "     \t" ;all kind of spaces: en, em, punct, simple, nobr
+space := "      \t" ;all kind of spaces: en, em, punct, simple, nobr
 newline := "\n\r\`v\`f"
 dash := "–—−" ;not hyphen!
 hyphen := "-"
-lquo := "«‘“‚„〞‹"
+lquo := "«‘‚„〞‹" ;TODO: “ in RU == right, in en == left
 rquo := "»’”〝›"
 quo := rquo . lquo . "\""\'"
 lbrace := "\(\{\["
@@ -28,12 +28,12 @@ rbrace := "\)\]\}"
 brace := lbrace . rbrace
 pre := "(||||||)"
 en := "a-zA-Z"
-ru := "а-яА-Я"
+ru := "а-яА-ЯёЁйЙ"
 num := "0-9" ;TODO:add fractions
 romNum := "IVML"
 math := "\+\-\*\/\%±≠≡"
 currency := "$€¥Ħ₤£⃏"
-word := "\w" . ru . en
+word := ru . en . "_"
 esos := rquo . rbrace ;ending symbol of sentence
 bsos := "¿" . hyphen . dash . lbrace . lquo ;beginning symbol of sentence
 
@@ -49,12 +49,13 @@ clean := ComObjCreate("Scripting.Dictionary")
 clean.item("") := ""
 clean.item("[" . space . "]{2,}") := " "
 clean.item("\t+") := " "
-clean.item("([" . word . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
 clean.item("([" . word . "]+)([" . punct . "]+)(?=[" . word . quo . num . "]+)") := "$1$2 "  ;add spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
 clean.item("([" . lquo . lbrace . "])[" . space . "]+") := "$1" ;clean spaces between leftquote ∨ leftbrace ∧ word
 clean.item("[" . space . "]+([" . rquo . rbrace . "])") := "$1" ;clean space before brace & quo
+clean.item("([" . num . word . "]+)([" . lquo . lbrace . "])") := "$1 $2" ;clean space after word before brace & quo
+clean.item("([" . rquo . rbrace . "])(?=[^" . space . newline . "])") := "$1 " ;clean space after word before brace & quo
 
 cleanRepeatedWords(str){
 delim := "    `n`r"
@@ -122,8 +123,8 @@ typography.item("([" . word . esos . "])([" . dash . "])([" . word . bsos . "])"
 ;Simple quotes
 typography.item("([" . space . newline . """]|^)""(?=[" . ru . "])" ) := "$1«"
 typography.item("([" . space . newline . """]|^)""(?=[" . en . "])" ) := "$1“"
-typography.item("([" . ru . "])""(?=[" . space . newline . punct . """])" ) := "$1»"
-typography.item("([" . en . "])""(?=[" . space . newline . punct . """])" ) := "$1”"
+typography.item("([" . ru . "])""(?=[" . space . newline . punct . """]|$)" ) := "$1»"
+typography.item("([" . en . "])""(?=[" . space . newline . punct . """]|$)" ) := "$1”"
 
 ;Simple quotes side effect cleaner
 typography.item("»""") := "»»"
@@ -134,8 +135,9 @@ typography.item("""“") := "““"
 ;---------------inside-quotes-rule
 makeNestedQuotes(text){
 	global newline
-	ruNestedQuotesRegex := "(«[^«" . newline . "]*)(«([^«»]*)»)(?=[^»" . newline . "]*»)"
-	enNestedQuotesRegex := "(“[^“" . newline . "]*)(“([^“”]*)”)(?=[^”" . newline . "]*”)"
+	ruNestedQuotesRegex := "(«[^«" . newline . "]*)(«([^«»]*)»)(?=[^«»" . newline . "]*»)"
+	enNestedQuotesRegex := "(“[^“" . newline . "]*)(“([^“”]*)”)(?=[^“”" . newline . "]*”)"
+
 	while(RegExMatch(text, ruNestedQuotesRegex))
 	{
 		text := RegExReplace(text, ruNestedQuotesRegex, "$1„$3“")
@@ -155,12 +157,18 @@ typography.item("(\b[" . word . "]+)'(?=" . enShortener . "[\b])") := "$1’$2" 
 typography.item("§([" . num . romNum . "]+)") := "§ $1"
 typography.item("№([" . num . word . punct . "]+)") := "№ $1"
 
+typography.item("i)\bP\.?[" . space . "]?S\.?[" . space . "]?") := "P. S. "
+typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?S\.?[" . space . ":]?") := "P. P. S. "
+typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?P\.?[" . space . "]?S\.?[" . space . ":]?") := "P. P. P. S. "
+
+
+
 ;=================================================================================== ORPHOGRAPHY
 ;TODO: handle correctly prepositions
 ;handle 
 orphography := ComObjCreate("Scripting.Dictionary")
-orphography.item("(\w+) а ") := "$1, а "
-orphography.item("(\w+) но  ") := "$1, но "
+orphography.item("(\w+)[" . space . "]а[" . space . "]") := "$1, а "
+orphography.item("(\w+)[" . space . "]но[" . space . "]") := "$1, но "
 
 orphography.item("i)([" . space . newline . "]?)(из)[" . space . "]?за([" . space . punct . "])") := "$1$2-за$3"
 orphography.item("i)([" . space . newline . "]?)(из)[" . space . "]?под([" . space . punct . "])") := "$1$2-под$3"
@@ -213,7 +221,21 @@ alparticle := "кое|кой"
 
 orphography.item("i)([" . space . newline . "]+)(" . alparticle . ")[" . space . "]{1,4}(" . ulparticle . "+)") := "$1$2-$3"
 
-orphography.item("(\b[" . num . "]+[" . space . dash . ru . hyphen . "]+[" . num . "]+[" . space . ru . hyphen . "]?)г.") := "$1гг."
+orphography.item("(\b[" . num . "]+[" . space . dash . ru . hyphen . "]+[" . num . "]+[" . space . ru . hyphen . "]?)г.") := "$1 гг."
+
+orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?д\.?)(?=[" . space . punct . "]?)") := "$1 т. д."
+orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?п\.?)(?=[" . space . punct . "]?)") := "$1 т. п."
+orphography.item("i)([" . space . newline . "]в)[" . space . "]?(т\.?[" . space . "]?ч\.?)[" . space . punct . "]?([" . word . "]+)") := "$1 т. ч. $3"
+orphography.item("i)(([" . space . newline . "]|^)см)\.?[" . space . "]?([" . word . "]+)") := "$1. $3"
+orphography.item("i)([" . space . newline . "])им\.?[" . space . "]?([" . word . "]+)") := "$1им. $2"
+
+refWord := "рис|гл|илл|стр|разд"
+orphography.item("i)([" . space . newline . "]|^)(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. $3"
+
+orphography.item("([" . space . "])и[" . space . "]др\.?") := "$1и др."
+
+addrWord := "г|ул|кв|корп|пар|п|к|тел|инд|д|адр"
+orphography.item("i)([" . space . newline . "])(" . addrWord . ")\.[" . space . "]?") := "$1$2. "
 
 
 
@@ -222,7 +244,7 @@ punctuation := ComObjCreate("Scripting.Dictionary")
 
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
 punctuation.item("([" . word . punct . "]+)[" . space . "][" . hyphen . "]{1,4}[" . space . "]?") := "$1 — "
-punctuation.item("([" . word . punct . "]+)\.[" . space . "]([" . ru . "]+)") := "$1. $T{2}" ;make sentences from Capital
+;punctuation.item("([" . word . punct . "]+)\.[" . space . "]([" . ru . "]+)") := "$1. $T2" ;make sentences from Capital: conflict with и тд итп
 
 punctuation.item("([^\,])([" . space . "]+)(а|но)[" . space . punct . "]") := "$1, $3 "
 
@@ -239,10 +261,14 @@ punctuation.item("[" . hyphen . "][" . space . "]([" . word . "])") := "— $1"
 ;TODO: ignorable parts like pre, code etc
 
 
-;=======================================TODO: NOBRS
+;=======================================TODO: NOBRS & nbsps
 nobrs := ComObjCreate("Scripting.Dictionary")
 nobrs.item("") := ""
-nobrs.item("") := ""
+nobrs.item("i)(([" . word . "]+[" . hyphen . "])+[" . word . "]+)") := "<nobr>$1</nobr>" ;common words-through-hyphen
+nobrs.item("(\+?[" . num . hyphen . space . dash . brace . "\.x]+[" . num . "])") := "<nobr>$1</nobr>" ;common phone number
+
+nbsp := ComObjCreate("Scripting.Dictionary")
+nbsp.item("") := ""
 
 
 ;==================================TODO: hyphens
@@ -268,7 +294,8 @@ mathRules.item("\-\+") := "∓"
 mathRules.item("([" . space . newline . "]|^)([" . num . "]+)[" . space . "]?([" . punct . "])[" . space . "]?([" . num . "]+)") := "$1$2$3$4" ;Digits make closer
 mathRules.item("([" . num . math . "])[" . space . "]%") := "$1%" ;Percent closer
 mathRules.item("([" . num . "]+)[" . space . "]?[xх][" . space . "]?([" . num . "]+)") := "$1×$2"
-mathRules.item("([" . num . "]+)[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]+)") := "$1−$2"
+mathRules.item("([" . space . newline . "]|^)([12]?[" . num . "]{3})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{2,4})") := "$1$2−$3" ;year format guaranteed
+mathRules.item("([" . num . "]+)[" . space . "][" . hyphen . "][" . space . "]([" . num . "]+)") := "$1 − $2" ;simple dashed digits - non
 ;mathRules.item("") := ""
 ;mathRules.item("") := ""
 
@@ -289,7 +316,13 @@ mathRules.item("i)(" . numPatt . ")[" . space . "]?евро?") := "$1 евро"
 mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . currency . "])") := "$1 $2"
 mathRules.item("i)([" . currency . "])[" . space . "]?(" . numPatt . ")") := "$1$2" ;TODO: this is difference from typograf.ru
 
+afterUnit := "dpi|ppi|px|em|cm|pt|pc|m|km|mph|ml|deg"
 
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . afterUnit . ")") := "$1 $2"
+
+phoneDiv := "[" . space . "]?[" . hyphen . "]?[" . space . "]?"
+
+mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?[\(]([" . num . "]{1,5})[\)][" . space . "]?([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])(?=[^" . num . "]{2})") := "$1$2 ($3) $4$5$6-$7$8-$9${10}" ;+7 (999) 1112233 → +7 (999) 111-22-33
 
 
 ;============================================ ACCENTS
@@ -306,6 +339,9 @@ typograf(text){
 	;global syntax
 	global punctuation
 	global mathRules
+	global nobrs
+
+	textFormat := checkFormat(text)
 
 	text := applyRules(text, clean)
 	text := cleanRepeatedWords(text)
@@ -314,6 +350,11 @@ typograf(text){
 	text := applyRules(text, punctuation)
 	text := applyRules(text, orphography)
 	text := applyRules(text, mathRules)
+	text := applyRules(text, nbsps)
+
+	if (textFormat == "html"){
+		text := applyRules(text, nobrs)
+	}
 
 	return text
 }
@@ -330,4 +371,9 @@ applyRules(text, rules){
 	}	
 	;msgbox, out %text%
 	return text
+}
+
+checkFormat(text){
+	;TODO: define CSS, HTML, JS, ERLANG, plain …
+	return "plain"
 }

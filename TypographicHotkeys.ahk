@@ -28,6 +28,7 @@ local := "en" ;current language
 #Include inc/Combinations.ahk
 #Include inc/Faker.ahk
 #Include inc/Typograf.ahk
+;#Include inc/TF.ahk
 ;#Include ./inc/Groups.ahk
 ;#Include ./inc/Menu.ahk
 ;#Include ./inc/HTML.ahk
