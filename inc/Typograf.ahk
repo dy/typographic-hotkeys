@@ -50,7 +50,7 @@ clean.item("") := ""
 clean.item("[" . space . "]{2,}") := " "
 clean.item("\t+") := " "
 clean.item("([" . word . quo . num . "]+)[\s\t]+([" . punct . "]+)") := "$1$2"  ;delete spaces before punctuation
-clean.item("([" . punct . "]+)([" . word . quo . num . "]+)") := "$1 $2"  ;add spaces after punctuation
+clean.item("([" . word . "]+)([" . punct . "]+)(?=[" . word . quo . num . "]+)") := "$1$2 "  ;add spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
 clean.item("([" . lquo . lbrace . "])[" . space . "]+") := "$1" ;clean spaces between leftquote ∨ leftbrace ∧ word
@@ -153,10 +153,7 @@ enShortener := "t|d|s|re"
 typography.item("(\b[" . word . "]+)'(?=" . enShortener . "[\b])") := "$1’$2" ;don't apostrophe change to correct
 
 typography.item("§([" . num . romNum . "]+)") := "§ $1"
-
 typography.item("№([" . num . word . punct . "]+)") := "№ $1"
-
-
 
 ;=================================================================================== ORPHOGRAPHY
 ;TODO: handle correctly prepositions
@@ -218,17 +215,19 @@ orphography.item("i)([" . space . newline . "]+)(" . alparticle . ")[" . space .
 
 orphography.item("(\b[" . num . "]+[" . space . dash . ru . hyphen . "]+[" . num . "]+[" . space . ru . hyphen . "]?)г.") := "$1гг."
 
+
+
 ;===================================================================================== PUNCTUATION
 punctuation := ComObjCreate("Scripting.Dictionary")
 
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
 punctuation.item("([" . word . punct . "]+)[" . space . "][" . hyphen . "]{1,4}[" . space . "]?") := "$1 — "
-punctuation.item("\.[" . space . "]([" . ru . "]+)") := ". $T{1}" ;make sentences from Capital
+punctuation.item("([" . word . punct . "]+)\.[" . space . "]([" . ru . "]+)") := "$1. $T{2}" ;make sentences from Capital
 
 punctuation.item("([^\,])([" . space . "]+)(а|но)[" . space . punct . "]") := "$1, $3 "
 
 punctuation.item("\.\.\.") := "…"
-punctuation.item("([" . word . "]+)\.\.") := "$1." ;remove doubles: so bat because of i'm lazy to make any cycles
+punctuation.item("([" . word . "]+)\.\.") := "$1." ;remove doubles: so bad because of i'm lazy to make any cycles
 punctuation.item("\,\,+") := ","
 punctuation.item("\;+") := ";"
 punctuation.item("([^\?])\?\?([^\?])") := "$1?$2"
@@ -250,7 +249,7 @@ nobrs.item("") := ""
 
 
 
-;===================================== Math
+;===================================== Math & units & currencies
 mathRules := ComObjCreate("Scripting.Dictionary")
 
 mathRules.item("") := ""
@@ -266,12 +265,29 @@ mathRules.item("\b2\/5\b") := "⅖"
 mathRules.item("\b3\/5\b") := "⅗"
 mathRules.item("\+\-") := "±"
 mathRules.item("\-\+") := "∓"
-mathRules.item("([" . space . newline . "]|^)([" . currency . num . "]+)[" . space . "]?([" . punct . "])[" . space . "]?([" . num . "]+)") := "$1$2$3$4" ;Digits make closer
+mathRules.item("([" . space . newline . "]|^)([" . num . "]+)[" . space . "]?([" . punct . "])[" . space . "]?([" . num . "]+)") := "$1$2$3$4" ;Digits make closer
 mathRules.item("([" . num . math . "])[" . space . "]%") := "$1%" ;Percent closer
 mathRules.item("([" . num . "]+)[" . space . "]?[xх][" . space . "]?([" . num . "]+)") := "$1×$2"
 mathRules.item("([" . num . "]+)[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]+)") := "$1−$2"
 ;mathRules.item("") := ""
 ;mathRules.item("") := ""
+
+
+pointedCurrencyWord := "руб|долл"
+amountWord := "тыс|млн|млрд"
+numPatt := "\b[" . num . "]+[\.,]?[" . num . "]*"
+
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2. $L3."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2."
+
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 $L2. у.е."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 у.е."
+
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?евро?") := "$1 $L2. евро"
+mathRules.item("i)(" . numPatt . ")[" . space . "]?евро?") := "$1 евро"
+
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . currency . "])") := "$1 $2"
+mathRules.item("i)([" . currency . "])[" . space . "]?(" . numPatt . ")") := "$1$2" ;TODO: this is difference from typograf.ru
 
 
 
