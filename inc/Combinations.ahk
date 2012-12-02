@@ -1212,6 +1212,16 @@ combos.item(":~") := "☯"
 combos.item("~:") := "☯"
 combos.item("CCCP") := "☭"
 combos.item("cccp") := "☭"
+;-----------------------------SI
+combos.item("cels") := "°C"
+combos.item("celsium") := "°C"
+combos.item("ohm") := "Ω"
+combos.item("Ohm") := "Ω"
+combos.item("ang") := "Å"
+combos.item("Ang") := "Å"
+combos.item("angstrom") := "Å"
+combos.item("Angstrom") := "Å"
+
 ;---------------------------Arrow combos
 ;-------------------TODO: fix it up
 combos.item("←→") := "↔"
