@@ -189,7 +189,7 @@ fakeData["ru"]["buildingNumber"] := array("##", "###", "#")
 fakeData["en"]["buildingNumber"] := array("##", "#")
 
 fakeData["en"]["nameFormats"] := array("{{firstName}} {{lastName}}","{{firstName}} {{lastName}}","{{firstName}} {{lastName}}","{{firstName}} {{lastName}}","{{firstName}} {{lastName}}","{{namePrefix}} {{firstName}} {{lastName}}","{{firstName}} {{lastName}} {{nameSuffix}}","{{namePrefix}} {{firstName}} {{lastName}} {{nameSuffix}}")
-fakeData["ru"]["nameFormats"] := array("{{firstName}} {{middleName}} {{lastName}}","{{lastName}} {{firstName}} {{lastName}}","{{firstName}} {{lastName}}","{{lastName}} {{firstName}}")
+fakeData["ru"]["nameFormats"] := array("{{firstName}} {{middleName}} {{lastName}}","{{lastName}} {{firstName}} {{middleName}}","{{firstName}} {{lastName}}","{{lastName}} {{firstName}}")
 
 fakeData["en"]["emailFormats"] := array("{{userName}}@{{domainName}}","{{userName}}@{{freeEmailDomain}}")
 

@@ -529,7 +529,7 @@ RAlt Up::
     return
 !Space::
     KeyWait Alt
-    Send  
+    Send  
     return
 
 

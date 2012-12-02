@@ -3,7 +3,11 @@
 ;TODO:
 ; define language
 ; grammatic modules
-; combos change
+; compose combos
+; dot inside quotess
+; make soft positive assertions (?= ) insteadof ()
+; make nongreedy cases
+; н-да
 
 ;missed . at the end of sentences
 ;recognizing of lists
@@ -13,12 +17,12 @@
 
 punct := "\.\,\;\:\_\?\!\¿\؟\‽\…\&\\" ;punctuation after word
 space := "     \t" ;all kind of spaces: en, em, punct, simple, nobr
-newline := "\n\r"
+newline := "\n\r\`v\`f"
 dash := "–—−" ;not hyphen!
 hyphen := "-"
-lquo := "\""\'«‘“‚„〞‹"
-rquo := "»’”\'〝›"
-quo := rquo . lquo
+lquo := "«‘“‚„〞‹"
+rquo := "»’”〝›"
+quo := rquo . lquo . "\""\'"
 lbrace := "\(\{\["
 rbrace := "\)\]\}"
 brace := lbrace . rbrace
@@ -54,7 +58,7 @@ clean.item("[" . space . "]+([" . rquo . rbrace . "])") := "$1" ;clean space bef
 
 cleanRepeatedWords(str){
 delim := "    `n`r"
-newline := "`n`r"
+newline := "`n`r`v`f"
 punct := ".,;:_?!¿؟‽…""'«‘“‚„〞‹»’”""'〝›–—({[)}]" ;punctuation after word
 
 result := ""
@@ -115,12 +119,38 @@ typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°" ;degrees
 
 typography.item("([" . word . esos . "])([" . dash . "])([" . word . bsos . "])") := "$1 $2 $3" ;wrap dashes with thin spaces
 
-typography.item("\""([^" . en . quo . "]*)\""([" . ru . space . ",-:]*)\""([^" . en . quo . newline . "]*)\""" ) := "«$1„$2”$3»"  ;TODO: look for at least one ru before/after/inside
-typography.item("\""([^" . en . quo . "]*)\""([" . ru . space . ",-:]*)\""" ) := "«$1«$2»"  ;TODO: look for at least one ru before/after/inside
-typography.item("""([^" . en . quo . "]+)""" ) := "«$1»"  ;TODO: look for at least one ru before/after/inside
+;Simple quotes
+typography.item("([" . space . newline . """]|^)""(?=[" . ru . "])" ) := "$1«"
+typography.item("([" . space . newline . """]|^)""(?=[" . en . "])" ) := "$1“"
+typography.item("([" . ru . "])""(?=[" . space . newline . punct . """])" ) := "$1»"
+typography.item("([" . en . "])""(?=[" . space . newline . punct . """])" ) := "$1”"
+
+;Simple quotes side effect cleaner
+typography.item("»""") := "»»"
+typography.item("”""") := "””"
+typography.item("""«") := "««"
+typography.item("""“") := "““"
+
+;---------------inside-quotes-rule
+makeNestedQuotes(text){
+	global newline
+	ruNestedQuotesRegex := "(«[^«" . newline . "]*)(«([^«»]*)»)(?=[^»" . newline . "]*»)"
+	enNestedQuotesRegex := "(“[^“" . newline . "]*)(“([^“”]*)”)(?=[^”" . newline . "]*”)"
+	while(RegExMatch(text, ruNestedQuotesRegex))
+	{
+		text := RegExReplace(text, ruNestedQuotesRegex, "$1„$3“")
+	}
+	while(RegExMatch(text, enNestedQuotesRegex))
+	{
+		text := RegExReplace(text, enNestedQuotesRegex, "$1‘$3’")
+	}
+	return text
+}
+
+;TODO: dot inside quotes
 
 enShortener := "t|d|s|re"
-typography.item("(\b[" . word . "]+)'(" . enShortener . "[\b])") := "$1’$2" ;don't apostrophe change to correct
+typography.item("(\b[" . word . "]+)'(?=" . enShortener . "[\b])") := "$1’$2" ;don't apostrophe change to correct
 
 typography.item("§([" . num . romNum . "]+)") := "§ $1"
 
@@ -264,6 +294,7 @@ typograf(text){
 	text := applyRules(text, clean)
 	text := cleanRepeatedWords(text)
 	text := applyRules(text, typography)
+	text := makeNestedQuotes(text)
 	text := applyRules(text, punctuation)
 	text := applyRules(text, orphography)
 	text := applyRules(text, mathRules)

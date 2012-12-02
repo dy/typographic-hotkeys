@@ -43,6 +43,7 @@ Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
+* Move combos to separate file
 * Generate data hotkey for handling selection w/data
 * Color convertor
 * Image with description

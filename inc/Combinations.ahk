@@ -1092,6 +1092,7 @@ combos.item("en ") := " "
 combos.item(" em") := " " ;em space
 combos.item("em ") := " "
 combos.item("nobr") := " "
+combos.item("nbsp") := " "
 combos.item("--") := "–"
 combos.item("--.") := "–"
 combos.item("---") := "—"
@@ -1729,6 +1730,10 @@ extensions.item("cut") := "✂"
 
 ;----------------------------------Shapes
 extensions.item("square") := "■"
+
+;------------------------------------ Easter Eggs
+extensions.item("triforce") := "  ▲+{Enter}▲ ▲"
+extensions.item("трифорс") := "  ▲+{Enter}▲ ▲"
 
 
 ;==========================================Ilya Birman Keyboard codes
