@@ -9,6 +9,7 @@
 ; make destructors & inspect on memory leaks
 ; simple ["…"] went bad
 ; TODO: debug photoshop
+;fuck birman, do useful french symbol
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
@@ -21,13 +22,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 locals := ["ru","en"]
 local := "en" ;current language
 
-
 ;#Include ./inc/Gdip.ahk
-#Include inc/KbdLayout.ahk
-#Include inc/Util.ahk
-#Include inc/Combinations.ahk
-#Include inc/Faker.ahk
-#Include inc/Typograf.ahk
+#Include %a_scriptdir%/inc/KbdLayout.ahk
+#Include %a_scriptdir%/inc/Util.ahk
+#Include %a_scriptdir%/inc/Combinations.ahk
+#Include %a_scriptdir%/inc/Faker.ahk
+#Include %a_scriptdir%/inc/Typograf.ahk
 ;#Include inc/TF.ahk
 ;#Include ./inc/Groups.ahk
 ;#Include ./inc/Menu.ahk
