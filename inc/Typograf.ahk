@@ -2,11 +2,8 @@
 
 ;TODO:
 ; define language
-; grammatic modules
-; compose combos
 
 ; Refactoring prospectives:
-; make soft positive assertions (?= ) insteadof ()
 ; make nongreedy cases
 
 ; Tests: habr texts, gmail en texts, my wordpress texts, Netbeans texts, Photoshop texts, lj texts
@@ -14,14 +11,14 @@
 ;missed . at the end of sentences
 ;recognizing of lists
 
-;ending spaces cut – is it goo or bad?
+;ending spaces cut – is it goo or bad?→
 
 
 
 punct := "\.\,\;\:\_\?\!\¿\؟\‽\&\\" ;punctuation after word
 space := "      \t" ;all kind of spaces: en, em, punct, simple, nobr
 newline := "\n\r\`v\`f"
-dash := "–—−−" ;not hyphen!
+dash := "–—−" ;not hyphen!
 hyphen := "-"
 lquo := "«‘‚„〞‹" ;TODO: “ in RU == right, in en == left
 rquo := "»’”〝›"
@@ -33,7 +30,7 @@ pre := "(||||||)"
 en := "a-zA-Z"
 ru := "а-яА-ЯёЁйЙ"
 num := "0-9" ;TODO:add fractions
-romNum := "IVXLCDMХМС"
+romNum := "IVXLCDMХ"
 math := "\+\-\*\/\%±≠≡"
 currency := "$€¥Ħ₤£⃏"
 word := ru . en . "_"
@@ -64,7 +61,7 @@ clean.item("i)\(sm\)") := "℠"
 
 clean.item("[" . space . "]{2,}") := " "
 clean.item("\t+") := " "
-clean.item("([" . word . "]+)([" . punct . "]+)(?=[" . word . lquo . num . "]+)") := "$1$2 "  ;add spaces after punctuation
+clean.item("U)([" . word . "]+)[" . space . "]?([" . punct . "…]+)(?=[" . word . lquo . num . "])") := "$1$2 "  ;add spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
 clean.item("([" . lquo . lbrace . "])[" . space . "]+") := "$1" ;clean spaces between leftquote ∨ leftbrace ∧ word
@@ -234,21 +231,31 @@ orphography.item("(\b[" . num . "]+[йе" . space . hyphen . "]*[" . hyphen . da
 orphography.item("i)(\b[" . romNum . "]+)[" . hyphen . dash . space . "]+([" . romNum . "]+)([" . space . "]?в\.?[" . space . "]?в?\.?)(?=[" . space . newline . punct . "]|$)") := "$U1–$U2 вв."
 
 orphography.item("i)([" . ru . num . romNum . "]+)[" . space . "]?(н\.?[" . space . "]?э\.?)(?=[" . space . punct . newline . "]|$)") := "$1 н. э." 
-orphography.item("i)([" . romNum . "])([" . space . "]?в\.?)(?=[" . space . punct . newline . "]|$)") := "$1 в." ;TODO: Centuries
+orphography.item("i)([" . romNum . "])([" . space . "]?в\.?)(?=[" . space . punct . newline . "]|$)") := "$1 в." ;Centuries
+
+ruMonths := "янв|фев|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек"
+enMonths := "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec"
+orphography.item("i)([" . num . "]{1,2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{1,2})[" . space . "]?((" . rumonths . ")[" . ru . "]*)") := "$1–$2 $3"
+orphography.item("i)([" . num . "]{1,2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{1,2})[" . space . "]?(of)?[" . space . "]?((" . enmonths . ")[" . en . "]*)") := "$1–$2 $3 $4"
+
+orphography.item("i)([" . num . "]{2}:[" . num . "]{2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{2}:[" . num . "]{2})") := "$1 – $2"
 
 orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?д\.?)(?=[" . space . punct . newline . "]|$)") := "$1 т. д."
 orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?п\.?)(?=[" . space . punct . newline . "]|$)") := "$1 т. п."
 orphography.item("i)([" . space . newline . "]в)[" . space . "]?(т\.?[" . space . "]?ч\.?)[" . space . punct . "]?([" . word . "]+)") := "$1 т. ч. $3"
-orphography.item("i)(([" . space . newline . lquo . lbrace . "]|^)см)\.?[" . space . "]?([" . word . "]+)") := "$1. $3"
-orphography.item("i)([" . space . newline . "])им(\.|[" . space . "])[" . space . "]?([" . word . "]+)") := "$1им. $T3"
+orphography.item("i)(([" . space . newline . lquo . lbrace . "]|^)см)(\.|[" . space . "])[" . space . "]?([" . word . num . "]+)") := "$1. $4"
+orphography.item("i)([" . space . newline . "])им(\.|[" . space . "])[" . space . "?]([" . word . "]+)") := "$1им. $T3"
 
-refWord := "рис|гл|илл|стр|разд"
+refWord := "рис|Рис|гл|Гл|илл|Илл|стр|Стр|разд|Разд"
 orphography.item("i)([" . space . newline . lbrace . lquo . "]|^)(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. $3"
+orphography.item("([" . space . newline . lbrace . lquo . "]|^)(см|См)\.?[" . space . "]?(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. $3. $4" ;TODO: make см. гл., см. разд., …
 
-orphography.item("([" . space . "])и[" . space . "]др\.?") := "$1и др."
+orphography.item("([" . space . "])и([" . space . "]др\.?)(?=[" . space . newline . punct . "]|$)") := "$1и др."
 
-addrWord := "г|ул|кв|корп|пар|п|к|тел|инд|д|адр"
-orphography.item("i)([" . space . newline . "]|^)(" . addrWord . ")\.[" . space . "]?") := "$1$2. "
+addrWord := "г|ул|пр|адр"
+orphography.item("i)([" . space . newline . "]|^)(" . addrWord . ")(\.[" . space . "]?|[" . space . "])(?=[" . word . "])") := "$1$2. "
+addrNum := "кв|корп|пар|п|код|тел|индекс|инд|д|адр"
+orphography.item("i)([" . space . newline . "]|^)(" . addrNum . ")(\.[" . space . "]?|[" . space . "])(?=[" . num . "])") := "$1$2. "
 
 orphography.item("i)([" . space . newline . lquo . lbrace . "]|^)(н)[" . space . "]?(да+)(?=[" . space . punct . rquo . rbrace . "]|$)") := "$1$2-$3"
 
@@ -259,8 +266,8 @@ orphography.item("i)([" . space . newline . lquo . lbrace . "]|^)(н)[" . space 
 punctuation := ComObjCreate("Scripting.Dictionary")
 
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
-punctuation.item("([" . word . "]+[" . punct . "])[" . space . "]?[" . hyphen . "]{1,4}[" . space . "]?") := "$1 — " ;TODO: check is it neccessary to insert space between , and –, eg. "I'll not do it",– he said.
-;punctuation.item("([" . word . punct . "]+)\.[" . space . "]([" . ru . "]+)") := "$1. $T2" ;make sentences from Capital: conflict with и тд итп
+punctuation.item("([" . word . "]+[" . rquo . "]?[" . punct . "])[" . space . "]?[" . hyphen . "]{1,4}[" . space . "]?") := "$1 — " ;TODO: check is it neccessary to insert space between , and –, eg. "I'll not do it",– he said.
+;punctuation.item("([" . word . punct . "]+)\.[" . space . "]([" . ru . "]+)") := "$1. $T2" ;make sentences from Capital: conflict with т.к.
 
 punctuation.item("([^\,])([" . space . "]+)(а|но)[" . space . punct . "]") := "$1, $3 "
 
@@ -270,8 +277,8 @@ punctuation.item("\;+") := ";"
 punctuation.item("([^\?])\?\?([^\?])") := "$1?$2"
 punctuation.item("([^\!])\!\!([^\!])") := "$1!$2" 
 
-punctuation.item("[" . space . "][" . hyphen . "][" . space . "](?=[" . word . quo "])") := " — " ;dash inside sentence
-punctuation.item("[" . space . "][" . hyphen . "](?=[" . newline . "])") := " —" ;dash on end of sent
+punctuation.item("[" . space . rquo . "][" . hyphen . "][" . space . "](?=[" . word . quo . num . "])") := " — " ;dash inside sentence
+punctuation.item("[" . space . "][" . hyphen . "](?=[" . newline . "])") := " —" ;dash on end of line
 punctuation.item("([" . newline . "])[" . hyphen . "](?=[" . space . newline . "][" . word . "])") := "$1—" ;start dialogue sentence of section with dash
 
 punctuation.item("i)([" . space . newline . "]|^)([А-Я])\.[" . space . "]?([А-Я])\.[" . space . "]?([" . ru . "]+)(?=[" . space . punct . rquo . rbrace . newline . "])") := "$1$2. $3. $4" ;make RU name initials
@@ -317,8 +324,8 @@ mathRules.item("\-\+") := "∓"
 mathRules.item("([" . space . newline . "]|^)([" . num . "]+)[" . space . "]?([" . punct . "])[" . space . "]?([" . num . "]+)") := "$1$2$3$4" ;Digits make closer
 mathRules.item("([" . num . math . "])[" . space . "]%") := "$1%" ;Percent closer
 mathRules.item("([" . num . "]+)[" . space . "]?[xх][" . space . "]?([" . num . "]+)") := "$1×$2"
-mathRules.item("([" . space . newline . "]|^)([12]?[" . num . "]{3})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{2,4})") := "$1$2−$3" ;year format guaranteed
-mathRules.item("([" . num . "]+)[" . space . "][" . hyphen . "][" . space . "]([" . num . "]+)") := "$1 − $2" ;simple dashed digits - non
+mathRules.item("([" . space . newline . "]|^)([12]?[" . num . "]{3})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{2,4})(?=[^" . num . romNum . "]{2})") := "$1$2−$3" ;year format guaranteed
+;mathRules.item("([" . num . "]+)([" . space . "]?[" . hyphen . "][" . space . "]?)(?=[" . num . "]+)") := "$1 – " ;simple dashed digits - non
 
 
 pointedCurrencyWord := "руб|долл"
@@ -335,7 +342,7 @@ mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . s
 mathRules.item("i)(" . numPatt . ")[" . space . "]?евро?") := "$1 евро"
 
 mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . currency . "])") := "$1 $2"
-mathRules.item("i)([" . currency . "])[" . space . "]?(" . numPatt . ")") := "$1$2" ;TODO: this is difference from typograf.ru
+mathRules.item("i)([" . currency . "])[" . space . "]?(" . numPatt . ")") := "$1$2" ;TODO: this is difference from typograf.ru needed to be noted
 
 afterUnit := "dpi|ppi|px|em|cm|pt|pc|m|km|mph|ml|deg"
 
@@ -343,7 +350,8 @@ mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . afterUnit . ")") := "$1 
 
 phoneDiv := "[" . space . "]?[" . hyphen . "]?[" . space . "]?"
 
-mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?[\(]([" . num . "]{1,5})[\)][" . space . "]?([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])(?=[^" . num . "]{2})") := "$1$2 ($3) $4$5$6-$7$8-$9${10}" ;+7 (999) 1112233 → +7 (999) 111-22-33
+mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?[\(]?([" . num . "]{1,5})[\)]?[" . space . "]?([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])(?=[^" . num . "]{2,})") := "$1$2 ($3) $4$5$6-$7$8-$9${10}" ;SPb phones +7 (999) 1112233 → +7 (999) 111-22-33
+mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?([\(][" . num . "]{1,5}[\)])[" . space . "]?([" . num . "]{4,10}[" . space . "]?[" . num . "]*[" . space . "]?[" . num . "]*)(?=[^" . num . "]{2,}|$)") := "$1$2 $3 $4" ;Simple phones
 
 ;---------units work
 uUnit := {ru:"", en:""}
