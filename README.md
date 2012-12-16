@@ -24,6 +24,7 @@ Sequences below will be automatically transformed when typing has finished
  * `(c)` → `©`
  * `(r)` → `®`
  * `...` → `…`
+ * spaces after prepositions → [nbsp]
 
 ### 3. [pending – 2d remain] Convert color
 
@@ -32,14 +33,9 @@ Transforms found colors in selected string to passed format. For exaple, select 
 Nice use case: select all your css, press <kbd>Menu Key + rgb</kbd>, all recognized colors will be converted to `rgb` format. It will enhance rendering of page %)
 
 
-### 4. [pending – 12 h remain] Fake data generator
+### 4. Fake data generator
 
 Text, dif languages, fake data, fake imgs
-
-### 5. [pending – 1w remain] Helpers
-
-1. Current keyboard layout in-place balloon (img)
-2. HTML & UTF-codes balloon (img)
 
 ## TODO:
 

@@ -10,6 +10,7 @@
 ; simple ["…"] went bad
 ; TODO: debug photoshop
 ;fuck birman, do useful french symbol
+; TODO: debug faker in eclipse
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
@@ -20,7 +21,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
 
 locals := ["ru","en"]
-local := "en" ;current language
+local := "en" ;current language 
 
 ;#Include ./inc/Gdip.ahk
 #Include %a_scriptdir%/inc/KbdLayout.ahk
@@ -120,7 +121,7 @@ escapeBirmanDiacritics(combo){
     }
     return combo
 }
-;===================================================== Make typograf of selected text
+;===================================================== Typograph of selected text
 ;+^t::
 ^+!sc014::
     backupClipboard()
@@ -131,7 +132,29 @@ escapeBirmanDiacritics(combo){
     return
 
 
-;=====================================================Duplicate shortcut: problem with selecting text
+;========================================LC, UC selection
+;+^!u::
++^!sc016::
+    backupClipboard()
+
+    insert( toUpper( getSelectedText() ) )
+
+    restoreClipboard()
+    return
+
+;+^!l::
++^!sc026::
+    backupClipboard()
+
+    insert( toLower( getSelectedText() ) )
+
+    restoreClipboard()
+    return
+
+;======================================== CSS color flatten (?)
+
+
+;===================================================== Duplicate selection shortcut: problem with selecting text
 ;repeatDuplicateFlag := false ;is duplicate repeated
 ;+^d::
 ;^+sc020::
@@ -187,8 +210,8 @@ RAlt Up::
 
 
 ;=========================================================Symbol sequences handler
-~sc01a Up::
 ;~[::
+~sc01a Up::
     ;TODO: make something to ignore not [] as input. For special format line {{}}
     ;TODO: make something to handle not input, but expression between []
     Input, combo, V C, []{sc01a}{sc01b} ;""{sc028}{sc01}

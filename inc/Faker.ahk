@@ -1,7 +1,7 @@
 ﻿;TODO: 
 ; - fake generator
 ; - define if length reached
-
+; - correct lorem to standart generator way
 
 fakeData := {en : {}, ru : {}} ;main data array
 
@@ -382,6 +382,8 @@ makeField(field, mult){
     global local
     global rRes := ""
 
+    ;msgbox, fake:%field%
+
     backupClipboard()
 
     res := ""
@@ -390,12 +392,12 @@ makeField(field, mult){
         rRes := ""
         res .= renderFormat(field) . "`n"
     }
-    ;msgBox, %res%
+    ;msgBox, result: %res%
 
-    clipboard = %res%
+    ;insert(res)
+    ;restoreClipboard()
 
-    Send ^v
-    restoreClipboard()
+    insertAndRestore(res)
 
     return true
 }
@@ -416,10 +418,12 @@ makeCustomFormat(formatStr, mult){
     }
     ;msgBox, %res%
 
-    clipboard = %res%
+    ;clipboard = %res%
 
-    Send ^v
-    restoreClipboard()
+    ;Send ^v
+    ;restoreClipboard()
+
+    insertAndRestore(res)
 
     return true
 }
@@ -542,8 +546,8 @@ getLorem(request){
                 Break
             }
         }
-        clipboard = %res%
-        Send ^v
+        ;clipboard = %res%
+        ;Send ^v
         ;lastResult := res
 
     } else if (RegExMatch(request, "s[ ]?[0-9]+", sents)){
@@ -561,8 +565,8 @@ getLorem(request){
                 Break
             }
         }
-        clipboard = %res%
-        Send ^v
+        ;clipboard = %res%
+        ;Send ^v
         ;lastResult := res
 
     } else if (RegExMatch(request, "p[ ]?[0-9]+", pars)){
@@ -588,8 +592,8 @@ getLorem(request){
             }
             res .= A_LoopField . "."
         }
-        clipboard = %res%
-        Send ^v
+        ;clipboard = %res%
+        ;Send ^v
         ;lastResult := res 
 
     } else {
@@ -600,15 +604,16 @@ getLorem(request){
         ;output lorem by chars
         src := lorem[leNumber]
         res := Substr(src, 1, chars)
-        Clipboard = %res%
-        Send ^v
+        ;Clipboard = %res%
+        ;Send ^v
         ;SendInput %chars% chars of lorem
         ;lastResult := res
     }
 
     ;selectBefore(strlen(res))
 
-    restoreClipboard()
+    ;restoreClipboard()
+    insertAndRestore(res)
 
     return true
 }

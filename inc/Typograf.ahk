@@ -11,7 +11,21 @@
 ;missed . at the end of sentences
 ;recognizing of lists
 
-;ending spaces cut – is it goo or bad?→
+;ending spaces cut – is it goo or bad?
+;auto nbsp where needed in realtime typesetting
+
+
+;TODO
+;не съедать пустые строки и br
+;неразрывный пробел между числом и последующим словом имеет смысл ставить всегда, а не только с единицами измерений (например, 10 солдат).
+;пробелы после точек (например, в инициалах)
+;настройка возможности вставки спецсимволов не только кодами и html-сущностями, но и «напрямую»
+;Добавьте, пожалуйста, кнопку для автоматической замены буквы е на ё везде, где рекомендуется
+;soft hyphens
+;Почему при типографии английского текста не ставятся плавающие переносы?
+;Нежелательно чтобы в конце абзаца оставалось одно слово на новой строке.
+;Типографа сокращения, типа ЕВРО итп
+;not to take in handle <? ?>, …
 
 
 
@@ -127,14 +141,16 @@ typography.item("") := ""
 
 typography.item("(\w+)\s?гр(ад(уса|усов|ec)?)?") := "$1°" ;degrees
 
-typography.item("([" . word . esos . "])([" . dash . "])([" . word . bsos . "])") := "$1 $2 $3" ;wrap dashes with thin spaces
+typography.item("([" . word . esos . "])([" . dash . "])([" . word . bsos . "])") := "$1 $2 $3" ;wrap dashes with thin spaces
 
 ;Simple quotes
 typography.item("([" . space . newline . """]|^)""(?=[" . ru . "…])" ) := "$1«"
 typography.item("([" . space . newline . """]|^)""(?=[" . en . "…])" ) := "$1“"
-typography.item("([" . ru . punct . "…])""(?=[" . space . newline . punct . """]|$)" ) := "$1»"
+typography.item("“([" . en . space . "]+[…\+#])""(?=[" . space . newline . punct . """]|$)" ) := "“$1”" ;helper for closing enquotes
+typography.item("«([" . ru . space . "]+[…\+#])""(?=[" . space . newline . punct . """]|$)" ) := "«$1»" ;helper for closing ruquotes
+typography.item("([" . ru . punct . "])""(?=[" . space . newline . punct . """]|$)" ) := "$1»"
 typography.item("""(?=[" . hyphen . dash . "])" ) := "»" ;special rare case of quote replace
-typography.item("([" . en . punct . "…])""(?=[" . space . newline . punct . """]|$)" ) := "$1”"
+typography.item("([" . en . punct . "])""(?=[" . space . newline . punct . """]|$)" ) := "$1”"
 
 ;Simple quotes side effect cleaner
 typography.item("»""") := "»»"
@@ -166,12 +182,12 @@ typography.item("([" . punct . "])[" . space . "]*([" . rquo . "])") := "$2$1" ;
 enShortener := "t|d|s|re"
 typography.item("(\b[" . word . "]+)'(?=" . enShortener . "[\b])") := "$1’$2" ;don't apostrophe change to correct
 
-typography.item("§([" . num . romNum . "]+)") := "§ $1"
-typography.item("№([" . num . word . punct . "]+)") := "№ $1"
+typography.item("§([" . num . romNum . "]+)") := "§ $1"
+typography.item("№([" . num . word . punct . "]+)") := "№ $1"
 
-typography.item("i)\bP\.?[" . space . "]?S\.?[" . space . "]?") := "P. S. "
-typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?S\.?[" . space . ":]?") := "P. P. S. "
-typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?P\.?[" . space . "]?S\.?[" . space . ":]?") := "P. P. P. S. "
+typography.item("i)\bP\.?[" . space . "]?S\.?[" . space . "]?") := "P. S. "
+typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?S\.?[" . space . ":]?") := "P. P. S. "
+typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?P\.?[" . space . "]?S\.?[" . space . ":]?") := "P. P. P. S. "
 
 
 
@@ -179,8 +195,8 @@ typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?P\.?[" . space . "]
 ;TODO: handle correctly prepositions
 ;handle 
 orphography := ComObjCreate("Scripting.Dictionary")
-orphography.item("(\w+)[" . space . "]а[" . space . "]") := "$1, а "
-orphography.item("(\w+)[" . space . "]но[" . space . "]") := "$1, но "
+orphography.item("(\w+)[" . space . "]а[" . space . "]") := "$1, а "
+orphography.item("(\w+)[" . space . "]но[" . space . "]") := "$1, но "
 
 orphography.item("i)([" . space . newline . "]?)(из)[" . space . "]?за([" . space . punct . "])") := "$1$2-за$3"
 orphography.item("i)([" . space . newline . "]?)(из)[" . space . "]?под([" . space . punct . "])") := "$1$2-под$3"
@@ -209,7 +225,7 @@ partnoun := "какой-либо|кое-кто|кое-что|кто-либо|т�
 urparticle := "либо|нибудь|то" ;universal right particle
 ulparticle := "кто|что|где|когда|зачем|почему|как|кем|чем|кому|чему|ком|чем|кого|чего|кем|чем|чей|какой|куда"
 
-orphography.item("i)(" . ulparticle . ")[" . space . dash . hyphen . "]*(" . urparticle . ")[" . space . "]") := "$1-$2 "
+orphography.item("i)(" . ulparticle . ")[" . space . dash . hyphen . "]*(" . urparticle . ")[" . space . "](?!же|что)") := "$1-$2 "
 
 orphography.item("[" . space . newline . "]такой[" . space . "]?то[" . space . "]") := " такой-то "
 orphography.item("[" . space . newline . "]тот[" . space . "]?то[" . space . "]") := " тот-то "
@@ -225,48 +241,46 @@ alparticle := "кое|кой"
 
 orphography.item("i)([" . space . newline . "]|^)(" . alparticle . ")[" . space . "]{1,4}(" . ulparticle . "+)") := "$1$2-$3"
 
-orphography.item("([" . space . newline . "\.]|^)([" . num . "]+[йе" . hyphen . dash . "]?)[" . space . "]?(г\.?)(?=[" . space . punct . newline . "]|$)") := "$1$2 г."
-orphography.item("(\b[" . num . "]+[йе" . space . hyphen . "]*[" . hyphen . dash . "][" . space . "]?[" . num . "]+[йе" . hyphen . "]*)([" . space . "]?г\.?[" . space . "]?г?\.?)(?=[" . space . punct . newline . "]|$)") := "$1 гг."
+orphography.item("([" . space . newline . "\.]|^)([" . num . "]+[йе" . hyphen . dash . "]?)[" . space . "]?(г\.?)(?=[" . space . punct . newline . "]|$)") := "$1$2 г." ;TODO: city nbsp correct
+orphography.item("(\b[" . num . "]+[йе" . space . hyphen . "]*[" . hyphen . dash . "][" . space . "]?[" . num . "]+[йе" . hyphen . "]*)([" . space . "]?г\.?[" . space . "]?г?\.?)(?=[" . space . punct . newline . "]|$)") := "$1 гг."
 
-orphography.item("i)(\b[" . romNum . "]+)[" . hyphen . dash . space . "]+([" . romNum . "]+)([" . space . "]?в\.?[" . space . "]?в?\.?)(?=[" . space . newline . punct . "]|$)") := "$U1–$U2 вв."
+orphography.item("i)(\b[" . romNum . "]+)[" . hyphen . dash . space . "]+([" . romNum . "]+)([" . space . "]?в\.?[" . space . "]?в?\.?)(?=[" . space . newline . punct . "]|$)") := "$U1–$U2 вв."
 
-orphography.item("i)([" . ru . num . romNum . "]+)[" . space . "]?(н\.?[" . space . "]?э\.?)(?=[" . space . punct . newline . "]|$)") := "$1 н. э." 
-orphography.item("i)([" . romNum . "])([" . space . "]?в\.?)(?=[" . space . punct . newline . "]|$)") := "$1 в." ;Centuries
+orphography.item("i)([" . ru . num . romNum . "]+)[" . space . "]?(н\.?[" . space . "]?э\.?)(?=[" . space . punct . newline . "]|$)") := "$1 н. э." 
+orphography.item("i)([" . romNum . "])([" . space . "]?в\.?)(?=[" . space . punct . newline . "]|$)") := "$1 в." ;Centuries
 
 ruMonths := "янв|фев|мар|апр|ма|июн|июл|авг|сен|окт|ноя|дек"
 enMonths := "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec"
-orphography.item("i)([" . num . "]{1,2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{1,2})[" . space . "]?((" . rumonths . ")[" . ru . "]*)") := "$1–$2 $3"
-orphography.item("i)([" . num . "]{1,2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{1,2})[" . space . "]?(of)?[" . space . "]?((" . enmonths . ")[" . en . "]*)") := "$1–$2 $3 $4"
+orphography.item("i)([" . num . "]{1,2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{1,2})[" . space . "]?((" . rumonths . ")[" . ru . "]*)") := "$1–$2 $3"
+orphography.item("i)([" . num . "]{1,2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{1,2})[" . space . "]?(of)?[" . space . "]?((" . enmonths . ")[" . en . "]*)") := "$1–$2 $3 $4"
 
-orphography.item("i)([" . num . "]{2}:[" . num . "]{2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{2}:[" . num . "]{2})") := "$1 – $2"
+orphography.item("i)([" . num . "]{2}:[" . num . "]{2})[" . space . "]?[" . hyphen . "][" . space . "]?([" . num . "]{2}:[" . num . "]{2})") := "$1 – $2"
 
-orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?д\.?)(?=[" . space . punct . newline . "]|$)") := "$1 т. д."
-orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?п\.?)(?=[" . space . punct . newline . "]|$)") := "$1 т. п."
-orphography.item("i)([" . space . newline . "]в)[" . space . "]?(т\.?[" . space . "]?ч\.?)[" . space . punct . "]?([" . word . "]+)") := "$1 т. ч. $3"
-orphography.item("i)(([" . space . newline . lquo . lbrace . "]|^)см)(\.|[" . space . "])[" . space . "]?([" . word . num . "]+)") := "$1. $4"
-orphography.item("i)([" . space . newline . "])им(\.|[" . space . "])[" . space . "?]([" . word . "]+)") := "$1им. $T3"
+orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?д\.?)(?=[" . space . punct . newline . "]|$)") := "$1 т. д."
+orphography.item("i)([" . space . newline . "]и)[" . space . "]?(т\.?[" . space . "]?п\.?)(?=[" . space . punct . newline . "]|$)") := "$1 т. п."
+orphography.item("i)([" . space . newline . "]в)[" . space . "]?(т\.?[" . space . "]?ч\.?)[" . space . punct . "]?([" . word . "]+)") := "$1 т. ч. $3"
+orphography.item("i)(([" . space . newline . lquo . lbrace . "]|^)см)(\.|[" . space . "])[" . space . "]?([" . word . num . "]+)") := "$1. $4"
+orphography.item("i)([" . space . newline . "])им(\.|[" . space . "])[" . space . "?]([" . word . "]+)") := "$1им. $T3"
 
 refWord := "рис|Рис|гл|Гл|илл|Илл|стр|Стр|разд|Разд"
-orphography.item("i)([" . space . newline . lbrace . lquo . "]|^)(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. $3"
-orphography.item("([" . space . newline . lbrace . lquo . "]|^)(см|См)\.?[" . space . "]?(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. $3. $4" ;TODO: make см. гл., см. разд., …
+orphography.item("i)([" . space . newline . lbrace . lquo . "]|^)(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. 3"
+orphography.item("([" . space . newline . lbrace . lquo . "]|^)(см|См)\.?[" . space . "]?(" . refWord . ")\.?[" . space . "]?([" . num . romNum . "]+[\.-]?[" . word . num . romNum . "]*)") := "$1$2. $3. $4" ;TODO: make см. гл., см. разд., …
 
-orphography.item("([" . space . "])и([" . space . "]др\.?)(?=[" . space . newline . punct . "]|$)") := "$1и др."
+orphography.item("([" . space . "])и([" . space . "]др\.?)(?=[" . space . newline . punct . "]|$)") := "$1и др."
 
 addrWord := "г|ул|пр|адр"
-orphography.item("i)([" . space . newline . "]|^)(" . addrWord . ")(\.[" . space . "]?|[" . space . "])(?=[" . word . "])") := "$1$2. "
+orphography.item("i)([" . space . newline . "]|^)(" . addrWord . ")(\.[" . space . "]?|[" . space . "])(?=[" . word . "])") := "$1$2. "
 addrNum := "кв|корп|пар|п|код|тел|индекс|инд|д|адр"
-orphography.item("i)([" . space . newline . "]|^)(" . addrNum . ")(\.[" . space . "]?|[" . space . "])(?=[" . num . "])") := "$1$2. "
+orphography.item("i)([" . space . newline . "]|^)(" . addrNum . ")(\.[" . space . "]?|[" . space . "])(?=[" . num . "])") := "$1$2. "
 
 orphography.item("i)([" . space . newline . lquo . lbrace . "]|^)(н)[" . space . "]?(да+)(?=[" . space . punct . rquo . rbrace . "]|$)") := "$1$2-$3"
-
-;TODO бы ль б же ж ли
 
 
 ;===================================================================================== PUNCTUATION
 punctuation := ComObjCreate("Scripting.Dictionary")
 
 punctuation.item("") := "" ;first replacement didnt work. It's a bug of autohotkey
-punctuation.item("([" . word . "]+[" . rquo . "]?[" . punct . "])[" . space . "]?[" . hyphen . "]{1,4}[" . space . "]?") := "$1 — " ;TODO: check is it neccessary to insert space between , and –, eg. "I'll not do it",– he said.
+punctuation.item("([" . word . "]+[" . rquo . "]?[" . punct . "])[" . space . "]?[" . hyphen . "]{1,4}[" . space . "]?") := "$1 — " ;TODO: check is it neccessary to insert space between , and –, eg. "I'll not do it",– he said.
 ;punctuation.item("([" . word . punct . "]+)\.[" . space . "]([" . ru . "]+)") := "$1. $T2" ;make sentences from Capital: conflict with т.к.
 
 punctuation.item("([^\,])([" . space . "]+)(а|но)[" . space . punct . "]") := "$1, $3 "
@@ -277,11 +291,11 @@ punctuation.item("\;+") := ";"
 punctuation.item("([^\?])\?\?([^\?])") := "$1?$2"
 punctuation.item("([^\!])\!\!([^\!])") := "$1!$2" 
 
-punctuation.item("[" . space . rquo . "][" . hyphen . "][" . space . "](?=[" . word . quo . num . "])") := " — " ;dash inside sentence
-punctuation.item("[" . space . "][" . hyphen . "](?=[" . newline . "])") := " —" ;dash on end of line
+punctuation.item("[" . space . rquo . "][" . hyphen . "][" . space . "](?=[" . word . quo . num . "])") := " — " ;dash inside sentence
+punctuation.item("[" . space . "][" . hyphen . "](?=[" . newline . "])") := " —" ;dash on end of line
 punctuation.item("([" . newline . "])[" . hyphen . "](?=[" . space . newline . "][" . word . "])") := "$1—" ;start dialogue sentence of section with dash
 
-punctuation.item("i)([" . space . newline . "]|^)([А-Я])\.[" . space . "]?([А-Я])\.[" . space . "]?([" . ru . "]+)(?=[" . space . punct . rquo . rbrace . newline . "])") := "$1$2. $3. $4" ;make RU name initials
+punctuation.item("i)([" . space . newline . "]|^)([А-Я])\.[" . space . "]?([А-Я])\.[" . space . "]?([" . ru . "]+)(?=[" . space . punct . rquo . rbrace . newline . "])") := "$1$2. $3. $4" ;make RU name initials
 
 ;punctiuation.item("…([space+][" . . "])")
 
@@ -296,9 +310,15 @@ nobrs.item("") := ""
 nobrs.item("i)(([" . word . "]+[" . hyphen . "])+[" . word . "]+)") := "<nobr>$1</nobr>" ;common words-through-hyphen
 nobrs.item("(\+?[" . num . hyphen . space . dash . brace . "\.x]+[" . num . "])") := "<nobr>$1</nobr>" ;common phone number
 
+
+
+;TODO бы ль б же ж ли
 nbsps := ComObjCreate("Scripting.Dictionary")
 nbsps.item("") := ""
-nbsps.item("([" . space . "])([" . word . "]{1,3})([" . space . "])") := "$1$2 " ;all words of <3 length do nbspaced
+
+nbspParticles = "б|ль|бы|же|ль|ж|ли"
+nbsps.item("([" . word . "]+)[ ](" . nbspParticles . ")(?=[" . space . punct . "])") := "$1 $2"
+nbsps.item("( [" . word . "]{1,3})( )(?=[" . word . "]{3,})") := "$1 " ;all words of <3 length do nbspaced
 
 
 ;==================================TODO: hyphens
@@ -332,26 +352,26 @@ pointedCurrencyWord := "руб|долл"
 amountWord := "тыс|млн|млрд"
 numPatt := "\b[" . num . "]+[\.,]?[" . num . "]*"
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2. $L3."
-mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2. $L3."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2."
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 $L2. у.е."
-mathRules.item("i)(" . numPatt . ")[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 у.е."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 $L2. у.е."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 у.е."
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?евро?") := "$1 $L2. евро"
-mathRules.item("i)(" . numPatt . ")[" . space . "]?евро?") := "$1 евро"
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?евро?") := "$1 $L2. евро"
+mathRules.item("i)(" . numPatt . ")[" . space . "]?евро?") := "$1 евро"
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . currency . "])") := "$1 $2"
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . currency . "])") := "$1 $2"
 mathRules.item("i)([" . currency . "])[" . space . "]?(" . numPatt . ")") := "$1$2" ;TODO: this is difference from typograf.ru needed to be noted
 
 afterUnit := "dpi|ppi|px|em|cm|pt|pc|m|km|mph|ml|deg"
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . afterUnit . ")") := "$1 $2"
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . afterUnit . ")") := "$1 $2"
 
 phoneDiv := "[" . space . "]?[" . hyphen . "]?[" . space . "]?"
 
-mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?[\(]?([" . num . "]{1,5})[\)]?[" . space . "]?([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])(?=[^" . num . "]{2,})") := "$1$2 ($3) $4$5$6-$7$8-$9${10}" ;SPb phones +7 (999) 1112233 → +7 (999) 111-22-33
-mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?([\(][" . num . "]{1,5}[\)])[" . space . "]?([" . num . "]{4,10}[" . space . "]?[" . num . "]*[" . space . "]?[" . num . "]*)(?=[^" . num . "]{2,}|$)") := "$1$2 $3 $4" ;Simple phones
+mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?[\(]?([" . num . "]{1,5})[\)]?[" . space . "]?([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])([" . num . "])(?=[^" . num . "]{2,})") := "$1$2 ($3) $4$5$6-$7$8-$9${10}" ;SPb phones +7 (999) 1112233 → +7 (999) 111-22-33
+mathRules.item("([" . space . newline . punct . "]|^)(\+[" . num . "])[" . space . "]?([\(][" . num . "]{1,5}[\)])[" . space . "]?([" . num . "]{4,10}[" . space . "]?[" . num . "]*[" . space . "]?[" . num . "]*)(?=[^" . num . "]{2,}|$)") := "$1$2 $3 $4" ;Simple phones
 
 ;---------units work
 uUnit := {ru:"", en:""}
@@ -379,13 +399,13 @@ unit := ruunit . "|" . enunit
 
 specUnits := "° ′ ″ µ Ω эВ а.е.м. а.е. Белл ангстрем "
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((" . uunit["ru"] . "|" . uunit["en"] . ")([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3$T5$6" ;prefixed upper units
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((" . uunit["ru"] . "|" . uunit["en"] . ")([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3$T5$6" ;prefixed upper units
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((" . lunit["ru"] . "|" . lunit["en"] . ")([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3$L5$6" ;prefixed lower units
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((" . lunit["ru"] . "|" . lunit["en"] . ")([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3$L5$6" ;prefixed lower units
 
-mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((Ohm)([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3Ω$6" ;make ohms
-mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((Cels|celsium|deg c|c deg)[" . space . "]?([" . pow . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3°C$6" ;make celsium
-mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(u|micro)((" . enunit . ")([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 µ$5$6" ;make micro
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((Ohm)([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3Ω$6" ;make ohms
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(" . unitPrefix ")?((Cels|celsium|deg c|c deg)[" . space . "]?([" . pow . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 $3°C$6" ;make celsium
+mathRules.item("i)(" . numPatt . ")[" . space . "]?([" . pow . "]+)?[" . space . "]?(u|micro)((" . enunit . ")([" . pow . num . "]+)?)(?=[" . space . newline . punct . "]|$)") := "$1$2 µ$5$6" ;make micro
 
 
 ;--------convert num after unit to pow
