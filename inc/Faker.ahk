@@ -2,6 +2,8 @@
 ; - fake generator
 ; - define if length reached
 ; - correct lorem to standart generator way
+; - customize date
+; - make url
 
 fakeData := {en : {}, ru : {}} ;main data array
 
@@ -525,7 +527,6 @@ getLorem(request){
     leNumber := randNum( 1, maxLeNumber ) ;number to be used as lorem version. 
     
     reqlen := StrLen(request)
-    clear(reqlen + 2)
 
     backupClipboard()
 

@@ -12,6 +12,8 @@
 ;fuck birman, do useful french symbol
 ; TODO: debug faker in eclipse
 
+;TODO: faker date & lorem normalize
+
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -29,6 +31,7 @@ local := "en" ;current language
 #Include %a_scriptdir%/inc/Combinations.ahk
 #Include %a_scriptdir%/inc/Faker.ahk
 #Include %a_scriptdir%/inc/Typograf.ahk
+#Include %a_scriptdir%/inc/Evaluate.ahk
 ;#Include inc/TF.ahk
 ;#Include ./inc/Groups.ahk
 ;#Include ./inc/Menu.ahk
@@ -36,7 +39,19 @@ local := "en" ;current language
 ;#Include ./inc/Selection.ahk
 
 
+;==============================WS tests
+;__WS_iScriptControlObj__ := ""
+;__WS_iScriptErrorObj__ := ""
 
+;#Include %a_scriptdir%/inc/ws4ahk.ahk
+
+;msscriptpath := a_scriptdir . "\msscript.ocx"
+
+;msgbox, %msscriptpath%
+
+;WS_Initialize( "JScript", msscriptpath )
+;WS_Exec("alert('Hello, I'm JS)")
+;WS_Uninitialize()
 
 ;==================================Make load on startup, if launched first time
 sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
@@ -126,11 +141,18 @@ escapeBirmanDiacritics(combo){
 ^+!sc014::
     backupClipboard()
 	
-    insert( typograf( getSelectedText() ) )
+    insertAndRestore( typograf( getSelectedText() ) )
 	
-    restoreClipboard()
+    //restoreClipboard()
     return
 
+;========================================================= Evaluate selected
+;+^e::
+^+!sc012::
+    backupClipboard()
+    ;insertAndRestore( evaluate( getSelectedText()) )
+
+    return
 
 ;========================================LC, UC selection
 ;+^!u::

@@ -113,12 +113,14 @@ insert(text){
 insertAndRestore(text){
     ;msgbox, insert: %text%
     clipboard := ""
-    ClipWait .3
+    ClipWait .1
     clipboard = %text%
     ;clipboard = %clipboard% ;convert format to plain text
     Sleep, 300 ;To clean text inside []
-    msgbox, Insert: %clipboard% ;this "magic" allows to make proper clipboard going. 
-    ClipWait .3, 1
+    
+    msgbox, Insert: %clipboard% ;this "magic" allows to make proper clipboard going.
+
+    ClipWait .1, 1
     ;SendEvent +{insert}
     Send ^v
     return text
