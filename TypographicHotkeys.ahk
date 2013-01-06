@@ -16,7 +16,7 @@
 
 ;TODO: make auto nbsp after в городе…
 ;TODO: make ru quotes easy autoinput
-;TODO: make a' autoconvert to á
+;TODO: make a' autoconvert to á o
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
