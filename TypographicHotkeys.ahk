@@ -14,9 +14,9 @@
 
 ;TODO: faker date & lorem normalize
 
-
-;TODO: make autochange of apostrophs after you're
 ;TODO: make auto nbsp after в городе…
+;TODO: make ru quotes easy autoinput
+;TODO: make a' autoconvert to á
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
@@ -715,7 +715,7 @@ RAlt Up::
 
 
 ;---------------string replacements
-:*:...::…
+:?*:...::…
 :*:(c)::©
 :*:(r)::® 
 :*:(tm)::™
