@@ -14,6 +14,10 @@
 
 ;TODO: faker date & lorem normalize
 
+
+;TODO: make autochange of apostrophs after you're
+;TODO: make auto nbsp after в городе…
+
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -553,8 +557,11 @@ RAlt Up::
 +!sc02c::
     Send ¸
     return
-!0::
++!0::
     Send º
+    return
+!0::
+    Send °
     return
 ;!s::
 !sc01f::
@@ -616,11 +623,8 @@ RAlt Up::
     Send ∙
     return
 
-::...::…
-::(c)::©
-::(r)::® 
-::(tm)::™
-::(sm)::℠
+
+
 
 ^+!1::
     Send ¹
@@ -652,6 +656,7 @@ RAlt Up::
 ^+!0::
     Send ⁰
     return
+
 
 ^+!Up::
     Send ▲
@@ -707,3 +712,17 @@ RAlt Up::
 !sc035::
     Send ‽
     return
+
+
+
+;---------------string replacements
+::...::…
+::(c)::©
+::(r)::® 
+::(tm)::™
+::(sm)::℠
+::←→::↔
+
+;--------------apostrophes
+
+;--------------nobrs
