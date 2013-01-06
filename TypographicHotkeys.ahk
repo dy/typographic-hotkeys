@@ -24,7 +24,7 @@
 #Warn UseUnsetGlobal ; Recommended for catching common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
+;#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
 
 locals := ["ru","en"]
 local := "en" ;current language 
@@ -714,15 +714,29 @@ RAlt Up::
     return
 
 
-
 ;---------------string replacements
-::...::…
-::(c)::©
-::(r)::® 
-::(tm)::™
-::(sm)::℠
-::←→::↔
+:*:...::…
+:*:(c)::©
+:*:(r)::® 
+:*:(tm)::™
+:*:(sm)::℠
+:*:←→::↔
 
-;--------------apostrophes
+;--------------en apostrophes
+:?*:n't::n’t
+;:*:et's::et’s   ;let’s
+:?:'m::’m
+:?:'re::’re
+:?:'s::’s
+:?:s'::s’
+:?:'st::’st
+:?:'ve::’ve
+:?:'d::’d
+:?:'ll::’ll
+:?:'em::’em 
+:?:'im::’im 
+:*:o'::o’ ;o'clock
+;-----------------fr apostrophes
+:*:l'::l’ ;l'heure
 
 ;--------------nobrs
