@@ -16,7 +16,9 @@
 
 ;TODO: make auto nbsp after в городе…
 ;TODO: make ru quotes easy autoinput
-;TODO: make a' autoconvert to á o
+;TODO: replace combos with dynamic hotstrings
+
+;TODO: make assigning hotstrings in runtime based on selected text
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 
@@ -36,6 +38,8 @@ local := "en" ;current language
 #Include %a_scriptdir%/inc/Faker.ahk
 #Include %a_scriptdir%/inc/Typograf.ahk
 #Include %a_scriptdir%/inc/Evaluate.ahk
+#Include %a_scriptdir%/inc/Hotstrings.ahk
+;#Include %a_scriptdir%/inc/HotstringsHelper.ahk ;improper
 ;#Include inc/TF.ahk
 ;#Include ./inc/Groups.ahk
 ;#Include ./inc/Menu.ahk
@@ -736,7 +740,22 @@ RAlt Up::
 :?:'em::’em 
 :?:'im::’im 
 :*:o'::o’ ;o'clock
+:?:in'::in’ ;crackin' 
 ;-----------------fr apostrophes
 :*:l'::l’ ;l'heure
+:*:d'::d’ ;d'or
 
 ;--------------nobrs
+:*:fu`t::
+(
+function () {
+var self = this, o = self.options;
+
+return self;
+}
+)
+
+;------------a few useful JS replacements
+:*R:){::) {
+:*R:if(::if (
+:?*R:ion(::ion (
