@@ -2,12 +2,9 @@
 ; some bugs when combo outside of [], for example []lorem, and besides, when just ] appeared. So, when you see [], try to grab combo inside, not a listening of something.
 ; some bugs with compose in SciTe
 ; if language - cyrillic, make «» instead of "" on key 2
-; correct birman diacritics: ?! doesnt give ‽
 ; sometimes it gives → when laptop awakes
-; make listview: it's not bad, actually, for character & description
 ; sometimes catches bug, like with fakeData["en"]["lastName"] changes to something with umlaut ¨ and 3-4 symbols of length
 ; make destructors & inspect on memory leaks
-; simple ["…"] went bad
 ; TODO: debug photoshop
 ;fuck birman, do useful french symbol
 ; TODO: debug faker in eclipse
@@ -20,8 +17,12 @@
 
 ;TODO: make assigning hotstrings in runtime based on selected text
 
-;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
+;2 MAIN TODOS:
+;1. Autoreplacements of spaces between prepositions 
+;2. Alternating groups, reading prepositions from 
 
+
+;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn UseUnsetGlobal ; Recommended for catching common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -31,43 +32,23 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 locals := ["ru","en"]
 local := "en" ;current language 
 
-;#Include ./inc/Gdip.ahk
-#Include %a_scriptdir%/inc/KbdLayout.ahk
+;#Include %a_scriptdir%/inc/KbdLayout.ahk
 #Include %a_scriptdir%/inc/Util.ahk
 #Include %a_scriptdir%/inc/Combinations.ahk
+#Include %a_scriptdir%/inc/Groups.ahk
 #Include %a_scriptdir%/inc/Faker.ahk
 #Include %a_scriptdir%/inc/Typograf.ahk
-#Include %a_scriptdir%/inc/Evaluate.ahk
-#Include %a_scriptdir%/inc/Hotstrings.ahk
-;#Include %a_scriptdir%/inc/HotstringsHelper.ahk ;improper
-;#Include inc/TF.ahk
-;#Include ./inc/Groups.ahk
-;#Include ./inc/Menu.ahk
-;#Include ./inc/HTML.ahk
-;#Include ./inc/Selection.ahk
 
 
-;==============================WS tests
-;__WS_iScriptControlObj__ := ""
-;__WS_iScriptErrorObj__ := ""
-
-;#Include %a_scriptdir%/inc/ws4ahk.ahk
-
-;msscriptpath := a_scriptdir . "\msscript.ocx"
-
-;msgbox, %msscriptpath%
-
-;WS_Initialize( "JScript", msscriptpath )
-;WS_Exec("alert('Hello, I'm JS)")
-;WS_Uninitialize()
-
-;==================================Make load on startup, if launched first time
+;============================================================Make load on startup, if launched first time
 sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
 ;IfNotExist, %sname%
     ;MsgBox, %sname%
     FileCreateShortcut, %A_ScriptFullPath%, %sname%
 
-;============================================================Main handler
+
+;============================================================Main handler of combos
+
 lastResult := "" ;stores last found symbol
 ;----------------------Searches for combination in list
 getCombo(list, cmb){
@@ -80,7 +61,7 @@ getCombo(list, cmb){
     return false
 }
 ;----------------------Outputs combo as ASCII/UTF code (windows alt-code)
-;------------Bad function style, but it's simplier to output here
+;Bad function style, but it's simplier to output here
 getCharFromUTF(combo){
     code := combo + 0
     if (code > 255){ ;do utf
@@ -144,6 +125,63 @@ escapeBirmanDiacritics(combo){
     }
     return combo
 }
+
+;==================================================== Groups handler helpers
+strokeCount := 
+;TODO: based on str passed (combo stroked while LAlt pressed) returns symmbol needed to insert. 
+;It’s a good replacement of shortkeys list below (get rid of it, by the way)
+getGroupSymbol(str, lastSymbol){
+    ;TODO: detect here needed group
+    return "" ;TODO return string needed to insert
+}
+
+;$LAlt::SendInput, {LAlt}
+
+makeGroupHandler(key){
+    Hotkey, LAlt & %key%, HandleGroupPress
+    Hotkey, LAlt & %key% Up, HandleGroupUp
+    return
+}
+
+makeGroupHandler("sc01e")
+
+HandleGroupPress:
+    ;Detect if first time gained
+    if (strokeCount == "") {
+        ;MsgBox, Init first time
+        global strokeCount := 0
+    } else {
+        ; TODO: ignore if modifiers are set
+        if (GetKeyState("LCtrl") || GetKeyState("LShift")) {
+            MsgBox, %a_thishotkey%
+            ;SendInput %a_thishotkey%
+            return
+        }
+
+        ; TODO: ignore adjacent keys
+
+        global strokeCount := strokeCount + 1
+        ;Ignore backspace on first press
+        if (strokeCount == 1) {
+            SendInput %strokeCount%
+        } else {
+            SendInput {Backspace}%strokeCount%
+        }    
+    }
+    return
+
+HandleGroupUp:
+    altPressed := false
+    KeyWait LAlt
+    ;MsgBox, %strokeCount%
+    strokeCount := 0
+    return
+
+
+
+
+
+
 ;===================================================== Typograph of selected text
 ;+^t::
 ^+!sc014::
@@ -151,18 +189,9 @@ escapeBirmanDiacritics(combo){
 	
     insertAndRestore( typograf( getSelectedText() ) )
 	
-    //restoreClipboard()
     return
 
-;========================================================= Evaluate selected
-;+^e::
-^+!sc012::
-    backupClipboard()
-    ;insertAndRestore( evaluate( getSelectedText()) )
-
-    return
-
-;========================================LC, UC selection
+;======================================== LC, UC selection
 ;+^!u::
 +^!sc016::
     backupClipboard()
@@ -181,10 +210,8 @@ escapeBirmanDiacritics(combo){
     restoreClipboard()
     return
 
-;======================================== CSS color flatten (?)
 
-
-;===================================================== Duplicate selection shortcut: problem with selecting text
+;=========================== Duplicate selection shortcut: problem with selecting text
 ;repeatDuplicateFlag := false ;is duplicate repeated
 ;+^d::
 ;^+sc020::
@@ -239,6 +266,8 @@ RAlt Up::
 ;    return
 
 
+
+
 ;=========================================================Symbol sequences handler
 ;~[::
 ~sc01a Up::
@@ -264,87 +293,12 @@ RAlt Up::
     return
 
 
-;========================================================Web-dev key behaviour
-;AppsKey Up::
-;    SendEvent {CtrlBreak}
-;    return
-
-;AppsKey::
-;    SendEvent {CtrlBreak} ;That's a fucking strange bugfix intended to get rid of "initial pumping" of AppKey. If to switch it ;off, first launch will not be handled correctly (keypressing will be ignored)
-;    
-;    menuType := "" ;type of menuType to perform 
-;
-;   backupClipboard()
-;
-;    ;Something goes wrong here
-;    SendInput ^c
-;
-;    ;TODO: check not is copied something, but is selected something. Because of in Sublime nothing selected, but entire row copied
-;    ;if (clipboard) {
-;    ;    ;selection isn't empty.
-;    ;    menuType := "selection"
-;    ;    Input, combo, V,{CtrlBreak}
-;    ;    MsgBox, stopd
-;    ;} else {  
-;        ;MsgBox, isabout
-;        ;selection is empty. Type symbols  
-;        Input, combo, V ,{CtrlBreak}
-;        ;MsgBox, justafter
-;        menuType := "selection"
-;        selection := clipboard
-    ;}
     
 
     ;seek for where is caret now
     ;CaretPos := getCaretPosition()
     ;CaretX := CaretPos["x"]
     ;CaretY := CaretPos["y"]
-
-    ;testBinary()
-
-    ;Menu, TestMenu, add, Item1, MenuHandler
-    ;Menu, TestMenu, Show, %CaretX%, %CaretY%
-
-;    combo := combo . ""
-;
-;    if (combo || combo == 0) { 
-;        ;Something typed while appkey was pressed
-;        ;selectBefore(strlen(combo)) ;select inputted combo;;
-;
-;        if (menuType == "selection") {
-;            ;If wrap intention - wrap with html tag
-;            ;resStr := wrapWithTag(clipboard, combo)
-;            ;clipboard = %resStr%
-;            ;Send ^v
-;        } else if (strlen(combo) == 1) {
-;            ;
-;        } else {
-
-;        }
-
-        ;Loop, 10
-        ;{sdfds
-        ;    LV_Add("", A_Index, "a", "b", "c")
-        ;}
-
-;    } else { 
-        ;Appskey just pressed and released
-;        if (menuType == "selection") {
-            ;Nothing was typed – call menu of selected symbol    
-;            ref := getCharRef(selection)
-;            if (ref) {
-;                group := ref.group, desc := ref.description, groupSet := getGroupSet(group)
-;                MsgBox, %group%|%desc%|%groupSet%;
-
-                ;TODO: make listView
-;                showMenu(group)
-;            }
-;        }
-;    }
-
-;    restoreClipboard()
-
-;    return
 
 
 

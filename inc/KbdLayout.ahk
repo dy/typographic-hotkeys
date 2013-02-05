@@ -1,3 +1,6 @@
+;Supposed that somewhen there would be KBD detection. But I’m lazy, actually, dig in shit of WinAPI.
+; So, probably, this file will be abandoned.
+
 KLF_ACTIVATE := 1
 KL_NAMELENGTH := 16
 

@@ -1,7 +1,9 @@
-﻿;TODO: 
-; - fake generator
+﻿;Generates some fake data
+;Actually, it’s not completed fully
+
+;TODO:
 ; - define if length reached
-; - correct lorem to standart generator way
+; - randomize lorem
 ; - customize date
 ; - make url
 

@@ -1745,6 +1745,7 @@ extensions.item("option") := "⌘"
 extensions.item("clever") := "⌘"
 extensions.item("scissors") := "✂"
 extensions.item("cut") := "✂"
+extensions.item("exclude") := "✂"
 
 ;----------------------------------Shapes
 extensions.item("square") := "■"

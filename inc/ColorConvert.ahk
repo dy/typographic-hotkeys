@@ -1,4 +1,0 @@
-﻿rgbaRE := ""
-hslaRE := ""
-
-colorNames := ""

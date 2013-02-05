@@ -12,7 +12,7 @@ Typographic Hotkeys™ extend default Windows keyboard with some useful typograp
 
 There are few ways to insert special characters.
 
-1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt + -</kbd> = `–`, <kbd>Shift + Alt + -</kbd> = `—`, … See <a href="https://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#hotkeys">full list of shortcuts</a>.
+1. **Shortcuts**. Use <a href="http://www.nouilles.info/keyboard_shortcuts.html">OS X shortcuts for special characters</a>, just as if you were using Mac. For example, <kbd>Alt + -</kbd> = `–`, <kbd>Shift + Alt + -</kbd> = `—`, … See <a href="https://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#hotkeys">full list of shortcuts</a>. More, if you press <kbd>Alt + [Key]</kbd> multiple times, it will alternate variants.
 2. **Compose Keys**. Symbols are inserted by means of typing some characters while <kbd>Compose Key</kbd> being pressed. <kbd>Compose Key</kbd> is assigned to the <kbd>AltGr</kbd> (the same as <kbd>Right Alt</kbd>). Compose combinations vastly extended to cover a lot more than just Linux/Solaris combinations, see <a href="http://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#compose-key-combinations">full list</a>.
 3. **Typing in brackets**. Type sequence in square brackets, and it will be automatically changed to according symbol, if exists one. For example, `[beta]` will be changed to `β`, and `[mdash]`, as well as `[---]` will be changed to `—`. Supports <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML Symbol Codes</a>, compose key combinations and other sequences (see <a href="https://github.com/dfcreative/windows_typographic_hotkeys/blob/master/COMBINATIONS.md#named-combinations">full list</a>).
 4. **Windows Alt-codes**. You can still type keys by <kbd>Alt + uCode</kbd>. For example, <kbd>Alt+0151</kbd> will get `—`. Unicode sequences are included to combinations, so typing `[0151]` will result the same.
@@ -26,20 +26,13 @@ Sequences below will be automatically transformed when typing has finished
  * `...` → `…`
  * spaces after prepositions → [nbsp]
 
-### 3. [pending – 2d remain] Convert color
-
-Transforms found colors in selected string to passed format. For exaple, select `, rgba(25,45,32,.43)`. Hold <kbd>Menu key</kbd>, type rgb and selection will be transformed to [TODO] `, rgb(?,?,?)`. Supported format conversions: rgb, rgba, hsl, hsla, hex, #, plain.
-! Supposed that background is white (most common case). Do not use alpha conversion with background other than white.
-Nice use case: select all your css, press <kbd>Menu Key + rgb</kbd>, all recognized colors will be converted to `rgb` format. It will enhance rendering of page %)
-
-
 ### 4. Fake data generator
 
 Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
-* Move combos to separate file
+* Make alt+… repeating strokes alternats input symbol. Like easiest-possible groups, no popups… Just inputs symbol. Alt+a → å, Alt+a+a → ä, … 
 * Generate data hotkey for handling selection w/data
 * Color convertor
 * Image with description

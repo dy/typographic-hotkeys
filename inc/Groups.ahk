@@ -7,6 +7,7 @@ charReferences := ComObjCreate("Scripting.Dictionary") ;reference on every chara
 
 groups.item("``") := "``'"
 charReferences.item("``") := "``"
+charReferences.item("'") := "``"
 
 
 groups.item("1") := "1¹"
@@ -32,7 +33,7 @@ charReferences.item("6") := ""
 groups.item("7") := "7⁷"
 charReferences.item("7") := ""
 
-groups.item("8") := "8⁸"
+groups.item("8") := "8⁸∞"
 charReferences.item("8") := "8"
 
 groups.item("9") := "9⁹"
