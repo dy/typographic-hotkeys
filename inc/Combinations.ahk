@@ -1746,6 +1746,11 @@ extensions.item("clever") := "⌘"
 extensions.item("scissors") := "✂"
 extensions.item("cut") := "✂"
 extensions.item("exclude") := "✂"
+extensions.item("cutup") := "✁"
+extensions.item("cut up") := "✁"
+extensions.item("cutbott") := "✃"
+extensions.item("cutbottom") := "✃"
+extensions.item("cut bottom") := "✃"
 
 ;----------------------------------Shapes
 extensions.item("square") := "■"
