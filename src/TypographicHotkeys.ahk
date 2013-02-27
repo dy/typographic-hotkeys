@@ -16,6 +16,7 @@
 ;TODO: replace combos with dynamic hotstrings
 
 ;TODO: make assigning hotstrings in runtime based on selected text
+;TODO: make old-russian converter
 
 ;2 MAIN TODOS:
 ;1. Autoreplacements of spaces between prepositions 
@@ -26,6 +27,9 @@
 ;2.3 Make symbol combinations through alt
 ;2.4 Make description on selected element
 ;2.5 Make timeouts
+
+;3. Load settings from file
+;3.1 Load resources form files
 
 ;TODO: make timeouts on combo input
 
@@ -43,7 +47,6 @@ local := "en" ;current language
 #Include %a_scriptdir%/inc/KbdLayout.ahk
 #Include %a_scriptdir%/inc/Util.ahk
 #Include %a_scriptdir%/inc/Combinations.ahk
-#Include %a_scriptdir%/inc/Groups.ahk
 #Include %a_scriptdir%/inc/Faker.ahk
 #Include %a_scriptdir%/inc/Typograf.ahk
 
@@ -134,20 +137,39 @@ escapeBirmanDiacritics(combo){
 }
 
 ;==================================================== Groups handlers
-;Strokekey is a current key of hotkey (without specs) pressed.
-;StrokeChar is a key, translated to kbd layout
-strokeCount := 
-strokeChar :=
-strokeKey :=
+strokeCount := ;Times one key pressed
+strokeChar := ;StrokeChar is a key, translated to kbd layout
+strokeKey := ;Strokekey is a current key of hotkey (without specs) pressed.
+groups := ComObjCreate("Scripting.Dictionary") ;basic dictionary of symbol-groups by keys of letters 
 
-;TODO: based on str passed (combo stroked while LAlt pressed) returns symmbol needed to insert.
-getGroupSymbol(str, lastSymbol){
-    ;TODO: detect here needed group
-    return "" ;TODO return string needed to insert
+;Make groups grom file
+initGroups(file) {
+    global groups
+    Loop, read, %file%
+    {
+        ;msgbox, %A_LoopReadLine%
+        group := Trim(A_LoopReadLine)
+        if (group){
+            firstLetter := subStr(group, 1, 1)
+            if (firstLetter != ";") {
+                groups.item(firstLetter) := group
+            }
+        }
+    }
 }
 
-;$LAlt::SendInput, {LAlt}
+initGroups(a_scriptdir . "`\groups.txt")
 
+;Returns Nth element of Mth group
+getGroupMember(groupKey, number){
+    global groups
+    groupStr := groups.item(groupKey)
+    groupLen := strLen(groupStr)
+    char := subStr(groupStr, Mod(number+1, groupLen), 1)
+    return char
+}
+
+;Creates hotkey binding for key
 makeGroupHandler(key){
     Hotkey, LAlt & %key%, HandleGroupPress
     Hotkey, LAlt & %key% Up, HandleGroupUp
@@ -369,7 +391,7 @@ RAlt Up::
 :?:'ll::’ll
 :?:'em::’em 
 :?:'im::’im 
-:*:o'::o’ ;o'clock
+;:*:o'::o’ ;o'clock
 :?:in'::in’ ;crackin' 
 ;-----------------fr apostrophes
 :*:l'::l’ ;l'heure
