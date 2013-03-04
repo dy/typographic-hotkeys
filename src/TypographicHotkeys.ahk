@@ -59,6 +59,14 @@ sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
 
 ;============================================================Main handler of combos
 
+;Main char info getter
+getCharDesc(char){
+	str := "Description of char " . char
+
+	return str
+}
+
+
 lastResult := "" ;stores last found symbol
 ;----------------------Searches for combination in list
 getCombo(list, cmb){
@@ -151,13 +159,10 @@ initGroups(file) {
         group := Trim(A_LoopReadLine)
         if (group){
             firstLetter := subStr(group, 1, 1)
-            if (firstLetter != ";") {
-                groups.item(firstLetter) := group
-            }
+            groups.item(firstLetter) := group
         }
     }
 }
-
 initGroups(a_scriptdir . "`\groups.txt")
 
 ;Returns Nth element of Mth group
@@ -180,20 +185,27 @@ makeGroupHandler(key){
 makeGroupHandlers() {
     global enLayout
     global ruLayout
+    global miscLayout
 
     kl := getDefaultKeyboardLayout()
     layout :=
-
-    if (kl == KeyboardLayout_EN){
+    if (kl == 409){
         layout := enLayout
-    } else if (kl == KeyboardLayout_RU){
+    } else if (kl == 419){
         layout := ruLayout
     } else {
         msgbox, TypographicHotkeys: Layout %kl% isn’t supported. Please, contribute https://github.com/dfcreative/windows_typographic_hotkeys
     }
 
-    ;for each key in layout
+    ;bind layout keys
     keys := layout.keys()
+    For key in keys
+    {
+        makeGroupHandler(key)
+    }
+
+    ;bind layout independent keys
+    keys := miscLayout.keys()
     For key in keys
     {
         makeGroupHandler(key)
@@ -224,19 +236,32 @@ HandleGroupPress:
         ;First press
         if (strokeCount == 1) {
             ;Catch key & char pressed
-            global strokeKey := SubStr(a_thishotkey, -3)            
+            ;global strokeKey := SubStr(a_thishotkey, -3)
+
+            Delimiter := "&!"
+			OmitChar := " "
+
+            StringSplit, out, a_thishotkey, %Delimiter%, %OmitChar%
+            global strokeKey := out2
+            ;msgbox, %strokeKey%
+
             global strokeChar := translateKey(strokeKey, GetKeyState("LShift"), getCurrentKeyboardLayout())
             ;msgbox, %strokeChar%
 
             ;Show initial char ignoring backspace
             charPut := getGroupMember(strokeChar, strokeCount)
+            ;msgbox, %strokeChar%
             SendInput {Raw}%charPut%
+
+            ;Show proper tooltip hint
+            showTooltip(getCharDesc(charPut))
         } 
 
         ;Second and more press - replace symbol
         else {
             charPut := getGroupMember(strokeChar, strokeCount)
             SendInput {Backspace}{Raw}%charPut%
+            showTooltip(getCharDesc(charPut))
         }
     }
     return
@@ -247,8 +272,37 @@ HandleGroupUp:
     ;MsgBox, %strokeCount%
     strokeCount := 0
     strokeChar := 
-    strokeKey := 
+    strokeKey :=
+    hideTooltip(300)
     return
+
+
+;==================Tooltips
+CoordMode, ToolTip, Screen
+CoordMode, Caret, Screen
+
+showToolTip(text) {
+	MouseGetPos, tx, ty
+	if (A_caretX) {
+		tx := a_caretx
+	}
+	if (A_caretY) {
+		ty := a_caretY
+	}
+	ToolTip, %text% %a_caretx%, X %tx%, Y %ty%
+	SetTimer, RemoveToolTip, 5000
+	return	
+}
+
+hideToolTip(n:=0){
+	SetTimer, RemoveToolTip, %n%
+}
+
+RemoveToolTip:
+SetTimer, RemoveToolTip, Off
+ToolTip
+return
+
 
 ;===================================================== Typograph of selected text
 ;+^t::
