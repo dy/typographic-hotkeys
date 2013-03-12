@@ -33,6 +33,8 @@
 
 ;TODO: make timeouts on combo input
 
+;TODO: ensure switching Alt off when loaded up after sleep
+
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -216,6 +218,7 @@ makeGroupHandlers()
 
 HandleGroupPress:
     ;Detect if initial time launched
+    global keyListenTimeout
     if (strokeCount == "") {
         ;MsgBox, Init first time
         global strokeCount := 0
@@ -250,11 +253,13 @@ HandleGroupPress:
 
             ;Show initial char ignoring backspace
             charPut := getGroupMember(strokeChar, strokeCount)
-            ;msgbox, %strokeChar%
+            ;msgbox, %charPut%
             SendInput {Raw}%charPut%
 
             ;Show proper tooltip hint
             showTooltip(getCharDesc(charPut))
+
+            intendStopListening()
         } 
 
         ;Second and more press - replace symbol
@@ -262,6 +267,9 @@ HandleGroupPress:
             charPut := getGroupMember(strokeChar, strokeCount)
             SendInput {Backspace}{Raw}%charPut%
             showTooltip(getCharDesc(charPut))
+
+            intendStopListening()
+
         }
     }
     return
@@ -270,12 +278,20 @@ HandleGroupUp:
     altPressed := false
     KeyWait LAlt
     ;MsgBox, %strokeCount%
+    gosub StopListening
+    return
+
+;to reset listening combos
+intendStopListening(n:=3000){ 
+    SetTimer, StopListening, -%n%
+}
+StopListening:     
     strokeCount := 0
     strokeChar := 
     strokeKey :=
     hideTooltip(300)
+    SetTimer, StopListening, Off
     return
-
 
 ;==================Tooltips
 CoordMode, ToolTip, Screen

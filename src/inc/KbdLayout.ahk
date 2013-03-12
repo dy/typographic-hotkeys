@@ -11,10 +11,8 @@ KeyboardLayout_RU := 0x4190419
 LoadKeyboardLayout(keyboardLayout)
 {
 	global KLF_ACTIVATE
-
 	DllCall("user32.dll\LoadKeyboardLayout", "Str", keyboardLayout, "uint", KLF_ACTIVATE)
 }
-
 
 
 ;get current keyboard layout
@@ -182,7 +180,7 @@ enLayoutSC.item("sc015") := "yY"
 enLayoutSC.item("sc02c") := "zZ"
 
 ruLayoutSC := ComObjCreate("Scripting.Dictionary")
-ruLayoutSC.item("VKC0") := "ёЁ" ;vkoem3
+ruLayoutSC.item("sc029") := "ёЁ" ;vkoem3
 ruLayoutSC.item("VK31") := "1!"
 ruLayoutSC.item("VK32") := "2"""
 ruLayoutSC.item("VK33") := "3№"
@@ -332,10 +330,10 @@ miscLayout := ComObjCreate("Scripting.Dictionary")
 ;miscLayout.item("VK27") := "→" ;right
 ;miscLayout.item("VK28") := "↓" ;down
 ;miscLayout.item("VK20") := " " ;space
-miscLayout.item("LEFT") := "←" ;left
-miscLayout.item("UP") := "↑" ;up
-miscLayout.item("RIGHT") := "→" ;right
-miscLayout.item("DOWN") := "↓" ;down
+miscLayout.item("LEFT") := "←◀" ;left
+miscLayout.item("UP") := "↑▲" ;up
+miscLayout.item("RIGHT") := "→▶" ;right
+miscLayout.item("DOWN") := "↓▼" ;down
 miscLayout.item("SPACE") := " " ;space
 miscLayout.item("VKBD") := "-_" ;vkoemminus
 miscLayout.item("VKBB") := "=+" ;vkoemplus
