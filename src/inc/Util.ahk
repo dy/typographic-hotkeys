@@ -55,7 +55,7 @@ clipBackup := ""
 backupClipboard(){  
     global clipBackup  
     clipBackup := clipboard ;clipboardAll?
-    ;msgbox, backup: %clipBackup%
+    ;msgbox, backup: %clipboard%
 }
 restoreClipboard(){ 
     global clipBackup
@@ -65,19 +65,15 @@ restoreClipboard(){
     clipBackup = 
 }
 ;---------retrieves selected text
-getSelectedText(){
-    clipboard =  ; Start off empty to allow ClipWait to detect when the text has arrived.
+getSelectedText(cut:=false){
+    clipboard := "" ; Start off empty to allow ClipWait to detect when the text has arrived.
 
-    ;TODO:
-    ;list := "{ctrl down},{c down},{c up},{ctrl up}"
-    ;Loop Parse, list, `,
-    ;{
-    ;    Sendinput, %A_LoopField%
-    ;    Sleep, 40
-    ;}
-
-    Send ^{insert}
-	Send ^c
+    ;Send ^{insert}
+    if (cut) {
+        Send ^{VK58}
+    } else {
+        Send ^{VK43}
+    }
     ClipWait 2, 1 ; Wait for the clipboard to contain text.
     ;Sleep, 180 ;to assure copying has finished
     val := clipboard
@@ -98,38 +94,30 @@ insert(text){
         return
     }
     ;Sleep, 1000
-    ;list := "{ctrl down},{c down},{c up},{ctrl up}"
-    ;Loop Parse, list, `,
-    ;{
-    ;    Sendinput, %A_LoopField%
-    ;    Sleep, 40
-    ;}
     ;SendEvent +{insert}
-	Send ^v
+	Send ^{VK56}
     return text
 }
 
-;Autohotkey comes up with shit that is different thread for different function. You can't use insert and then restore in somewhere outside
+;Autohotkey comes with shit that makes different thread for different function. You can't use insert and then restore in somewhere outside
 insertAndRestore(text){
     ;msgbox, insert: %text%
     clipboard := ""
-    ClipWait .1
+    ;ClipWait, 1, 1
     clipboard = %text%
     ;clipboard = %clipboard% ;convert format to plain text
-    Sleep, 300 ;To clean text inside []
+    ;Sleep, 200 ;To clean text inside []
     
-    msgbox, Insert: %clipboard% ;this "magic" allows to make proper clipboard going.
+    ;msgbox, Insert: %clipboard% ;this "magic" allows to make proper clipboard going.
 
-    ClipWait .1, 1
+    ClipWait, 1, 1
     ;SendEvent +{insert}
-    Send ^v
-    return text
+    Send ^{VK56}
 
-    Sleep, 1500 ;Do it always!
-    global clipBackup
-    clipboard := clipBackup
-    ClipWait 2, 1
-    clipBackup = 
+    Sleep, 200 ;Do it always!
+    clipboard = %clipBackup%
+    ClipWait, 2, 1
+    clipBackup = ""
 }
 
 ;-----------------------Bin testsBin testsBin tests

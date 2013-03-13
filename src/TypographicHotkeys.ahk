@@ -20,7 +20,7 @@
 
 ;2 MAIN TODOS:
 ;1. Autoreplacements of spaces between prepositions 
-;2. Alternating groups, reading prepositions from 
+;2. Alternating groups, reading prepositions from
 ;2.0 Make full logical groups
 ;2.1 Make descriptions tooltip
 ;2.2 Make groups on selected element
@@ -29,7 +29,6 @@
 ;2.5 Make timeouts
 
 ;3. Load settings from file
-;3.1 Load resources form files
 
 ;TODO: make timeouts on combo input
 
@@ -43,7 +42,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
 
-locals := ["ru","en"]
+locals := ["ru", "en"]
 local := "en" ;current language 
 
 #Include %a_scriptdir%/inc/KbdLayout.ahk
@@ -58,6 +57,86 @@ sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
 ;IfNotExist, %sname%
     ;MsgBox, %sname%
     FileCreateShortcut, %A_ScriptFullPath%, %sname%
+
+
+;================================= Program hotkeys
+hkList := ComObjCreate("Scripting.Dictionary")
+hkList.item("!+^sc014") := "TypographSelectedText" ;ctrl+shift+alt+t
+hkList.item("!+^sc016") := "UpperCase" ;u
+hkList.item("!+^sc026") := "LowerCase" ;l
+hkList.item("!+^sc020") := "Duplicate" ;d
+hkList.item("^sc00e") := "FixedWindowsCtrlBacksp" ;←
+
+makeHotkeys()
+makeGroupHandlers()
+
+;bind program hotkeys
+makeHotkeys(){
+    global hkList
+
+    keys := hkList.keys()
+    For key in keys
+    {
+        sub := hkList.item(key)
+        Hotkey, %key%, %sub%
+    }    
+}
+
+
+;Can’t trigger self-registered hotkeys by send, so need to have separate handler for this
+triggerHotkey(k, mshift, mctrl, malt) {
+    m := ""
+    if (mctrl) {
+        if (mshift) {
+            if (malt) {
+                m := "!+^"
+            } else {
+                m := "+^"
+            }
+        } else {
+            if (malt) {
+                m := "!^"
+            } else {
+                m := "^"
+            }
+        }
+    } else {
+        if (mshift) {
+            if (malt) {
+                m := "!+"
+            } else {
+                m := "+"
+            }
+        } else {
+            if (malt) {
+                m := "!"
+            } else {
+                m := ""
+            }
+        }
+    }
+
+    hk = %m%%k%
+    if (!checkHotkey(hk)) {
+        ;msgbox, sendHotkey-%hk%
+        Send %m%{%k%}
+    }
+    return
+}
+
+;Checks already existing hotkey. If exists, triggers it
+checkHotkey(hk) {
+    global hkList
+    ;msgbox, checkhk-%hk%-
+    sub := hkList.item(hk) 
+    ;msgbox %sub%
+    if (sub){
+        gosub %sub%
+        return true
+    }
+    return false
+}
+
 
 ;============================================================Main handler of combos
 
@@ -146,7 +225,8 @@ escapeBirmanDiacritics(combo){
     return combo
 }
 
-;==================================================== Groups handlers
+
+;==================================================== Alt-Groups handlers
 strokeCount := ;Times one key pressed
 strokeChar := ;StrokeChar is a key, translated to kbd layout
 strokeKey := ;Strokekey is a current key of hotkey (without specs) pressed.
@@ -189,6 +269,8 @@ makeGroupHandlers() {
     global ruLayout
     global miscLayout
 
+    ;msgbox, dogroups
+
     kl := getDefaultKeyboardLayout()
     layout :=
     if (kl == 409){
@@ -214,7 +296,6 @@ makeGroupHandlers() {
     }
 }
 
-makeGroupHandlers()
 
 HandleGroupPress:
     ;Detect if initial time launched
@@ -225,13 +306,6 @@ HandleGroupPress:
         global strokeChar :=
         global strokeKey :=
     } else {
-        ;TODO: ignore if modifiers are set
-        if (GetKeyState("LCtrl")) {
-            ;MsgBox, %a_thislabel%
-            SendInput {LCtrl & %strokeChar%}
-            return
-        }
-
         ;TODO: ignore adjacent keys (if typed other than )
 
         global strokeCount := strokeCount + 1
@@ -248,6 +322,14 @@ HandleGroupPress:
             global strokeKey := out2
             ;msgbox, %strokeKey%
 
+            ;ignore if modifiers are set
+            if (GetKeyState("Ctrl")) {
+                triggerHotkey(strokeKey, GetKeyState("Shift"), true, true)
+                strokeCount := 0
+                gosub StopListening
+                return
+            }
+
             global strokeChar := translateKey(strokeKey, GetKeyState("LShift"), getCurrentKeyboardLayout())
             ;msgbox, %strokeChar%
 
@@ -255,6 +337,7 @@ HandleGroupPress:
             charPut := getGroupMember(strokeChar, strokeCount)
             ;msgbox, %charPut%
             SendInput {Raw}%charPut%
+            SendInput +{Left}
 
             ;Show proper tooltip hint
             showTooltip(getCharDesc(charPut))
@@ -265,7 +348,8 @@ HandleGroupPress:
         ;Second and more press - replace symbol
         else {
             charPut := getGroupMember(strokeChar, strokeCount)
-            SendInput {Backspace}{Raw}%charPut%
+            SendInput {Raw}%charPut%
+            SendInput +{Left}
             showTooltip(getCharDesc(charPut))
 
             intendStopListening()
@@ -282,10 +366,14 @@ HandleGroupUp:
     return
 
 ;to reset listening combos
-intendStopListening(n:=3000){ 
+intendStopListening(n:=3000){
     SetTimer, StopListening, -%n%
 }
-StopListening:     
+StopListening:
+    if (!strokeCount) {
+        return
+    } 
+    SendInput {Right}
     strokeCount := 0
     strokeChar := 
     strokeKey :=
@@ -320,54 +408,40 @@ ToolTip
 return
 
 
-;===================================================== Typograph of selected text
-;+^t::
-^+!sc014::
-    backupClipboard()
-	
-    insertAndRestore( typograf( getSelectedText() ) )
-	
+;===================================================== Text tools
+TypographSelectedText:
+    ;msgbox, typograph tried
+    backupClipboard()    
+    insertAndRestore( typograf( getSelectedText() ) )    
     return
 
-;======================================== LC, UC selection
-;+^!u::
-+^!sc016::
+UpperCase:
+   backupClipboard()
+   insert( toUpper( getSelectedText() ) )
+   restoreClipboard()
+   return
+
+LowerCase:
     backupClipboard()
-
-    insert( toUpper( getSelectedText() ) )
-
-    restoreClipboard()
-    return
-
-;+^!l::
-+^!sc026::
-    backupClipboard()
-
     insert( toLower( getSelectedText() ) )
+    restoreClipboard()
+    return
+
+Duplicate:
+    backupClipboard()
+
+    text := getSelectedText()
+    len := strlen(text) - 1
+
+    Send {End}
+    insert(text)
+
+    Send {Left %len%}+{Right %len%}
 
     restoreClipboard()
     return
 
-
-;=========================== Duplicate selection shortcut: problem with selecting text
-;repeatDuplicateFlag := false ;is duplicate repeated
-;+^d::
-;^+sc020::
-;    backupClipboard()
-;
-;    text := getSelectedText()
-;    len := strlen(text) - 1
-;
-;    Send {End}
-;    insert(text)
-;
-;    Send {Left %len%}+{Right %len%}
-;
-;    restoreClipboard()
-;    return
-
-;=========================== Fix windows ctrl + backsp
-^sc00e::
+FixedWindowsCtrlBacksp:
     Send +^{Left}{Delete} 
     return
 
@@ -411,7 +485,7 @@ RAlt Up::
 ~sc01a Up::
     ;TODO: make something to ignore not [] as input. For special format line {{}}
     ;TODO: make something to handle not input, but expression between []
-    Input, combo, V C, []{sc01a}{sc01b} ;""{sc028}{sc01}
+    Input, combo, V C L50 T10, []{sc01a}{sc01b} ;""{sc028}{sc01}
     ;msgbox, stop %errorlevel% %combo%
     if (ErrorLevel == "EndKey:]" || ErrorLevel == "EndKey:sc01B") { ;finish sequence
         status := getFake(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
@@ -430,8 +504,6 @@ RAlt Up::
     }
     return
 
-
-    
 
     ;seek for where is caret now
     ;CaretPos := getCaretPosition()
@@ -461,7 +533,7 @@ RAlt Up::
 :?:'ll::’ll
 :?:'em::’em 
 :?:'im::’im 
-;:*:o'::o’ ;o'clock
+:*:o'c::o’c ;o'clock
 :?:in'::in’ ;crackin' 
 ;-----------------fr apostrophes
 :*:l'::l’ ;l'heure
@@ -478,6 +550,6 @@ return self;
 )
 
 ;------------a few useful JS replacements
-:*R:){::) {
-:*R:if(::if (
-:?*R:ion(::ion (
+;:*R:){::) {
+;:*R:if(::if (
+;:?*R:ion(::ion (

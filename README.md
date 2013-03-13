@@ -1,6 +1,8 @@
 # Typographic Hotkeys
 
-Typographic Hotkeys™ extend default Windows keyboard with some useful typographic tools. Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, MS Office-like autocorrection and other typographic opportunities. Besides, Typographic Hotkeys℠ supplies _color convertor_, that can transform recognized colors in selection to any color format, _get utf code_ function, that can get utf code of selected symbol and _in-place fake data generator_.
+Typographic Hotkeys™ extend default Windows keyboard with some useful typographic tools.
+[insert image]
+Script enables <a href="http://www.nouilles.info/keyboard_shortcuts.html">Mac OS X special characters shortcuts</a>, <a href="http://help.ubuntu.com/community/GtkComposeTable">Linux compose keys</a> premised with <a href="http://docs.oracle.com/cd/E19683-01/806-4743/6jdq6q2n7/index.html">Solaris compose keys</a> and other combinations, easy input of <a href="http://www.w3schools.com/tags/ref_symbols.asp">HTML symbol codes</a>, <a href="http://ilyabirman.ru/projects/typography-layout/">Ilya Birman keyboard layout</a> behaviour, MS Office-like autocorrection and other typographic opportunities. Besides, Typographic Hotkeys℠ supplies _color convertor_, that can transform recognized colors in selection to any color format, _get utf code_ function, that can get utf code of selected symbol and _in-place fake data generator_.
 
 ## Installation
 1. Download and install <a href="http://www.autohotkey.com/">Autohotkey</a>™
@@ -32,7 +34,6 @@ Text, dif languages, fake data, fake imgs
 
 ## TODO:
 
-* Make alt+… repeating strokes alternats input symbol. Like easiest-possible groups, no popups… Just inputs symbol. Alt+a → å, Alt+a+a → ä, … 
 * Generate data hotkey for handling selection w/data
 * Color convertor
 * Image with description
