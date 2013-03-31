@@ -9,30 +9,31 @@
 ;fuck birman, do useful french symbol
 ; TODO: debug faker in eclipse
 
-;TODO: faker date & lorem normalize
+;TODO: faker date & lorem normalize & perfectize
 
 ;TODO: make auto nbsp after в городе…
 ;TODO: make ru quotes easy autoinput
 ;TODO: replace combos with dynamic hotstrings
 
-;TODO: make assigning hotstrings in runtime based on selected text
 ;TODO: make old-russian converter
 
 ;2 MAIN TODOS:
 ;1. Autoreplacements of spaces between prepositions 
 ;2. Alternating groups, reading prepositions from
-;2.0 Make full logical groups
 ;2.1 Make descriptions tooltip
 ;2.2 Make groups on selected element
 ;2.3 Make symbol combinations through alt
 ;2.4 Make description on selected element
 ;2.5 Make timeouts
+;2.6 Slow down repeat-speed on holding Alt + →
 
 ;3. Load settings from file
 
 ;TODO: make timeouts on combo input
 
 ;TODO: ensure switching Alt off when loaded up after sleep
+
+;TODO: docs
 
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT

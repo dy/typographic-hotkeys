@@ -26,6 +26,7 @@
 ;Нежелательно чтобы в конце абзаца оставалось одно слово на новой строке.
 ;Типографа сокращения, типа ЕВРО итп
 ;not to take in handle <? ?>, …
+;к 250 – летию Государственного Эрмитажа исправлять
 
 
 
@@ -43,11 +44,14 @@ brace := lbrace . rbrace
 pre := "(||||||)"
 en := "a-zA-Z"
 ru := "а-яА-ЯёЁйЙ"
+lc := "а-яa-zёй"
+uc := "A-ZА-ЯЁЙ"
 num := "0-9" ;TODO:add fractions
 romNum := "IVXLCDMХ"
 math := "\+\-\*\/\%±≠≡"
 currency := "$€¥Ħ₤£⃏"
 word := ru . en . "_"
+eos := "\.\?\!\.\‽" ;end of sentence
 esos := rquo . rbrace ;ending symbol of sentence
 bsos := "¿" . hyphen . dash . lbrace . lquo ;beginning symbol of sentence
 pow := "¹²³⁴⁵⁶⁷⁸⁹⁰⁺¯⁼"
@@ -75,7 +79,7 @@ clean.item("i)\(sm\)") := "℠"
 
 clean.item("[" . space . "]{2,}") := " "
 clean.item("\t+") := " "
-clean.item("U)([" . word . "]+)[" . space . "]?([" . punct . "…]+)(?=[" . word . lquo . num . "])") := "$1$2 "  ;add spaces after punctuation
+clean.item("U)([" . word . "]+)[" . space . "]?([" . punct . "…]+)(?=[" . uc . lquo . num . "])") := "$1$2 "  ;add spaces after punctuation
 clean.item("-{2,6}") := "—" ;clear simple double-dashes
 clean.item("([" . word . esos . "]+)[" . space . "]+([" . punct . "]+)") := "$1$2" ;clean spaces before punct
 clean.item("([" . lquo . lbrace . "])[" . space . "]+") := "$1" ;clean spaces between leftquote ∨ leftbrace ∧ word
@@ -195,6 +199,11 @@ typography.item("i)\bP\.?[" . space . "]?P\.?[" . space . "]?P\.?[" . space . "]
 ;TODO: handle correctly prepositions
 ;handle 
 orphography := ComObjCreate("Scripting.Dictionary")
+
+orphography.item("") := ""
+
+orphography.item("([" . word . "][" . eos . "][" . space . "])" . "([" . word . "])(?=[" . word . "])") := "$1$U2" ;предложение с большой буквы
+
 orphography.item("(\w+)[" . space . "]а[" . space . "]") := "$1, а "
 orphography.item("(\w+)[" . space . "]но[" . space . "]") := "$1, но "
 
@@ -353,7 +362,7 @@ amountWord := "тыс|млн|млрд"
 numPatt := "\b[" . num . "]+[\.,]?[" . num . "]*"
 
 mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2. $L3."
-mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . pointedCurrencyWord . ")\.?") := "$1 $L2."
+mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . pointedCurrencyWord . ")(?![" . word . "]+)\.?") := "$1 $L2."
 
 mathRules.item("i)(" . numPatt . ")[" . space . "]?(" . amountWord . ")\.?[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 $L2. у.е."
 mathRules.item("i)(" . numPatt . ")[" . space . "]?у\.?[" . space . "]?е\.?") := "$1 у.е."
