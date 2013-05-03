@@ -35,6 +35,10 @@
 
 ;TODO: docs
 
+;TODO: bug→ sometimes Alt or Shift is holding and doesn’t hold up. Resolve this shit.
+
+;TODO: photoshop ctrl+shift+alt+z doesnt work sometimes
+
 
 ;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ INIT
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -63,9 +67,10 @@ sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
 ;================================= Program hotkeys
 hkList := ComObjCreate("Scripting.Dictionary")
 hkList.item("!+^sc014") := "TypographSelectedText" ;ctrl+shift+alt+t
-hkList.item("!+^sc016") := "UpperCase" ;u
-hkList.item("!+^sc026") := "LowerCase" ;l
-hkList.item("!+^sc020") := "Duplicate" ;d
+hkList.item("!+^sc012") := "EscapeSelectedText" ;ctrl+shift+alt+e
+hkList.item("!+^sc016") := "UpperCase" ;ctrl+shift+alt+u
+hkList.item("!+^sc026") := "LowerCase" ;ctrl+shift+alt+l
+hkList.item("!+^sc020") := "Duplicate" ;ctrl+shift+alt+d
 hkList.item("^sc00e") := "FixedWindowsCtrlBacksp" ;←
 
 makeHotkeys()
@@ -191,7 +196,7 @@ listenDiacritics(diacr){
     }
     return
 }
-;----------------------------Birman deadkeys escaper
+;----------------------------Ilya Birman deadkeys escaper
 ;Make Birmat not destructive for basic combos like ^0
 escapeBirmanDiacritics(combo){
     ;`, q=˘, 6 = ˆ, /=´, n=˜, v = ˇ, r = ˚, z = ¸, ; = ¨
@@ -414,6 +419,12 @@ TypographSelectedText:
     ;msgbox, typograph tried
     backupClipboard()    
     insertAndRestore( typograf( getSelectedText() ) )    
+    return
+
+EscapeSelectedText:
+    ;msgbox, escape tried
+    backupClipboard()    
+    insertAndRestore( escapeHtml( getSelectedText() ) )    
     return
 
 UpperCase:

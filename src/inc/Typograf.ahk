@@ -28,6 +28,13 @@
 ;not to take in handle <? ?>, …
 ;к 250 – летию Государственного Эрмитажа исправлять
 
+;http://www.someshit.com
+;www.something.com
+;something.com
+
+; ресторан “Guillys (Гиляй) "
+;[10.04.2013 16:32:06] Работа, Веталь: меняет на  “Guillys (Гиляй) "
+;[10.04.2013 16:32:15] Работа, Веталь: А нужно бы: «Guillys (Гиляй) »
 
 
 punct := "\.\,\;\:\_\?\!\¿\؟\‽\&\\" ;punctuation after word

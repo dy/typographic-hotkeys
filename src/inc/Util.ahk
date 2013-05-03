@@ -36,7 +36,7 @@ selectBefore(n){
     }
 }
 
-;--------------------------- String case methods
+;--------------------------- String methods
 toUpper(text){
     ;msgBox, %text%
     StringUpper text, text
@@ -47,6 +47,12 @@ toUpper(text){
 }
 toLower(text){
     StringLower text, text
+    return text
+}
+
+escapeHtml(text){
+    ;msgbox, %text%
+    Transform, text, HTML, %text% 
     return text
 }
 
