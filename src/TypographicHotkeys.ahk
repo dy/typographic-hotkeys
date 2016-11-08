@@ -1,24 +1,7 @@
-﻿; TODO:
-; some bugs when combo outside of [], for example []lorem, and besides, when just ] appeared. So, when you see [], try to grab combo inside, not a listening of something.
-; some bugs with compose in SciTe
-; if language - cyrillic, make «» instead of "" on key 2
-; sometimes it gives → when laptop awakes
-; sometimes catches bug, like with fakeData["en"]["lastName"] changes to something with umlaut ¨ and 3-4 symbols of length
-; make destructors & inspect on memory leaks
-; TODO: debug photoshop
-;fuck birman, do useful french symbol
-; TODO: debug faker in eclipse
-
-;TODO: faker date & lorem normalize & perfectize
-
-;TODO: make auto nbsp after в городе…
-;TODO: make ru quotes easy autoinput
-;TODO: replace combos with dynamic hotstrings
-
-;TODO: make old-russian converter
+﻿; if language - cyrillic, make «» instead of "" on key 2
 
 ;2 MAIN TODOS:
-;1. Autoreplacements of spaces between prepositions 
+;1. Autoreplacements of spaces between prepositions
 ;2. Alternating groups, reading prepositions from
 ;2.1 Make descriptions tooltip
 ;2.2 Make groups on selected element
@@ -26,6 +9,8 @@
 ;2.4 Make description on selected element
 ;2.5 Make timeouts
 ;2.6 Slow down repeat-speed on holding Alt + →
+
+;Move … to Alt+… combination: coffeescript splattings use ...
 
 ;3. Load settings from file
 
@@ -48,12 +33,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;#Hotstring * ? ;Make hotstrings not to wait the end key and trigger inside strings
 
 locals := ["ru", "en"]
-local := "en" ;current language 
+local := "en" ;current language
 
 #Include %a_scriptdir%/inc/KbdLayout.ahk
 #Include %a_scriptdir%/inc/Util.ahk
-#Include %a_scriptdir%/inc/Combinations.ahk
-#Include %a_scriptdir%/inc/Faker.ahk
 #Include %a_scriptdir%/inc/Typograf.ahk
 
 
@@ -66,11 +49,8 @@ sname := A_Startup . "\" . SubStr(A_ScriptName, 1, -4) . ".lnk"
 
 ;================================= Program hotkeys
 hkList := ComObjCreate("Scripting.Dictionary")
-hkList.item("!+^sc014") := "TypographSelectedText" ;ctrl+shift+alt+t
-hkList.item("!+^sc012") := "EscapeSelectedText" ;ctrl+shift+alt+e
 hkList.item("!+^sc016") := "UpperCase" ;ctrl+shift+alt+u
 hkList.item("!+^sc026") := "LowerCase" ;ctrl+shift+alt+l
-hkList.item("!+^sc020") := "Duplicate" ;ctrl+shift+alt+d
 hkList.item("^sc00e") := "FixedWindowsCtrlBacksp" ;←
 
 makeHotkeys()
@@ -85,7 +65,7 @@ makeHotkeys(){
     {
         sub := hkList.item(key)
         Hotkey, %key%, %sub%
-    }    
+    }
 }
 
 
@@ -134,7 +114,7 @@ triggerHotkey(k, mshift, mctrl, malt) {
 checkHotkey(hk) {
     global hkList
     ;msgbox, checkhk-%hk%-
-    sub := hkList.item(hk) 
+    sub := hkList.item(hk)
     ;msgbox %sub%
     if (sub){
         gosub %sub%
@@ -154,17 +134,6 @@ getCharDesc(char){
 }
 
 
-lastResult := "" ;stores last found symbol
-;----------------------Searches for combination in list
-getCombo(list, cmb){
-    global lastResult := ""
-    str := list.item(cmb)
-    if (str){
-        lastResult := str
-        return true
-    }
-    return false
-}
 ;----------------------Outputs combo as ASCII/UTF code (windows alt-code)
 ;Bad function style, but it's simplier to output here
 getCharFromUTF(combo){
@@ -178,65 +147,13 @@ getCharFromUTF(combo){
         Send {ASC %code%}
     }
 }
-;-------------------------Mac diacritics listener. Waits for letter to input and tries to find it in lists
-listenDiacritics(diacr){
-    global lastResult
-    global combos
-    global extensions
-    Send {raw}%diacr%
-    Input targetChr, * L1 V C, {CtrlBreak}
-    if (ErrorLevel == "NewInput"){
-        return
-    }
-    targetChr := diacr . targetChr
-    getCombo(combos, targetChr) || getCombo(extensions, targetChr)
-    if (lastResult){
-        clear(StrLen(targetChr))
-        Send %lastResult%    
-    }
-    return
-}
-;----------------------------Ilya Birman deadkeys escaper
-;Make Birmat not destructive for basic combos like ^0
-escapeBirmanDiacritics(combo){
-    ;`, q=˘, 6 = ˆ, /=´, n=˜, v = ˇ, r = ˚, z = ¸, ; = ¨
-    first := substr(combo, 1, 1)
-    diacr := ""
-    if (strlen(combo) == 2) {
-        if (first == "?" && combo != "?!") {
-            diacr := "´"
-        } else if (first == "N" || first == "Т"){
-            diacr := "˜"
-        } else if (first == "V" || first == "М"){
-            diacr := "ˇ"
-        } else if (first == "C" || first == "С"){
-            diacr := "˜"
-        } else if (first == "Z" || first == "Я"){
-            diacr := "¸"
-        } else if (first == ":" || first == "Ж"){
-            diacr := "¨"
-        } else if (first == "R" || first == "К"){
-            diacr := "˚"
-        } else if (first == "Q" || first == "Й"){
-            diacr := "˘"
-        } else if (first == "^"){
-            diacr := "ˆ"
-        } else if (first == "~" || first == "Ё"){
-            diacr := "`"
-        }
-    }
-    if (diacr) {
-        combo := diacr . substr(combo, 2, strlen(combo))
-    }
-    return combo
-}
 
 
 ;==================================================== Alt-Groups handlers
 strokeCount := ;Times one key pressed
 strokeChar := ;StrokeChar is a key, translated to kbd layout
 strokeKey := ;Strokekey is a current key of hotkey (without specs) pressed.
-groups := ComObjCreate("Scripting.Dictionary") ;basic dictionary of symbol-groups by keys of letters 
+groups := ComObjCreate("Scripting.Dictionary") ;basic dictionary of symbol-groups by keys of letters
 
 ;Make groups grom file
 initGroups(file) {
@@ -349,7 +266,7 @@ HandleGroupPress:
             showTooltip(getCharDesc(charPut))
 
             intendStopListening()
-        } 
+        }
 
         ;Second and more press - replace symbol
         else {
@@ -378,10 +295,10 @@ intendStopListening(n:=3000){
 StopListening:
     if (!strokeCount) {
         return
-    } 
+    }
     SendInput {Right}
     strokeCount := 0
-    strokeChar := 
+    strokeChar :=
     strokeKey :=
     hideTooltip(300)
     SetTimer, StopListening, Off
@@ -401,7 +318,7 @@ showToolTip(text) {
 	}
 	ToolTip, %text% %a_caretx%, X %tx%, Y %ty%
 	SetTimer, RemoveToolTip, 5000
-	return	
+	return
 }
 
 hideToolTip(n:=0){
@@ -415,18 +332,6 @@ return
 
 
 ;===================================================== Text tools
-TypographSelectedText:
-    ;msgbox, typograph tried
-    backupClipboard()    
-    insertAndRestore( typograf( getSelectedText() ) )    
-    return
-
-EscapeSelectedText:
-    ;msgbox, escape tried
-    backupClipboard()    
-    insertAndRestore( escapeHtml( getSelectedText() ) )    
-    return
-
 UpperCase:
    backupClipboard()
    insert( toUpper( getSelectedText() ) )
@@ -439,129 +344,8 @@ LowerCase:
     restoreClipboard()
     return
 
-Duplicate:
-    backupClipboard()
-
-    text := getSelectedText()
-    len := strlen(text) - 1
-
-    Send {End}
-    insert(text)
-
-    Send {Left %len%}+{Right %len%}
-
-    restoreClipboard()
-    return
 
 FixedWindowsCtrlBacksp:
-    Send +^{Left}{Delete} 
+    Send +^{Left}{Delete}
     return
 
-;========================================================Compose key handler
-RAlt::
-    ;Cunning hook: RAlt Up sends {CtrlBreak} that stops Input that RAlt has started. 
-    Input, combo, V C,{CtrlBreak}
-    ;RAlt continues to perform and tries to find passed combination.
-
-    ;Convert first letter to birman's kbd deadkey
-    combo := escapeBirmanDiacritics(combo)
-
-    getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo) || getCombo(birmans, combo)
-    
-    if (lastResult){
-        clear(StrLen(combo))
-        Send %lastResult%
-    } else { ;if no combos found - try to send Alt+… command, but extended to unicode
-        utf := RegExMatch(combo, "[0-9]{2,8}")
-        if (utf) { 
-            clear(StrLen(combo))
-            getCharFromUTF(combo) 
-        }
-    }
-    return
-
-RAlt Up::
-    SendEvent {CtrlBreak}
-    return
-
-;PgUp::
-;    rate := DllCall("GetCaretBlinkTime")
-;    msgBox, %rate%
-;    return
-
-
-
-
-;=========================================================Symbol sequences handler
-;~[::
-~sc01a Up::
-    ;TODO: make something to ignore not [] as input. For special format line {{}}
-    ;TODO: make something to handle not input, but expression between []
-    Input, combo, V C L50 T10, []{sc01a}{sc01b} ;""{sc028}{sc01}
-    ;msgbox, stop %errorlevel% %combo%
-    if (ErrorLevel == "EndKey:]" || ErrorLevel == "EndKey:sc01B") { ;finish sequence
-        status := getFake(combo) || getCombo(combos, combo) || getCombo(htmlCodes, combo) || getCombo(extensions, combo)
-        if (lastResult) {
-            clear(StrLen(combo)+2)
-            Send %lastResult%
-        } else {
-            utf := RegExMatch(combo, "[0-9]{4,}")
-            if (utf) { ;if no combos found - try to send Alt+… command, but extended to unicode
-                clear(StrLen(combo)+2)
-                getCharFromUTF(combo)
-            }
-        }
-    } else { ;finished by escape
-
-    }
-    return
-
-
-    ;seek for where is caret now
-    ;CaretPos := getCaretPosition()
-    ;CaretX := CaretPos["x"]
-    ;CaretY := CaretPos["y"]
-
-
-
-;---------------string replacements
-:?*:...::…
-:*:(c)::©
-:*:(r)::® 
-:*:(tm)::™
-:*:(sm)::℠
-:*:←→::↔
-
-;--------------en apostrophes
-:?*:n't::n’t
-;:*:et's::et’s   ;let’s
-:?:'m::’m
-:?:'re::’re
-:?:'s::’s
-:?:s'::s’
-:?:'st::’st
-:?:'ve::’ve
-:?:'d::’d
-:?:'ll::’ll
-:?:'em::’em 
-:?:'im::’im 
-:*:o'c::o’c ;o'clock
-:?:in'::in’ ;crackin' 
-;-----------------fr apostrophes
-:*:l'::l’ ;l'heure
-:*:d'::d’ ;d'or
-
-;--------------nobrs
-:*:fu`t::
-(
-function () {
-var self = this, o = self.options;
-
-return self;
-}
-)
-
-;------------a few useful JS replacements
-;:*R:){::) {
-;:*R:if(::if (
-;:?*R:ion(::ion (

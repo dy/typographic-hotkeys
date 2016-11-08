@@ -1,7 +1,7 @@
 ﻿;≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡Typograf is a script that corrects typography of selected text
 
 ;TODO:
-; define language
+; detect language
 
 ; Refactoring prospectives:
 ; make nongreedy cases
@@ -9,9 +9,9 @@
 ; Tests: habr texts, gmail en texts, my wordpress texts, Netbeans texts, Photoshop texts, lj texts
 
 ;missed . at the end of sentences
-;recognizing of lists
+;recognition of lists
 
-;ending spaces cut – is it goo or bad?
+;ending spaces cut – is it good or bad?
 ;auto nbsp where needed in realtime typesetting
 
 
