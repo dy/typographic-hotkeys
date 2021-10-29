@@ -10,7 +10,7 @@
 ;2.5 Make timeouts
 ;2.6 Slow down repeat-speed on holding Alt + →
 
-;Move … to Alt+… combination: coffeescript splattings use ...
+;Move ... to Alt+... combination: coffeescript splattings use ...
 
 ;3. Load settings from file
 
@@ -316,8 +316,8 @@ showToolTip(text) {
 	if (A_caretY) {
 		ty := a_caretY
 	}
-	ToolTip, %text% %a_caretx%, X %tx%, Y %ty%
-	SetTimer, RemoveToolTip, 5000
+	;ToolTip, %text% %a_caretx%, X %tx%, Y %ty%
+	;SetTimer, RemoveToolTip, 5000
 	return
 }
 

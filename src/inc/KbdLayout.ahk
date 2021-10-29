@@ -2,7 +2,8 @@
 
 KLF_ACTIVATE := 1
 
-KeyboardLayout_EN := 0x4090409
+KeyboardLayout_EN := 0x4090409 ; en US
+;KeyboardLayout_EN := 0x4091009 ; en CA
 KeyboardLayout_RU := 0x4190419
 
 
